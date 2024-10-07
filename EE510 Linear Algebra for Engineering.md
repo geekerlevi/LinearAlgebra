@@ -1382,11 +1382,11 @@ $$\begin{bmatrix}
 $$E_1= \begin{bmatrix}
 1 & 0 & 0 \\ -2 & 1 & 0\\ 1 & 0 & 1\\\end{bmatrix}$$
 
-| Operations | $$E_1$$              | $$E_1^{-1}$$ |
-| ---------- | -------------------- | ------------ |
-| $$R1$$     | $$R1$$               | $$R1$$       |
-| $$R2$$     | 4$R2-2R1$$ ($$+2R1$) | $$R2$$       |
-| $$R3$$     | $$R3+R1$$ ($$-R1$$)  | $$R3$$       |
+| Operations | $$E_1$$             | $$E_1^{-1}$$ |
+| ---------- | ------------------- | ------------ |
+| $$R1$$     | $$R1$$              | $$R1$$       |
+| $$R2$$     | $R2-2R1$$ ($$+2R1$) | $$R2$$       |
+| $$R3$$     | $$R3+R1$$ ($$-R1$$) | $$R3$$       |
 
 $$E_1^{-1}=\begin{bmatrix}
 1 & 0 & 0 \\ 2 & 1 & 0\\ -1 & 0 & 1\\\end{bmatrix}$$
@@ -1946,7 +1946,7 @@ Proof by contradiction:
 
 $$\sim Q: n \neq m$$ $$\rightarrow (n<m)$$ or $$(n>m)$$
 
-Let $$(n<m)$$         - (WithoutLossOfGenerality)
+Let $$(n<m)$$         - (Without Loss Of Generality)
 
 $$T=\{\alpha_1, ... \alpha_n\}$$ 
 
@@ -1988,7 +1988,7 @@ $$=\sum_{i=1, i \neq l}^{n} a_i \beta_i$$
 
 
 
-So for $$B=CA$$ WITH INVERTIBLE $$C$$ then, 
+So for $$B=CA$$ with invertible $$C$$ then, 
 
 $$A=C^{-1}B$$
 
@@ -2156,7 +2156,7 @@ If $$Ax=0$$ and $$Bx=0$$ have the same solution, then $$A$$ and $$B$$ have the s
 
 ### Outlines
 
-Dimension Thorem
+Dimension Theorem
 
 Existence and Uniqueness
 
@@ -2274,11 +2274,575 @@ If $$Ax=\mathbf{0} \implies \begin{bmatrix}B\\TB\end{bmatrix}x=\begin{bmatrix}Bx
 
 If $$Bx=\mathbf{0} \implies Ax=\begin{bmatrix}B\\TB\end{bmatrix}x=\begin{bmatrix}\mathbf{0}\\\mathbf{0}\end{bmatrix}$$
 
+Case 2: $$r \leq c$$
+
+$$A^Ty=x$$
+
+$$A^T \in \R^{n \times m}, y \in \R^{m \times 1}, x \in \R^{n \times 1}$$
+
+The column rank of $$A^T$$ is $$r$$
+
+The row rank of $$A^T$$ is $$c$$
+
+$$A^T=\begin{bmatrix}...&\beta_1&...\\...&...&...\\...&\beta_c&...\\...&\beta_{c+1}&...\\...&...&...\\...&\beta_n&...\end{bmatrix}$$ 
+
+where $$E \in \R^{c \times m}=\begin{bmatrix}...&\beta_1&...\\...&...&...\\...&\beta_c&...\end{bmatrix}$$ is linearly independent rows 
+
+where $$F \in \R^{(n-c)\times m}=\begin{bmatrix}...&\beta_{c+1}&...\\...&...&...\\...&\beta_n&...\end{bmatrix}$$ is linearly dependent rows
+
+$$\forall_j: c+1 \leq j \leq n, \exists r_{ji}'s:$$
+
+$$\beta_j=\sum_{i=1}^{c}r_{ji}\beta_i$$ ,  $$R \equiv [r_{ji}]$$
+
+$$F=RE$$ 
+
+$$A^T=\begin{bmatrix}E\\F\end{bmatrix}=\begin{bmatrix}E\\RE\end{bmatrix}$$
+
+$$A^Ty=\mathbf{0}$$ if and only if $$Ey=0$$
+
+The column rank of $$E=r$$ 
+
+$$Ey=x$$ where $$E \in \R^{c \times m}, y \in \R^{m \times 1}, x \in \R^{c \times 1}$$
+
+$$r \leq c$$
+
+Therefore $$r=c$$
+
+
+
+$$Bx=y$$ where $$B \in \R^{m \times n}, x \in \R^{n \times 1}, y \in \R^{m \times 1}$$ 
+
+$$x$$ is the domain and $$y$$ is the co-domain
+
+$$Bx \equiv$$ column smace or range space
+
+column space $$\subset$$ co-domain
+
+------
+
+### Counting Theorem
+
+------
+
+$$A \in \R^{m \times n}$$ 
+
+Dimension of column space + Dimension of null sapce = $$n$$ = number of columns
+
+
+
+Proof: 
+
+$$A \in \R^{m \times n}$$ 
+
+$$A \implies R_r$$ (row reduced Echelon)
+
+$$Ax=0$$ and $$R_rx=0$$
+
+Number of pivots in $$R_r=$$ column rank ($$A$$)
+
+$$R_rx=0$$ and $$Ax=0$$ 
+
+Dim of null sapce for $$R_r=n-r$$  where $$n$$ is the number of columns and $$r$$ is the number of pivots
+
+Because $$A$$ and $$R_r$$ are row equivalent, then
+
+$$Ax=0$$ if and only if $$R_rx= \mathbf{0}$$
+
+Dimension of null space of $$A=n-r$$
+
+$$n-r+r=n$$
+
+Dim($$n(A)$$)+Dim($$C(A)$$)=number of columns
+
+
+
+Thm: 
+
+Fundamental Theorem: $$A \in \R^{m \times n}$$
+
+1. The row space of $$A$$ and nullsape of $$A$$ are orthogonal complements in $$\R^{n \times 1}$$
+
+2. The column space of $$A$$ and left null sapce of $$A$$ are orthoginal complements in $$\R^{m \times 1}$$
+
+Let $$v$$ be a vector space
+
+$$u$$ be a subspace of $$v$$
+
+$$w$$ be a subsapce of $$v$$
+
+$$u$$ and $$w$$ are orthogonal complements means that $$\forall \alpha \in u$$ and $$\forall \beta \in w$$, $$\alpha \perp \beta$$
+
+$$\alpha \cdot \beta=0$$
+
+Proof:
+
+$$Ax=y$$ where $$A \in \R^{m \times n}, x \in \R^{n \times 1}, y \in \R^{m \times 1}$$
+
+1. Row Space: $$C(A^T)=\{x\in \R^{n \times 1}: A^Ty=x, y\in \R^{m \times 1}\}$$
+
+   Null Space: $$n(A)=\{x\in \R^{n \times 1}: Ax= \mathbf{0}\}$$
+
+   Assume $$\alpha \in C(A^T)$$ and $$\beta=n(A)$$
+
+   $$\alpha \cdot \beta = \alpha^{T} \beta = (A^Ty)^Tx$$ 
+
+   $$=y^TAx$$ where $$Ax=0$$
+
+   $$=0$$
+
+2. Column Space: $$C(A)=\{y \in \R^{m \times 1}: Ax=y, x \in \R^{n \times 1}\}$$
+
+   Left null space $$n(A^T)=\{y \in \R^{m \times 1}: A^Ty=0\}$$
+
+   Assume $$\alpha \in C(A)$$ and $$\beta \in n(A^T)$$
+
+   $$\alpha^{T}\beta=(Ax)^Ty$$
+
+   $$=x^TA^Ty$$ where $$A^Ty=0$$
+
+   $$=0$$
+
+Summary:
+
+$$A \in \R^{m \times n}$$
+
+column rank =$$r$$
+
+dimension of null space= $$n-r$$
+
+row rank = $$r$$
+
+dimension of left null space =$$m-r$$
+
+------
+
+$$Ax=b$$
+
+$$m \equiv $$ number of equations
+
+$$n \equiv$$ number of unknowns
+
+$$M=[Ab]$$
+
+Rank($$M$$)          Rank($$A$$)
+
+### Existence and Uniqueness
+
+Thm:
+
+Let $$Ax=b$$ be a system with $$n$$-unknowns $$m$$ equations and augmented matrix $$M=[A b]$$
+
+1. The system has at least one solution if and only if $$rank(M)=rank(A)$$
+
+   $$M'=\begin{bmatrix}1&2&3&4\\0&3&1&2\\0&0&2&1\\0&0&0&0\end{bmatrix}$$ $$A'=\begin{bmatrix}1&2&3\\0&3&1\\0&0&2\\0&0&0\end{bmatrix}$$
+
+   $$n=3$$
+
+2. The system has a unique solution if and only if $$rank(M)=n=rank(A)$$
+
+### Inner Product Space
+
+Vector space $$V$$ over a field $$F$$
+
+Real Inner Product space:
+
+Let $$V$$ be a vector space over field $$\R$$
+
+$$<\alpha,\beta>$$ assign a real number for $$\alpha,\beta \in V$$
+
+Then $$<\alpha,\beta>$$ is an inner product if:
+
+[$$I_1$$] Linearity: $$<\alpha, a \beta+b \gamma>=a<\alpha, \beta>+b<\alpha, \gamma>$$ , $$\forall \alpha, \beta, \gamma \in V$$ and $$a,b \in \R$$
+
+[$$I_2$$] Symmetry: $$<\alpha,\beta>=<\beta, \alpha>$$ , $$\forall \alpha, \beta \in V$$
+
+[$$I_3$$] Positive Definite: $$<\alpha, \alpha> \geq 0$$ and $$<\alpha, \alpha>=0$$ if and only if $$\alpha=\mathbf{0}$$
 
 
 
 
-## Week 4 Session 1 (Wrong)
+
+Examples:
+
+1. Euclidean $$\R^n$$ 
+
+   $$<u,v>=u \cdot v=\sum_{i=1}^{n} u_i v_i$$
+
+2. Function space $$c[a,b]$$ and polynomial space $$P_n(t)$$
+
+   $$c[a,b]$$ - vector space of all continuous functions on the closed interval $$[a,b]$$
+
+   $$<f,g>=\int_{a}^{b}f(x) g(x) dx$$
+
+3. Matrix space $$M=\R^{m \times n}$$
+
+   $$M$$ - vector space of all real $$m \times n$$ matrices
+
+   $$<A,B>=Tr(B^T A)$$
+
+------
+
+## Week 4 Session 2
+
+### Outlines
+
+Orthogonality and Inner Products
+
+Gram-Schmidt Process
+
+------
+
+Inner Product
+
+$$<\alpha,\beta>$$
+
+### Complex Inner Product Space
+
+Vector $$V$$ over field $$\C$$
+
+$$<\alpha,\beta>=\sum_{i=1}^{n}a_ib_i^{\ast}$$ where $$\alpha=\begin{bmatrix}a_1\\...\\a_n\end{bmatrix}$$ , $$\beta=\begin{bmatrix}b_1\\...\\b_n\end{bmatrix}$$
+
+$$<\alpha,\beta>$$ must satisfy the following properties:
+
+$$\forall \alpha, \beta, \gamma \in V ; \forall a, b \in \C$$ 
+
+ [$$I_1$$] : Linearity
+
+$$<\alpha, a\beta+b\gamma>=a^{\ast}<\alpha,\beta>+b^{\ast}<\alpha, \gamma>$$
+
+[$$I_2$$] : Conjugate Symmetry
+
+$$<\alpha, \beta>=<\beta, \alpha>^{\ast}$$
+
+[$$I_3$$] : Positive Definite:
+
+$$<\alpha, \alpha> \geq 0$$ and $$<\alpha, \alpha>=0 $$ if and only if $$\alpha=\mathbf{0}$$
+
+------
+
+### Normed Vector Spaces
+
+Let $$V=\{\alpha, \beta, \gamma, ...\}$$ be a vector space over a field $$F$$. A norm $$||\cdot||$$ of $$V$$ is a function from the elements of $$v$$ (vectors in $$V$$) into the non-negative real number such that: 
+
+[$$N_1$$] : $$||\alpha|| \geq 0$$ , $$\forall \alpha \in V$$ and $$||\alpha||=0$$ if an only if $$\alpha=\mathbf{0}$$
+
+[$$N_2$$] : $$||k\alpha||=|k|||\alpha||$$, $$\forall \alpha \in V$$ and $$\forall k \in F$$
+
+[$$N_3$$] : $$||\alpha+\beta|| \leq ||\alpha||+||\beta||$$, $$ \forall \alpha, \beta \in V$$ (triangle inequality) 
+
+
+
+Example:
+
+1. $$v=\R^n, \alpha \in V, \alpha=[a_1, ... a_n]$$
+
+   $$||\alpha||=\sqrt{(a_1)^2+...(a_n)^2}$$   - Euclidean Norm
+
+2. $$v = \C^n$$ Complex field
+
+
+------
+
+### Metric Space
+
+Vector space $$V$$ over $$F$$
+
+$$M(\alpha, \beta)$$ - metric
+
+Properties of a matric:
+
+[$$M_1$$] : $$M(\alpha, \beta) \geq 0$$ and $$M(\alpha, \beta) =0$$ if and only if $$\alpha=\beta$$
+
+[$$M_2$$] : $$M(\alpha, \beta)=M(\beta, \alpha)$$
+
+[$$M_3$$] : $$M(\alpha, \gamma) \leq M(\alpha, \beta) + M(\beta, \gamma)$$
+
+------
+
+### Norm
+
+$$l^p$$ - norm : $$\sqrt[p]{\sum_{i=1}^{n}|x_i|^p}=||x||_p$$
+
+$$l^p$$ - distance : $$||x-y||_p$$
+
+------
+
+Volume of an Euclidean ball of radians $$\gamma$$
+
+$$l^2$$ - norm $$r=\sqrt[2]{\sum_{i=1}^{n}x_i^2}=n=2$$
+
+$$r=\sqrt{x^2+y^2}$$
+
+Given Conditions:
+
+$$V_n(r)=c_n r^n$$ ; $$c_n=\frac{2 \pi}{n}c_{n-2}$$
+
+| $$n$$                                      | $$V_n$$                |
+| ------------------------------------------ | ---------------------- |
+| $$c_1=2$$                                  | $$2r$$                 |
+| $$c_2=\pi$$                                | $$\pi r^2$$            |
+| $$c_3=\frac{2 \pi}{3}c_1=\frac{4 \pi}{3}$$ | $$\frac{4 \pi}{3}r^3$$ |
+| $$c_4=\frac{2 \pi}{4}c_2=\frac{\pi^2}{2}$$ | $$\frac{\pi^2}{2}r^4$$ |
+
+![image-20240922181228013](C:\Users\Levi\AppData\Roaming\Typora\typora-user-images\image-20240922181228013.png)
+
+$$ 0 < \epsilon <r$$
+
+Volume shell - Entire Volume
+
+$$\frac{c_nr^n-c_n(r-\epsilon)^n}{c_nr^n}$$
+
+$$=\frac{r^n-(r-\epsilon)^n}{r^n}$$
+
+$$=1-(1-\frac{\epsilon}{r})^n$$
+
+$$0<\epsilon<r$$ $$\implies$$ $$0<\frac{\epsilon}{r}<1$$
+
+$$1>1-\frac{\epsilon}{r}>0$$
+
+$$lim_{n \rightarrow \infty}1-(1-\frac{\epsilon}{r})^n=1$$
+
+------
+
+### Orthogonality
+
+Vector space $$V$$ over field $$F$$
+
+$$\alpha, \beta \in V$$
+$$\alpha \perp \beta$$ if and only if $$<\alpha,\beta>=0$$
+
+Def: Let $$S=\{\alpha_1, ... \alpha_n\} \subset V$$ is mutually orthogonal if and only if
+
+$$\alpha_i \cdot \alpha_j=0$$ for $$i \neq j$$
+
+------
+
+### Mutually Orthonormal 
+
+A vector is normal if and only if its norm $$||\cdot||$$ is equal to 1
+
+Def: Let $$S=\{\beta_1, ... \beta_n\} \subset V$$ is mutually orthonormal if and only if 
+
+ $$ \alpha_i \cdot \alpha_j = \begin{cases} 0, \text{if\:} i \neq j \\ 1, \text{if\:} i =j \end{cases}$$
+
+$$S=\{\alpha_1, ... \alpha_n\}$$ which is mutually orthogonal $$\implies$$ $$T=\{\frac{\alpha_1}{||\alpha_1||}, ...,\frac{\alpha_n}{||\alpha_n||} \}$$ which is mutually orthonormal
+
+------
+
+$$S$$ is linearly independent $$\centernot\implies$$ $$S$$ is mutually orthogonal
+
+$$S$$ is mutually orthogonal $$\implies$$ $$S$$ is linearly independent
+
+
+
+Example.
+
+$$S=\{\alpha_1, \alpha_2, \alpha_3\}$$
+
+where $$\alpha_1=\begin{bmatrix}1\\0\\0\end{bmatrix}$$ , $$\alpha_2=\begin{bmatrix}0\\1\\1\end{bmatrix}$$ , $$\alpha_3=\begin{bmatrix}0\\1\\-1\end{bmatrix}$$ 
+
+$$v=\begin{bmatrix}3\\5\\2\end{bmatrix}$$
+
+where $$\alpha_1 \cdot \alpha_2=0, \alpha_1 \cdot \alpha_3=0, \alpha_2 \cdot \alpha_3=0$$
+
+$$c_1=\frac{v \cdot \alpha_1}{\alpha_1 \cdot \alpha_1}=\frac{3}{1}$$
+
+$$c_2=\frac{v \cdot \alpha_2}{\alpha_2 \cdot \alpha_2}=\frac{7}{2}$$
+
+$$c_3=\frac{v \cdot \alpha_3}{\alpha_3 \cdot \alpha_3}=\frac{3}{2}$$
+
+Therefore: $$v=3\alpha_1+\frac{7}{2}\alpha_2+\frac{3}{2}\alpha_3$$
+
+
+
+Thm: 
+
+If $$S=\{\alpha_1, ... \alpha_n\}$$ is in a vector space $$V$$ and $$S$$ is mutually orthogonal (with $$\alpha_i \neq 0$$), then $$S$$ is linearly independent
+
+Proof:
+
+$$c_1\alpha_1+...c_n\alpha_n=\mathbf{0}$$
+
+$$(c_1\alpha_1+...c_n\alpha_n)\cdot \alpha_i=\mathbf{0} \cdot \alpha_i=\mathbf{0}$$
+
+$$\sum_{j=1}^{n}c_j(\alpha_j \cdot \alpha_i)=0$$
+
+$$\sum_{j=1, j \neq i}^{n}c_j(\alpha_j \cdot \alpha_i)+c_i(\alpha_i \cdot \alpha_i)=0$$
+
+$$\sum_{j=1, j \neq i}^{n}c_j(\alpha_j \cdot \alpha_i)=0$$ because $$S$$ is mutually orthogonal
+
+$$c_i(\alpha_i \cdot \alpha_i)=0$$
+
+$$c_i=\frac{0}{\alpha_i \cdot \alpha_i}$$ where $$\alpha_i \neq 0$$
+
+Therefore, $$c_1=c_2=...=c_n$$ is the only solution
+
+Therefore, $$S$$ is linearly independent
+
+
+
+$$S=\{\alpha_1, \alpha_2, \alpha_3\}$$
+
+where $$\alpha_1=\begin{bmatrix}1\\0\\0\end{bmatrix}$$ , $$\alpha_2=\begin{bmatrix}1\\1\\0\end{bmatrix}$$ , $$\alpha_3=\begin{bmatrix}1\\1\\1\end{bmatrix}$$ 
+
+It is linearly independent but not mutually orthogonal 
+
+where $$\alpha_1 \cdot \alpha_2=1, \alpha_1 \cdot \alpha_3=2, \alpha_2 \cdot \alpha_3=1$$
+
+
+
+Thm:
+
+If $$S=\{\alpha_1, ... \alpha_n\}$$ is in a vector space $$V$$ , $$S$$ is a basis of $$V$$ and $$S$$ is mutually orthogonal, then $$\forall \beta \in V, \exists a_i's$$ such that
+
+$$a_1\alpha_1+...+a_n\alpha_n=\beta$$
+
+$$a_i=\frac{\beta \cdot \alpha_i}{\alpha_i \cdot \alpha_i}$$
+
+Proof:
+
+$$S$$ is a basis for $$V$$
+
+$$\forall \beta \in V$$
+
+$$a_1\alpha_1+...+a_n\alpha_n=\beta$$
+
+$$(a_1\alpha_1+...+a_n\alpha_n)\alpha_i=\beta \cdot \alpha_i$$
+
+$$\sum_{j=1}^{n}a_j(\alpha_j \cdot \alpha_i)=\beta \alpha_i$$
+
+$$\sum_{j=1, j \neq i}^{n}a_j(\alpha_j \cdot \alpha_i)+a_i(\alpha_i \cdot \alpha_i)=\beta \cdot \alpha_i$$
+
+$$a_i(\alpha_i \cdot \alpha_i)=\beta \cdot \alpha_i$$
+
+Therefore, $$a_i=\frac{\beta \cdot \alpha_i}{\alpha_i \cdot \alpha_i}$$
+
+------
+
+$$S=\{\alpha_1, ... \alpha_n\}$$ is a orthogonal basis of $$V$$
+
+1. Basis
+2. Mutually orthogonal
+
+------
+
+### Projection
+
+Projection of $$\alpha$$ onto $$\beta$$
+
+![image-20240922192152219](C:\Users\Levi\AppData\Roaming\Typora\typora-user-images\image-20240922192152219.png)
+
+$$\gamma=Proj_{\beta}(\alpha)=c\beta$$
+
+$$\omega=\alpha-\gamma$$ and $$\omega \perp \beta$$
+
+$$(\alpha-\gamma) \perp \beta$$
+
+$$(\alpha-c\beta) \perp \beta$$
+
+$$(\alpha-c\beta) \cdot \beta=0$$
+
+$$\alpha \cdot \beta - c \beta \cdot \beta=0$$
+
+$$c=\frac{\alpha \cdot \beta}{\beta \cdot \beta}$$
+
+$$Proj_{\beta}(\alpha)=c \beta=\frac{\alpha \cdot \beta}{\beta \cdot \beta}\beta$$
+
+$$Orth_{\beta}(\alpha) \equiv \alpha - \gamma = \alpha - \frac{\alpha \cdot \beta}{\beta \cdot \beta}\beta$$
+
+$$Proj_{\beta}(\alpha)+Orth_{\beta}(\alpha)=\alpha$$
+
+------
+
+$$w$$ is a subspace of $$V$$
+
+Projection of $$\alpha$$ onto $$\omega$$ 
+
+$$S=\{\beta_1, ... \beta_m\}$$ is an orthogonal basis for $$\omega$$
+
+![image-20240922210630840](C:\Users\Levi\AppData\Roaming\Typora\typora-user-images\image-20240922210630840.png)
+
+$$\gamma=Proj_{w}(\alpha)=c_1\beta_1+ ... + c_m\beta_m$$
+
+1. $$\gamma \cdot \beta_i=(c_1\beta_1+ ... + c_m\beta_m) \cdot \beta_i$$
+
+   $$=c_i(\beta_i \cdot \beta_i)+\sum_{j=1, j \neq i}^{m} c_j(\beta_j \cdot \beta_i)$$
+
+2. $$\omega=\alpha-\gamma : \omega \perp \beta_i$$
+
+   $$(\alpha-\gamma) \perp \beta_i$$
+
+   $$(\alpha-\gamma) \cdot \beta_i=0$$
+
+   $$\alpha \cdot \beta_i=\gamma \cdot \beta_i$$
+
+Then $$\gamma \cdot \beta = \alpha \cdot \beta_i=c_i(\beta_i \cdot \beta_i)$$
+
+$$c_i=\frac{\alpha \cdot \beta_i}{\beta_i \cdot \beta_i}$$
+
+$$\gamma=\frac{\alpha \cdot \beta_1}{\beta_1 \cdot \beta_1}+...+\frac{\alpha \cdot \beta_m}{\beta_m \cdot \beta_m}=Proj_{\omega}(\alpha)$$
+
+------
+
+$$S=\{\alpha_1, ... \alpha_n\}$$ which is linearly independent "Gram Schmidt" $$\implies$$ $$T=\{\beta_1, ... \beta_n\}$$ which is mutually orthogonal 
+
+$$L(S)=L(T)$$
+
+Def:
+
+If $$V$$ is a vector space and $$S$$ is a subspace of $$V$$, then
+
+$$\omega=\{\alpha+\beta: \alpha \in S, \beta \in S^{\perp}\}=V=S \oplus S^{\perp}$$
+
+where $$S^{\perp}$$ is the orthogonal complement of $$S$$
+
+![image-20240922213439496](C:\Users\Levi\AppData\Roaming\Typora\typora-user-images\image-20240922213439496.png)
+
+### Gram-Schmidt Process
+
+Given $$S=\{\alpha_1, ... , \alpha_n\}$$ where $$S$$ is linearly independent.
+
+Find $$T=\{\beta_1, ..., \beta_n\}$$ where $$S$$ is mutually orthogonal and $$L(s)=L(\tau)$$
+
+$$\beta_1=\alpha_1$$
+
+$$V_1=span\{\alpha_1\}=span\{\beta_1\}$$
+
+$$\beta_2=\alpha_2-\frac{\alpha_2 \cdot \beta_1}{\beta_1 \cdot \beta_1}\beta_1$$ where $$Proj_{v_1}(\alpha_2)=\frac{\alpha_2 \cdot \beta_1}{\beta_1 \cdot \beta_1}\beta_1$$
+
+$$V_2=span(\{\alpha_1, \alpha_2\})=span(\{\beta_1, \beta_2\})$$
+
+$$\beta_3=\alpha_3-[\frac{\alpha_3 \cdot \beta_1}{\beta_1 \cdot \beta_1}\beta_1+\frac{\alpha_3 \cdot \beta_2}{\beta_2 \cdot \beta_2}\beta_2]$$ where $$Proj_{v_2}(\alpha_3)=\frac{\alpha_3 \cdot \beta_1}{\beta_1 \cdot \beta_1}\beta_1+\frac{\alpha_3 \cdot \beta_2}{\beta_2 \cdot \beta_2}\beta_1$$
+
+$$\beta_k=\alpha_k-[\frac{\alpha_k \cdot \beta_1}{\beta_1 \cdot \beta_1}\beta_1+...+\frac{\alpha_k \cdot \beta_{(k-1)}}{\beta_{(k-1)} \cdot \beta_{(k-1)}}\beta_{(k-1)}]$$
+
+![image-20240922214725824](C:\Users\Levi\AppData\Roaming\Typora\typora-user-images\image-20240922214725824.png)
+
+$$\beta_2=\alpha_2-\frac{\alpha_2 \cdot \beta_1}{\beta_1 \cdot \beta_1}\beta_1$$ 
+
+------
+
+Ex. $$\alpha_1=\begin{bmatrix}1\\1\\1\\1\end{bmatrix}$$ , $$\alpha_2=\begin{bmatrix}1\\2\\0\\1\end{bmatrix}$$ , $$\alpha_3=\begin{bmatrix}2\\1\\1\\0\end{bmatrix}$$ , $$\alpha_4=\begin{bmatrix}0\\0\\3\\1\end{bmatrix}$$ 
+
+$$\beta_1=\alpha_1=\begin{bmatrix}1\\1\\1\\1\end{bmatrix}$$
+
+$$\beta_2=\alpha_2-\frac{\alpha_2 \cdot \beta_1}{\beta_1 \cdot \beta_1}\beta_1=\begin{bmatrix}1\\2\\0\\1\end{bmatrix}-\frac{4}{4}\begin{bmatrix}1\\1\\1\\1\end{bmatrix}=\begin{bmatrix}0\\1\\-1\\0\end{bmatrix}$$
+
+$$\beta_3=\alpha_3-[\frac{\alpha_3 \cdot \beta_1}{\beta_1 \cdot \beta_1}\beta_1+\frac{\alpha_3 \cdot \beta_2}{\beta_2 \cdot \beta_2}\beta_2]=\begin{bmatrix}2\\1\\1\\0\end{bmatrix}-\frac{4}{4}\begin{bmatrix}1\\1\\1\\1\end{bmatrix}-\frac{0}{2}\begin{bmatrix}0\\1\\-1\\0\end{bmatrix}=\begin{bmatrix}1\\0\\0\\-1\end{bmatrix}$$
+
+$$\beta_4=\alpha_4-[\frac{\alpha_4 \cdot \beta_1}{\beta_1 \cdot \beta_1}\beta_1+\frac{\alpha_4 \cdot \beta_2}{\beta_2 \cdot \beta_2}\beta_2+\frac{\alpha_4 \cdot \beta_3}{\beta_3 \cdot \beta_3}\beta_3]=\begin{bmatrix}0\\0\\3\\1\end{bmatrix}-\frac{4}{4}\begin{bmatrix}1\\1\\1\\1\end{bmatrix}-\frac{-3}{2}\begin{bmatrix}0\\1\\-1\\0\end{bmatrix}-\frac{-1}{2}\begin{bmatrix}1\\0\\0\\-1\end{bmatrix}=\begin{bmatrix}-1/2\\1/2\\1/2\\-1/2\end{bmatrix}$$
+
+------
+
+Let $$V$$ be a vector where
+
+$$V=\{\begin{bmatrix}a & 0\\0 &a\end{bmatrix}, \text{where\:} a \in \R\}$$
+
+then $$\{\begin{bmatrix}1 & 0\\0 &1\end{bmatrix}\}$$ is a basis, and the dimension is 1
+
+
+
+## Week 4 Session 1 (Messed)
 
 ### Outlines
 
@@ -2505,7 +3069,7 @@ Definition: Let $$V$$ be a vector space. Let $$U$$ be a subspace of $$V$$ and $$
 
    ------
 
-### Summary: 
+### Summary 
 
 for $$A \in \R^{m \times n}$$
 
@@ -2644,145 +3208,1223 @@ Let $$x,y \in B^n = \{0,1\}^n$$
 
 consider $$x=\begin{bmatrix} 1 \\ 0 \\ 0 \\ 1 \\ 1 \end{bmatrix}$$ , $$y=\begin{bmatrix}1\\0\\1\\0\\1\end{bmatrix}$$ 
 
+------
 
+## Mid Term 1 Review
 
+### Sample 1
 
+$$A=\begin{bmatrix}1&2&3\\3 &2&1\\2&1&3\end{bmatrix}$$
 
+Find $$A^{-1}$$ if the inverse exists otherwise give sufficent reason.
 
+Using Gaussian Jordan-Elimination
 
+$$\begin{bmatrix} 1&2&3&1&0&0\\3&2&1&0&1&0\\2&1&3&0&0&1\end{bmatrix}$$
 
 
 
+$$R_1 : R_1$$
 
+$$R_2 : R_2-3R_1$$
 
+$$R_3:R_3-2R_1$$
 
+$$\begin{bmatrix} 1&2&3&1&0&0\\0&-4&-8&-3&1&0\\0&-3&-3&-2&0&1\end{bmatrix}$$
 
 
 
+$$R_3:R_3-3/4 R_2$$
 
+$$\begin{bmatrix} 1&2&3&1&0&0\\0&-4&-8&-3&1&0\\0&0&1&1/12&-1/4&1/3\end{bmatrix}$$
 
 
 
+$$R_1:R_1-3R_3$$
 
+$$R_2:R_2+8R_3$$
 
+$$\begin{bmatrix} 1&2&0&3/4&3/4&-1\\0&-4&0&-7/3&-1&8/3\\0&0&1&1/12&-1/4&1/3\end{bmatrix}$$
 
 
 
+$$R_2:-1/4R_2$$
 
+$$\begin{bmatrix} 1&2&0&3/4&3/4&-1\\0&1&0&7/12&1/4&-2/3\\0&0&1&1/12&-1/4&1/3\end{bmatrix}$$
 
 
 
+$$R_1:R_1-2R_2$$
 
+$$\begin{bmatrix} 1&0&0&-5/12&1/4&1/3\\0&1&0&7/12&1/4&-2/3\\0&0&1&1/12&-1/4&1/3\end{bmatrix}$$
 
 
 
+### Sample 2
 
+Find the left null space of matrix $$A$$
 
+$$A=\begin{bmatrix}1&2&3&4\\2&-2&-1&1\\-1&-8&-10&-11\end{bmatrix}$$
 
+Find the dimension of $$C(A)$$ and $$C(A^T)$$
 
 
 
+$$N(A^T)=\{y \in \R^{3 \times 1}, A^Ty=0\}$$
 
+$$A^T=\begin{bmatrix}1&2 &-1\\2&-2&-8\\3&-1&-10\\4&1&-11\end{bmatrix}$$
 
+$$R_2:R_2-2R_1$$
 
+$$R_3:R_3-3R_1$$
 
+$$R_4:R_4-4R_1$$
 
+$$\begin{bmatrix}1&2 &-1\\0&-6&-6\\0&-7&-7\\0&-7&-7\end{bmatrix}$$
 
+$$\begin{bmatrix}1&2 &-1\\0&-6&-6\\0&0&0\\0&0&0\end{bmatrix}$$
 
+$$-6y_2-6y_3=0$$
 
+$$y_2=-y_3$$
 
+$$y_1+2y_2-y_3=0$$
 
+$$y_1=3y_3$$
 
+$$y=\begin{bmatrix}y_1\\y_2\\y_3\end{bmatrix}=\begin{bmatrix}3y_3\\-y_3\\y_3\end{bmatrix}=y_3\begin{bmatrix}3\\-1\\1\end{bmatrix}$$
 
+Basis $$(n(A^T))=\begin{bmatrix}3\\-1\\1\end{bmatrix}$$
 
 
 
+Null space of $$A$$ ($$Ax=0, x \in \R^{4 \times 1}$$)
 
+$$A=\begin{bmatrix}1&2&3&4\\2&-2&-1&1\\-1&-8&-10&-11\end{bmatrix}$$
 
+$$R_2:R_2-2R_1$$
 
+$$R_3:R_3+R_1$$
 
+$$\begin{bmatrix}1&2&3&4\\0&-6&-7&-7\\0&-6&-7&-7\end{bmatrix}$$
 
+$$R_3:R_3-R_2$$
 
+$$\begin{bmatrix}1&2&3&4\\0&-6&-7&-7\\0&0&0&0\end{bmatrix}$$ $$\implies$$ dimension is 2
 
+According to the counting theorem
 
+$$D(C(A))+D(N(A))=$$ number of columns =4
 
+$$D(N(A))=2$$
 
+$$D(C(A^T))+D(N(A^T))=$$ number of rows =3
 
+$$D(N(A^T))=2$$
 
 
 
+### Sample 3
 
+Use the Gram-Schmidt procedure to construct a set of orthonormal set of $$\{[-1,1,0],[-1,0,1],[0,1,1]\}$$ 
 
+Express $$v=\begin{bmatrix}2&3&5\end{bmatrix}$$ as linear combination of such orthonormal vectors.
 
+$$\alpha_1=\begin{bmatrix}-1\\1\\0\end{bmatrix}$$ , $$\alpha_2=\begin{bmatrix}-1\\0\\1\end{bmatrix}$$ , $$\alpha_3=\begin{bmatrix}0\\1\\1\end{bmatrix}$$
 
+$$\beta_1=\alpha_1=\begin{bmatrix}-1\\1\\0\end{bmatrix}$$
 
+$$||\beta_1||^2=2$$
 
 
 
+$$\beta_2=\alpha_2-\frac{\alpha_2 \cdot \beta_1}{\beta_1 \cdot \beta_1}\beta_1$$
 
+$$=\begin{bmatrix}-1\\0\\1\end{bmatrix}-\frac{1}{2}\begin{bmatrix}-1\\1\\0\end{bmatrix}$$
 
+$$=\begin{bmatrix}-1/2\\-1/2\\1\end{bmatrix}$$
 
+$$||\beta_2||^2=3/2$$
 
 
 
+$$\beta_3=\alpha_3-[\frac{\alpha_3 \cdot \beta_1}{\beta_1 \cdot \beta_1}\beta_1+\frac{\alpha_3 \cdot \beta_2}{\beta_2 \cdot \beta_2}\beta_2]$$
 
+$$=\begin{bmatrix}0\\1\\1\end{bmatrix}--\frac{1}{2}\begin{bmatrix}-1\\1\\0\end{bmatrix}-\frac{1/2}{3/2}\begin{bmatrix}-1/2\\-1/2\\1\end{bmatrix}$$
 
+$$=\begin{bmatrix}2/3\\2/3\\2/3\end{bmatrix}$$
 
+$$||\beta_3||^2=12/9$$
 
 
 
+The orthonormal basis are:
 
+$$\gamma_1=\frac{1}{\sqrt{2}}\begin{bmatrix}-1\\1\\0\end{bmatrix}$$
 
+$$\gamma_2=\sqrt{2/3}\begin{bmatrix}-1/2\\-1/2\\1\end{bmatrix}=\sqrt{1/6}\begin{bmatrix}-1\\-1\\2\end{bmatrix}$$
 
+$$\gamma_3=\sqrt{9/12}\begin{bmatrix}2/3\\2/3\\2/3\end{bmatrix}=\frac{1}{\sqrt{3}}\begin{bmatrix}1\\1\\1\end{bmatrix}$$
 
+$$v=\begin{bmatrix}2&3&5\end{bmatrix}$$
 
+$$v=(v \cdot \gamma_1)\gamma_1+(v \cdot \gamma_2)\gamma2+(v \cdot \gamma_3)\gamma_3$$
 
+$$v \cdot \gamma_1=\frac{1}{\sqrt{2}}$$
 
+$$v \cdot \gamma_2=\frac{5}{\sqrt{6}}$$
 
+$$v \cdot \gamma_3=\frac{10}{\sqrt{3}}$$
 
+$$v=\frac{1}{\sqrt{2}}\gamma_1+\frac{5}{\sqrt{6}}\gamma2+\frac{10}{\sqrt{3}}\gamma_3$$
 
+$$=1/2 \begin{bmatrix}-1\\1\\0\end{bmatrix} + 5/6 \begin{bmatrix}-1\\-1\\2\end{bmatrix} +10/3 \begin{bmatrix}1\\1\\1\end{bmatrix}$$
 
+------
 
+## Week 5 Session 1 (Only 1)
 
+### Outlines
 
+Linear Transformation (mappings)
 
+Groups
 
+Symmetric Group
 
+Determinants
 
+------
 
+$$A$$ is $$n \times n$$
 
+### Linear mapping
 
+$$Ax=b$$
+Non empty sets $$A$$ and $$B$$
 
+$$f:A \rightarrow B$$
 
+$$f$$ assigns a unique to $$a\in A$$ in $$B$$ 
 
+$$A \equiv \text{Domain of\:}f, B \equiv \text{Codomain}$$
 
+$$A' \subset A, f(A')=\{f(a):a\in A'\}$$
 
+$$B' \subset B, f^{-1}(B')=\{a\in A:f(a)=b,b\in B'\}$$
 
 
 
+### Matrix Mapping 
 
+Let $$A\in K^{m \times n}$$ (field $$K$$ )
 
+$$F_A$$ is the transformation determined by $$A
 
+$$F_A: K^m \rightarrow K^n$$
 
+For $$\alpha \in K^m$$, $$F_A(\alpha)=A\alpha$$
 
+Composition of Mappings:
 
+$$f:A \rightarrow B$$ and $$g:B \rightarrow C$$ 
 
+$$g \cdot f: A \rightarrow C$$ or $$g \circ f: A \rightarrow C$$
 
+$$(g \circ f)(\alpha)=g(f(\alpha))$$              $$\alpha \in A$$
 
+Let $$f: A \rightarrow B$$
 
+1. $$f$$ is injective (one to one) if 
 
+   $$f(\alpha)=f(\alpha')$$
 
+   $$\implies \alpha = \alpha'$$
 
+2. $$f$$ is surjective (onto) if
 
+   $$\forall \beta \in B, \exist \alpha \in A: f(\alpha)=\beta$$
 
+3. $$f$$ is bijective (one to one correspondence) means that 
 
+   $$f$$ is injective and surjective
 
+Identify mapping:
+$$f:A \rightarrow A$$
 
+$$\mathbb{1}_A: \mathbb{1}_A(\alpha)=\alpha$$
 
+Inverse mapping:
+$$f:A \rightarrow B$$ and $$g:B \rightarrow A$$, $$g=f^{-1}$$ if 
 
+$$f \circ g =\mathbb{1}_B$$ and $$g \circ f=\mathbb{1}_A$$
 
+------
 
+### Linear Mapping
 
+Let $$v$$ and $$u$$ are vector spaces over field $$K$$ and 
 
+$$F:v \rightarrow u$$ then $$F$$ is a linear mapping if :
 
+1. For any $$\alpha,\beta \in v$$, $$F(\alpha+\beta)=F(\alpha)+F(\beta)$$
+2. For any $$k\in K, \alpha \in v$$, $$F(k\alpha)=kF(\alpha)$$
+
+Note:
+
+$$F:v \rightarrow u$$ is a linear mapping if
+
+For any $$a,b\in k$$ and $$\alpha,\beta \in v$$
+
+$$F(a\alpha+b\beta)=aF(\alpha)+bF(\beta)$$
+
+------
+
+#### Example
+
+Let $$F: \R^3 \rightarrow \R^2$$ be a projection onto the $$xy$$ plane, where $$F(x,y,z)=(x,y)$$. Is $$F$$ a linear mapping?
+
+Let $$\alpha=(x_1,y_1,z_1)$$, $$\beta=(x_2,y_2,z_2)$$
+
+$$F(\alpha+\beta)=F(x_1+x_2, y_1+y_2,z_1+z_2)$$
+
+$$=(x_1+x_2,y_1+y_2)$$
+
+$$=(x_1,y_1)+(x_2,y_2)$$
+
+=$$F(\alpha)+F(\beta)$$
+
+
+
+$$F(k\alpha)=F(kx_1,ky_1,kz_1)$$
+
+$$=(kx_1,ky_1)$$
+
+$$=k(x_1,y_1)$$
+
+$$=kF(\alpha)$$
+
+------
+
+#### Example
+
+$$G:\R^2\rightarrow \R^2$$ 
+
+$$G(x,y)=(x+1,y+2)$$. Is $$G$$ a linear mapping?
+
+Let $$\alpha=(x_1,y_1), \beta=(x_2,y_2)$$
+
+$$G(\alpha)=(x_1+1,y_1+2)$$
+
+$$G(\beta)=(x_2+1,y_2+2)$$
+
+$$G(\alpha+\beta)=G(x_1+x_2,y_1+y_2)$$
+
+$$=(x_1+x_2+1,y_1+y_2+2)$$
+
+$$G(\alpha+\beta)-G(\alpha)=(x_2,y_2) \neq G(\beta)$$
+
+$$G$$ is not a linear mapping
+
+------
+
+#### Example
+
+$$J: v \implies \R$$
+
+$$J(f(t))=\int_0^1{f(t)dt}$$
+
+$$J(af(t)+bg(t))=\int_0^1{af(t)+bg(t)dt}$$
+
+$$=\int_0^1af(t)dt+\int_0^1{bg(t)dt}$$
+
+$$=a\int_0^1f(t)dt+b\int_0^1g(t)dt$$
+
+$$=aJ(f(t))+bJ(g(t))$$
+
+------
+
+Thm: Let $$v$$ and $$u$$ be vector space over field $$K$$ and $$S=\{\alpha_1,\alpha_2,...\alpha_n\}$$ be a basis of $$v$$, then there exists a linear mapping $$F: V \rightarrow U$$ such that any $$\beta_1, \beta_2, ... \beta_n \in U$$ is a unique representation with respect to $$F$$ such that $$F(\alpha_i)=\beta_i$$
+
+$$F: V \rightarrow U$$ where $$ V \rightarrow S=\{\alpha_1,\alpha_2,...\alpha_n\}, U \rightarrow \{\beta_1, \beta_2, ... \beta_n\}$$
+
+Proof: 
+
+1. Define $$F$$
+2. $$F$$ is a linear mapping
+3. $$F$$ is unique
+
+Claim 1:
+
+$$\gamma \in V$$
+
+$$\gamma=a_1\alpha_1+...a_n\alpha_n$$                - $$a_1$$ is unique
+
+$$F(\gamma)=a_1\beta_1+...+a_1\beta_n$$
+
+$$F(\alpha_1)=F(1\alpha_1+0\alpha_2+...+0\alpha_n)=1\beta_1$$
+
+$$F(\alpha v)=1\beta_i$$
+
+
+
+Claim 2: $$F$$ is a linear mapping
+
+Let $$v,w \in V$$
+
+$$v=a_1\alpha_1+...a_n\alpha_n$$ 
+
+$$w=b_1\alpha_1+...b_n\alpha_n$$
+
+$$F(v)=\sum_{j=1}^{n}a_j\beta_j$$
+
+$$F(w)=\sum_{j=1}^{n}b_j\beta_j$$
+
+$$F(v+w)=F((a_1+b_1)\alpha_1+...+(a_n+b_n)\alpha_n)$$
+
+$$=\sum_{j=1}^{n}(a_j+b_j)\beta_j$$
+
+$$=\sum_{j=1}^{n}\alpha_j\beta_j+\sum_{j=1}^{n}b_j\beta_j$$
+
+$$=F(v)+F(w)$$
+
+$$F(kv)=F(k(a_1\alpha_1+...a_n\alpha_n))$$
+
+$$=F(ka_1\alpha_1+...ka_n\alpha_n)$$
+
+$$=\sum_{j=1}^{n}ka_j\beta_j$$
+
+$$=k\sum_{j=1}^{n}a_j\beta_j$$
+
+$$=kF(v)$$
+
+$$F$$ is a linear mapping
+
+
+
+Claim 3:
+
+$$G: v \rightarrow u$$ is a linear mapping and $$G(\alpha_i)=\beta_i$$
+
+$$G(a_1\alpha_1+...a_n\alpha_n)=\sum_{j=1}^{n}G(a_j\alpha_j)$$          - $$G$$ is a linear mapping
+
+$$=\sum_{j=1}^{n}G(a_j\alpha_j)$$
+$$=\sum_{j=1}^{n}a_jG(\alpha_j)$$
+
+$$=\sum_{j=1}^{n}a_j\beta_j$$
+
+$$=F(v)$$
+
+=$$F(a_1\alpha_1+...a_n\alpha_n)$$
+
+------
+
+### Isomorphism
+
+Definition
+
+Two vector space $$v$$ and $$s$$ over field $$K$$ are isomorphic if there exist $$F: v \rightarrow u$$ such that 
+
+1. $$F$$ is bijective
+2. $$F$$ is a linear mapping
+
+#### Example
+
+vector space $$v$$ and $$s=\{\alpha_1,...\alpha_n\}$$ is a basis of $$v$$
+
+$$Proj_{s}\alpha$$ for all $$\alpha$$ in $$v$$ is an isomorphism between $$v$$ and $$K^n$$ 
+
+------
+
+### Kernel and image of a linear mapping
+
+$$F: v \rightarrow u$$
+
+Kernel of $$F: Ker(F)$$
+
+$$Ker(F)=\{\alpha\in v: F(\alpha)=0\}$$
+
+Image of $$F: Im(F)$$
+
+$$Im(F)=\{\beta \in u: \exist\alpha \in v, F(\alpha)=\beta\}$$
+
+Nullity of $$F: Dim(Ker(F))$$
+
+Rank of $$F:Dim(Im(F))$$
+
+$$Dim(v)=Dim(Ker(F))+Dim(Im(F))$$
+
+Note: 
+
+$$Ker(F)$$ is a subspace of $$v$$
+
+$$Im(F)$$ is a subspace of $$u$$
+
+
+
+Thm:
+Suppose $$\{\alpha_1,...,\alpha_n\}$$ spans $$V$$ and $$F: v \rightarrow u$$ is a linear mapping, then $$F(\alpha_1),...F(\alpha_n)$$ spans the image of $$F$$ ($$Im(F)$$)
+
+Proof:
+
+If $$\gamma \in v$$ then $$\gamma=a_1\alpha_1+...+a_n\alpha_n$$             - $$a_i's$$
+
+$$F(\gamma)=F(a_1\alpha_1+...+a_n\alpha_n)$$
+
+$$=\sum_{j=1}^{n}F(a_j\alpha_j)$$
+
+$$=\sum_{j=1}^{n}a_jF(\alpha_j)$$
+
+$$=a_1F(\alpha_1)+a_2F(\alpha_2)+...+a_nF(\alpha_n)$$
+
+------
+
+### Singularity
+
+$$F:v \rightarrow u$$
+
+$$Ker(F)=\{\mathbf{0}\}$$
+
+If $$\exists \alpha \in v: \alpha \neq \mathbf{0} \text{\:and\:} F(\alpha)=0, \text{then\:} F$$ is singular
+
+------
+
+$$A \in n \times n$$
+
+$$Det(A)=\sum_{\sigma \in S_n}sgn(\sigma) a_1 \sigma^1 a_2 \sigma^2...a_n\sigma^n$$ where $$sgn(\sigma)$$ is the parity
+
+### Group
+
+A collection of objects and a binary operation such that:
+
+1.  Closure: $$\forall a,b \in G, a \ast b \in G$$
+2. Associativity: $$\forall a,b,c \in G, a \ast (b \ast c)=(a \ast b)\ast c$$
+3. Identity: $$\exist e \in G: \forall a \in G, a \ast e=e \ast a =a$$
+4. Inverse: $$\forall a \in G, \exist a' \in G: a \ast a'=a' \ast a=e$$
+
+Semi-group operation $$\ast$$: A collection of objects and a binary such that it satisfies 1, 2, 3
+
+Abelian Group (commutative group):
+
+$$(G, \ast)$$ is an Abelian group if $$(G, \ast)$$ is a group and $$\forall a,b \in G, a \ast b=b \ast a $$
+
+------
+
+### Ring
+
+A collection of items and two operations (usually addition $$+$$ and multiplication $$\times$$) such that
+
+1. $$(R,+)$$ is a commutative group
+2. $$(R,\times)$$ 
+   1. $$\forall a ,b \in R, a \times b \in R$$
+   2. $$\forall a,b,c \in R, a \times(b+c)=(a \times b) +(a \times c)$$
+   3. $$\forall a,b,c \in R, (a+b)\times c=(a \times c)+(b \times c)$$
+   4. $$\forall a,b,c \in R, a \times (b \times c)=(a \times b)\times c$$
+   5. $$\exist \circ \in R: 0 \times a =0 \:  \forall a \in R$$
+
+### Field
+
+A field $$F$$ is a ring where $$F'=$$ all the elements in $$F$$ without the 0-element and $$(F', \times)$$ is commutative group 
+
+------
+
+Symmetric Group $$S_x$$ on $$x$$
+
+Group $$G:$$ $$|G|$$ is the order of $$G$$ = number of elements in $$G$$
+
+$$S_x=\{\sigma: x \rightarrow x \text{\:such that\:} \sigma \text{\:is bijective}\}$$
+
+$$\sigma - \text{shuffles\:} x$$ 
+
+$$\sigma$$ is permutation of $$x\in X$$
+
+$$|S_n|=n!=n(n-1)...2 \cdot 1$$
+
+$$\sigma, \tau$$
+
+$$\sigma \circ \tau$$ or $$\tau \circ \sigma$$
+
+$$\sigma \circ \tau \in S_x$$ ,  $$\tau \circ \sigma \in S_x$$
+
+------
+
+#### Example
+
+Let $$X=\{1,2,3\}$$
+
+$$|S_x|=3!=6$$
+
+$$S_x=\{e,\sigma_1,\sigma_2,\tau_1,\tau_2,\tau_3\}$$
+
+$$e=\begin{bmatrix}1 & 2 & 3 \\ \downarrow & \downarrow & \downarrow\\ 1&2&3 \end{bmatrix}$$
+
+$$\sigma_1=\begin{bmatrix}1 & 2 & 3 \\ \downarrow & \downarrow & \downarrow\\ 2&3&1 \end{bmatrix}$$
+
+$$\sigma_2=\begin{bmatrix}1 & 2 & 3 \\ \downarrow & \downarrow & \downarrow\\ 3&1&2 \end{bmatrix}$$
+
+$$\tau_1=\begin{bmatrix}1 & 2 & 3 \\ \downarrow & \downarrow & \downarrow\\ 1&3&2 \end{bmatrix}$$
+
+$$\tau_2=\begin{bmatrix}1 & 2 & 3 \\ \downarrow & \downarrow & \downarrow\\ 3&2&1 \end{bmatrix}$$
+
+$$\tau_3=\begin{bmatrix}1 & 2 & 3 \\ \downarrow & \downarrow & \downarrow\\ 2&1&3 \end{bmatrix}$$
+
+Is $$\alpha_1 \circ \tau_1 = \tau_1 \circ \alpha_1$$
+
+$$\alpha_1 \circ \tau_1=\tau_1=\begin{bmatrix}1 & 2 & 3 \\\downarrow & \downarrow & \downarrow\\ 1&3&2 \\ \downarrow & \downarrow & \downarrow\\ 3&2&1 \end{bmatrix}=\tau_2$$
+
+$$\tau_1 \circ \sigma_1 = \begin{bmatrix}1 & 2 & 3 \\ \downarrow & \downarrow & \downarrow\\ 2&3&1\\ \downarrow & \downarrow & \downarrow\\2&1&3 \end{bmatrix}=\tau_3$$
+
+sign or parity $$sgn(\sigma)$$
+
+$$x=\{1,2,3\}, \sigma \in S_x$$ 
+
+$$\sigma=\{\sigma^1, \sigma^2, \sigma^3\}$$
+
+Example: $$\sigma=\sigma^1, \sigma_1^1=2,\sigma_1^2=1, \sigma_1^3=3$$
+
+Even and odd parity
+
+$$\sigma_1=\{2, 1, 3\}$$
+
+number of $$i$$ and $$k$$ : $$i<k$$ but $$\sigma^i > \sigma^k$$
+
+$$\tau_2=\{3,2,1\}$$
+$$sgn(\alpha)=\prod_{i<k}\frac{\sigma^k-\sigma^i}{k-i}$$
+
+For $$S_3$$: $$sgn(\sigma)=\frac{\sigma^3-\sigma^2}{3-2}\frac{\sigma^2-\sigma^1}{2-1}\frac{\sigma^3-\sigma^1}{3-1}$$
+
+$$=\frac{1-2}{3-2}\frac{2-3}{2-1}\frac{1-3}{3-1}$$
+
+$$=-1$$
+
+------
+
+## Week 6 Session 1
+
+### Outline
+
+Determinants
+
+Eigenvalues and Eigenvectors
+
+------
+
+$$f: \R^n \rightarrow \R^n$$
+
+$$x_{t+1}=f(x_t)$$
+
+Fixed point: $$f(\hat{x})=\hat{x}$$
+
+$$A\hat{x}=\hat{x}$$
+
+------
+
+$$A \in n \times n$$
+
+$$Det(A)=\sum_{\sigma \in S_n}sgn(\sigma)a_1\sigma^1...a_n\sigma^n$$
+
+$$sgn(\sigma)=\prod_{i>k}\frac{\sigma^i-\sigma^k}{i-k}$$
+
+$$sgn(\sigma)=\begin{cases}+1 & \text{if\:} \sigma \text{\:is even} \\ -1 & \text{if\:} \sigma \text{\:is odd} \end{cases}$$
+
+$$sgn(\sigma)=(-1)^{N(\sigma)}$$
+
+$$N(\sigma)\equiv$$ number of $$(i,k)$$ such that $$(i>k)$$ but $$\sigma^i < \sigma^k$$
+
+$$\sigma=\begin{bmatrix}1 & 2 & 3 \\ \downarrow & \downarrow & \downarrow\\ 2&3&1 \end{bmatrix}$$
+
+$$i=\begin{bmatrix} 3 \\ 3 \\2\end{bmatrix}$$, $$k=\begin{bmatrix} 1 \\ 2 \\1\end{bmatrix}$$
+
+$$N(\sigma)=2$$
+
+$$sgn(\sigma)=(-1)^2=1$$
+
+------
+
+Facts:
+
+1. Let $$g(x_1,...x_n)=\prod_{i>k}(x_i-x_k)$$
+
+2. Let $$\sigma(g)=\prod_{i>k}(x_{\sigma^i}-x_{\sigma^k})$$
+
+   $$\sigma(g)=\begin{cases} +g & \text{if\:} \sigma \text{\:is even}\\ -g & \text{if\:} \sigma \text{\:is odd}\end{cases}$$
+
+   $$\sigma(g)=sgn(\sigma)g$$
+
+3. Let $$\sigma, \tau \in S_n$$ , $$sgn(\sigma \circ \tau)=sgn(\sigma)sgn(\tau)$$
+
+   $$sgn(\sigma \circ \tau)g=(\sigma \circ \tau)g$$
+
+   $$=\sigma(\tau(g))$$
+
+   $$=sgn(\sigma)\tau(g)$$
+
+   $$=sgn(\sigma)sgn(\tau)g$$
+
+   $$sgn(\sigma \circ \tau)=sgn(\sigma)sgn(\tau)$$
+
+4. $$sgn(\sigma)=sgn(\sigma^{-1})$$
+
+   $$\sigma \circ \sigma^{-1}=\epsilon$$
+
+   $$sgn(\sigma \circ \sigma^{-1})=sgn(\sigma)sgn(\sigma^{-1})=sgn(\epsilon)=1$$
+
+   check the two cases of $$sgn(\sigma)\in \{+1,-1\}$$
+
+5. Let $$\sigma=j_1j_2...j_n$$ for scalar $$a_{ij}$$ and $$a_{j1^1}a_{j2^2}...a_{jn^n}=a_{1k_1}a_{2k_2}...a_{nk_n}$$
+
+   $$\sigma(k_i)=i$$
+
+   Let us assume that $$\tau=k_1k_2...k_n$$
+
+   $$\tau(j_i)=i$$
+
+   $$\tau(j_i)=\tau(\sigma(i))=i$$
+
+   $$(\tau \circ \sigma)i=i$$
+
+   $$\tau=\sigma^{-1}$$
+
+------
+
+Thm: If $$\sigma^i$$ and $$\sigma^j$$ are interchanged in $$\sigma=(\sigma^1,...\sigma^n)$$ to given $$\hat{\sigma}$$, then $$sgn(\hat{\sigma})=-sgn(\sigma)$$
+
+Proof: $$\prod_{i>k}\frac{\sigma^i-\sigma^j}{i-j}$$
+
+------
+
+#### Example
+
+$$A=\begin{bmatrix} a_{11} & a_{12} \\ a_{21} & a_{22}\end{bmatrix}$$
+
+$$Det(A)=\sum_{\sigma \in S_2}sgn(\sigma)a_{1\sigma^1}a_{2\sigma^2}$$
+
+$$S_2=\{\epsilon, \sigma\}$$
+
+$$\epsilon=\begin{bmatrix}1 & 2 \\ \downarrow & \downarrow \\ 1 & 2 \end{bmatrix}$$
+
+$$\sigma=\begin{bmatrix}1 & 2 \\ \downarrow & \downarrow \\ 2 & 1 \end{bmatrix}$$
+
+$$sgn(\epsilon)=+1$$
+
+$$sgn(\sigma)=-1$$
+
+$$Det(A)=(+1)a_{11}a_{22}+(-1)a_{12}a_{21}$$
+
+$$=a_{11}a_{22}-a_{12}a_{21}$$
+
+------
+
+### Properties of Determinants
+
+1. $$Det(A)=Det(A^T)$$
+
+   $$A=[a_{ij}]$$
+
+   $$A^T=B=[b_{ij}]$$ where $$b_{ij}=a_{ij}$$
+
+   $$Det(A)=\sum_{\sigma \in S_n}sgn(\sigma)a_{a\sigma^1}...a_{n\sigma^n}$$
+
+   $$Det(A^T)=\sum_{\sigma \in S_n}sgn(\sigma)b_{1\sigma^1}...b_{n\sigma^n}$$
+
+   $$=\sum_{\sigma \in S_n}sgn(\sigma)a_{\sigma^11}...a_{\sigma^nn}$$                        - $$A^T=B$$
+
+   $$=\sum_{\sigma \in S_n, \tau= \sigma^{-1}}sgn(\sigma)a_{1\tau^1}...a_{n\tau^n}$$              - Fact 5
+
+   $$=\sum_{\tau \in S_n} sgn(\tau)a_{a\tau^1}...a_{n\tau^n}$$                        - Fact 4
+
+   $$=Det(A)$$
+
+2. If $$A$$ is a square matrix and two rows (or columns) are interchanged to form $$B$$, then
+
+   $$Det(A)=-Det(B)$$
+
+3. If $$A$$ is a square matrix with a zero row (or zero column), then
+
+   $$Det(A)=0$$
+
+   $$\sum_{\sigma\in S_n}sgn(\sigma)a_{1\sigma^1}...a_{n\sigma^n}$$
+
+4. If $$A$$ has two identical rows (or two identical columns), then the determinant 
+
+   $$Det(A)=0$$
+
+   $$A=\begin{bmatrix}... & R_i & ... \\ ... & R_j &... \end{bmatrix}$$ $$R_i=R_j$$
+
+   $$A'=\begin{bmatrix}... & R_i & ... \\ ... & R_j &... \end{bmatrix}$$
+
+   $$Det(A)=-Det(A)$$
+
+   $$Det(A)=-Det(A')=-Det(A)\implies Det(A)=0$$ 
+
+5. If scaling a row (or a column) by $$k$$ transforms a square $$A$$ to $$B$$, then
+
+   $$Det(B)=kDet(A)$$
+
+   $$A=\begin{bmatrix}... & R_i & ...  \end{bmatrix}$$
+
+   $$\sum_{\sigma \in S_n}sgn(\sigma)a_{1\sigma^1}...a_{n\sigma^n}$$
+
+   $$B=\begin{bmatrix}... & kR_i & ...  \end{bmatrix}$$
+
+   $$\sum_{\sigma \in S_n}sgn(\sigma)b_{1\sigma^1}...b_{n\sigma^n}$$
+
+   $$=\sum_{\sigma \in S_n}sgn(\sigma)k(a_{1\sigma^1}...a_{n\sigma^n})$$
+
+   $$Det(B)=kDet(A)$$
+
+6. $$R_i: R_i + kR_j$$
+
+   If adding a scalar multiple of a row (or a column) to another transforms a square matrix $$A$$ to $$B$$, then
+
+   $$Det(B)=Det(A)$$
+
+   $$Det(B)=\sum_{\sigma \in S_n}sgn(\sigma)a_{1\sigma^1}...a_{i\sigma^{i}}+ka_{j\sigma^{i}}...a_{n\sigma^n}$$
+
+   $$=\sum_{\sigma \in S_n}sgn(n)a_{1\sigma^1}...a_{i\sigma^i}...a_{n\sigma^n}+k\sum_{\tau \in S_n}sgn(\tau)(a_{1\tau^1...a_{j\tau^{i}}}...a_{n\tau^{n}})$$
+
+   where $$a_{1\tau^1...a_{j\tau^{i}}}...a_{n\tau^{n}}=0$$
+
+   $$=Det(A)$$
+
+7. If $$E$$ is an elementary matrix and $$A$$ is a square matrix, then
+
+   $$Det(EA)=Det(E)Det(A)$$
+
+8. $$Det(AB)=Det(A)Det(B)$$
+
+9. If $$A$$ is a diagonal matrix
+
+   $$A=\begin{bmatrix} a_{11} & 0 & ... & 0  \\ 0 & a_{22} & ... & 0 \\... & ... & ... & ...\\0 & ... & 0& a_{nn}\end{bmatrix}$$
+
+   then $$Det(A)=\prod_{i=1}^{n}a_{ii}$$
+
+10. If $$A$$ is a triangular matrix, then
+
+    $$Det(A)=\prod_{i=1}^{n}a_{ii}$$
+
+11. $$Det(A^{-1})=(Det(A))^{-1}$$ if $$Det(A) \neq 0$$
+
+Thm:
+
+The following statements are equivalent
+
+1. $$A$$ is invertible       - $$M=[A | I] \sim [I| A^{-1}]$$
+
+2. $$Ax=0$$ has only the zero solution
+3. $$Det(A) \neq 0$$
+
+$$A=E_nE_{n-1}...E_1I$$
+
+$$Det(A)=Det(E_n)...Det(E_1)Det(I) \neq 0$$
+
+$$Det(E_n)\neq 0$$ , $$Det(E_1)\neq 0$$, $$Det(I) =1 $$ 
+
+------
+
+### Block matrix
+
+$$M=\begin{bmatrix} A_{11} & A_{12}\\ A_{21} & A_{22}\end{bmatrix}$$
+
+$$A_{11}$$ is $$r \times r$$
+
+$$A_{22}$$ is $$s \times s$$
+
+$$M_1=\begin{bmatrix} I & 0\\A_{21}A_{11}^{-1} & I \end{bmatrix}$$, $$M_2=\begin{bmatrix} A_{11} & A_{12}\\0 & A_{22}-A_{21}A_{11}^{-1}A_{12} \end{bmatrix}$$
+
+$$M=M_1M_2=\begin{bmatrix} A_{11} & A_{12}\\ A_{21} & A_{22}\end{bmatrix}$$ 
+
+If $$B=\begin{bmatrix}B_{11} & 0 & ... & 0\\ B_{21} & B_{22} & ... & 0 \\ ...&...&...&...\\ B_{n1} & B_{n2} & ... & B_{nn}\end{bmatrix}$$
+
+$$Det(B)=\prod_{i=1}^{n}Det(B_{ii})$$
+
+$$Det(M)=Det(M_1)Det(M_2)$$
+
+$$=1\times Det(A_{11})Det(A_{22}-A_{21}A_{11}^{-1}A_{12})$$
+
+$$=Det(A_{11})Det(A_{22}-A_{21}A_{11}^{-1}A_{12})$$
+
+------
+
+### Determinants and volume
+
+Let $$u_1, ... u_n \in \R^n$$
+
+$$V^T=\begin{bmatrix}... & ... &... &... \\ v_1 & v_2 & ... & v_n \\ ... & ... & ... & ...\end{bmatrix}$$
+
+$$V=\begin{bmatrix}... & v_1 & ... \\ ... & v_2 & ...\\...& ... & ...\\...& v_n & ...\end{bmatrix}$$
+
+volume enclosed by $$v_1, ... v_n$$ is $$|Det(v)|$$
+
+------
+
+### Cofactors and minors
+
+$$A \equiv [a_{ij}]$$
+
+$$M \equiv $$ Delete row $$i$$ and column $$j$$ from $$A$$ 
+
+$$M_{ij} \in (n-1) \times (n-1)$$
+
+![image-20241005001805304](C:\Users\Levi\AppData\Roaming\Typora\typora-user-images\image-20241005001805304.png)
+
+say $$A=\begin{bmatrix}4 & 5 & 7 \\ -2 & 1 & 0 \\ 3 & 8 & 7 \end{bmatrix}$$
+
+then $$M_{12}=\begin{bmatrix} -2 & 0 \\ 3 & 7\end{bmatrix}$$
+
+Minor: $$m_{ij}=Det(M_{ij})$$
+
+Cofactor: $$c_{ij}=(-1)^{i+j}m_{ij}$$
+
+$$Det(A)=\sum_{j=1}^{n}a_{ij}c_{ij}=\sum_{i=1}^{n}a_{ij}c_{ij}$$         - Laplace Expansion
+
+Adjoint: $$A=[a_{ij}]$$
+
+$$\tilde{A}=[c_{ij}]$$
+
+$$Adj(A)=\widetilde{A}^T$$
+
+$$A^{-1}=\frac{Adj(A)}{Det(A)}$$
+
+------
+
+### Eigenvalues and Eigenvectors
+
+Fixed point:
+
+$$x_{t+1}=f(x_t)$$
+
+Fixed point $$\hat{x}$$ is such that $$f(\hat{x})=\hat{x}$$
+
+Example
+
+$$y=f(x)=x^2$$
+
+$$f: \R \rightarrow \R$$
+
+$$x = x^2$$
+
+$$\hat{x}\in\{0,1\}$$
+
+
+
+$$y=f(x)=x^3$$
+
+$$f: \R \rightarrow \R$$
+
+$$\hat{x}\in\{-1,0,1\}$$
+
+
+
+$$Df=\frac{df(x)}{dx}=f(x)$$
+
+$$f(x)=e^x$$ is the eigen function
+
+$$\frac{d}{dx}e^{cx}=ce^{cx}$$ where $$c$$ is the eigen value
+
+------
+
+## Week 6 Session 2
+
+### Outline
+
+Eigenvalues and Eigenvectors
+
+Linearly Independent Eigenvectors (LIE)
+
+------
+
+### Eigenvectors generalizes fixed points
+
+$$f: \R^n \rightarrow \R^n$$
+
+$$\hat{x}$$ is a fixed point for $$f$$ is $$f(\hat{x})=\hat{x}$$
+
+Example
+
+$$y=f(x)=x^2 ; \hat{x} \in \{0,1\}$$
+
+$$y=f(x)=x^3 ; \hat{x} \in \{-1,0,1\}$$
+
+
+
+$$D:f \rightarrow g$$
+
+$$Df=\frac{df(x)}{dx}$$
+
+$$\hat{f}=e^x$$ because $$\frac{d\hat{f}}{dx}=e^x=\hat{f}$$
+
+$$\frac{d}{dx}e^{cx}=ce^{cx}$$ where $$c$$ is the eigen value and $$e^{cx}$$ is the eigenfunction
+
+------
+
+Matrix
+
+$$A \in \C^{n \times n}$$
+
+$$A: \C^n \rightarrow \C^n$$
+
+$$\hat{x}$$ is a fixed point for $$A$$ if $$A\hat{x}=\hat{x}$$ 
+
+Definition:
+
+Suppose $$x\neq 0$$ and $$\lambda \in \C$$ if $$Ax=\lambda x$$ for $$A\in C^{n \times n}$$ then
+
+$$\lambda$$ is the eigenvalue and $$x$$ is the corresponding eigenvector
+
+$$Ax=\lambda x$$
+
+Example
+
+$$A=\begin{bmatrix}2 & 1 \\ 3 & 4 \end{bmatrix}$$
+
+$$x_1=\begin{bmatrix} 1\\ 1 \end{bmatrix}$$ , $$Ax_1=\begin{bmatrix}3 \\ 7 \end{bmatrix}$$
+
+![image-20241005003536388](C:\Users\Levi\AppData\Roaming\Typora\typora-user-images\image-20241005003536388.png)
+
+$$x_2=\begin{bmatrix} 1\\ -1 \end{bmatrix}$$ , $$Ax_2=\begin{bmatrix}2 & 1 \\ 3 & 4 \end{bmatrix}\begin{bmatrix}1 \\ -1 \end{bmatrix}=\begin{bmatrix}1 \\ -1 \end{bmatrix}$$
+
+------
+
+Eigenvectors are not unique
+
+$$Ax=\lambda x$$
+
+$$A(cx)=\lambda(cx)$$         - $$c \in \C$$
+
+$$x_2=\begin{bmatrix} 1\\ -1 \end{bmatrix}$$ , $$x_3=\begin{bmatrix} -2\\ 2 \end{bmatrix}$$
+
+$$Ax_2=\begin{bmatrix}2 & 1 \\ 3 & 4 \end{bmatrix}\begin{bmatrix}-2 \\ 2 \end{bmatrix}=\begin{bmatrix}-2 \\ 2 \end{bmatrix}$$
+
+------
+
+Recall: The following statements are equivalent for a square matrix $$A$$
+
+1. $$A$$ is invertible
+2. $$Ax=0$$ has the zero-vector as the only solution
+3. $$Det(A)\neq 0$$
+
+Thm: $$\lambda \in \C$$ is an eigenvalue of $$A$$ if and only if $$Det(A-\lambda I)=0$$
+
+Proof: $$Ax=\lambda x$$ and $$x\neq 0$$ (Definition of eigenvector and eigenvalue)
+
+$$Ax=\lambda I x$$
+
+$$Ax-\lambda I x= \mathbf{0}$$
+
+$$(A-\lambda I) x= \mathbf{0}$$ and $$x \neq 0$$
+
+$$Det(A- \lambda I)=0$$
+
+------
+
+### Characteristic Polynomial 
+
+$$P_A(\lambda)=Det(A-\lambda I)$$ 
+
+$$P_A(\lambda)=0$$
+
+Finding eigenvalues and eigenvectors
+
+1. Define the characteristic polynomial $$P_A(\lambda)$$
+2. Solve $$P_A(\lambda)=0$$
+3. For each $$\lambda$$, solve for $$x$$ in $$(A-\lambda I)x=0$$
+
+Example
+
+$$A=\begin{bmatrix}2 & 1 \\ 3 & 4 \end{bmatrix}$$
+
+Find its eigenvalues and eigenvectors
+
+Step 1: $$P_A(\lambda)$$
+
+$$P_A(\lambda)=Det(A-\lambda I)$$
+
+$$=\begin{bmatrix}2-\lambda & 1 \\ 3 & 4-\lambda \end{bmatrix}$$
+
+$$=(2-\lambda)(4-\lambda)-3$$
+
+$$=\lambda^2-6\lambda+5$$
+
+Step 2: Solve $$P_A(\lambda)=0$$
+
+$$\lambda_1=1, \lambda_2=5$$
+
+Step 3: 
+
+For $$\lambda=1$$
+
+$$(A-\lambda I)x= \mathbf{0}$$
+
+$$\begin{bmatrix}2-1 & 1 \\ 3 & 4-1 \end{bmatrix}x=\mathbf{0}$$
+
+$$\begin{bmatrix}1 & 1 \\ 3 & 3 \end{bmatrix}x=\mathbf{0}$$
+
+$$x=\begin{bmatrix} z \\ -z \end{bmatrix}$$ for $$z \in \C , z\neq 0$$
+
+$$x=\begin{bmatrix} 1 \\ -1\end{bmatrix}$$ is the corresponding eigenvector for $$\lambda=1$$
+
+
+
+For $$\lambda=5$$
+
+$$(A-\lambda I)x= \mathbf{0}$$
+
+$$\begin{bmatrix}2-5 & 1 \\ 3 & 4-5 \end{bmatrix}x=\mathbf{0}$$
+
+$$\begin{bmatrix}-3 & 1 \\ 3 & -1 \end{bmatrix}x=\mathbf{0}$$
+
+$$x=\begin{bmatrix} z \\ 3z \end{bmatrix}$$ for $$z \in \C , z\neq 0$$
+
+$$x=\begin{bmatrix} 1 \\ 3\end{bmatrix}$$ is the corresponding eigenvector for $$\lambda=5$$
+
+------
+
+### Eigenspace
+
+$$A=\begin{bmatrix}1 & 0 \\ 0 & 1 \end{bmatrix}$$
+
+$$\lambda_1=1, \lambda_2=1$$
+
+$$Ax=\lambda x$$
+
+$$Ix=1x$$
+
+$$P_A(\lambda)=Det(A-\lambda I)=\prod_{i=1}^{n}(\lambda_{i}-\lambda)$$
+
+$$P_A(\lambda)=(\lambda_1-\lambda)(\lambda_2-\lambda)=(1-\lambda)(5-\lambda)=\lambda^2-6\lambda+5$$
+
+$$Det(A-\lambda I)=\prod_{i=1}^{n}(\lambda_i-\lambda)$$
+
+$$Det(A-\lambda I)=\prod_{i=1}^{n}(\lambda_i-\lambda)^{m_j}$$  where $$k \leq n$$
+
+$$\sum_{j=1}^{k}m_j=n$$
+
+Let $$A$$ be a diagonal matrix
+
+$$A=\begin{bmatrix} a_{11} & 0 & ... & 0  \\ 0 & a_{22} & ... & 0 \\... & ... & ... & ...\\0 & ... & 0& a_{nn}\end{bmatrix}$$
+
+$$A-\lambda I=\begin{bmatrix} a_{11}-\lambda & 0 & ... & 0  \\ 0 & a_{22}-\lambda & ... & 0 \\... & ... & ... & ...\\0 & ... & 0& a_{nn}-\lambda\end{bmatrix}$$
+
+$$Det(A-\lambda I)=\prod_{i=1}^{n}(a_{ii}-\lambda)=P_A(\lambda)$$ where $$a_{ii}=\lambda_{i}$$
+
+Let $$A$$ be a triangular matrix
+
+$$A=\begin{bmatrix} a_{11} & 0 & ... & 0  \\ a_{21} & a_{22} & ... & 0 \\... & ... & ... & 0\\a_{n1} & a_{n2} & ...& a_{nn}\end{bmatrix}$$
+
+$$Det(A-\lambda I)=\prod_{i=1}^{n}(a_{ii}-\lambda)$$ where $$a_{ii}=\lambda_{i}$$
+
+Thm: $$Det(A)=\prod_{i=1}^{n}\lambda_{i}$$
+
+Proof: $$Det(A-I \lambda)=\prod_{i=1}^{n}(\lambda_{i}-\lambda)$$ where $$\lambda=0$$
+
+$$Det(A)=\prod_{i=1}^{n}\lambda_{i}$$
+
+------
+
+### LIE (Linearly independent eigenvectors)
+
+Distinct Eigenvalues $$\implies$$ LIE (Linearly independent eigenvectors)
+
+LIE (Linearly independent eigenvectors)$$\centernot\implies$$ Distinct Eigenvalues 
+
+Thm: If $$A \in \C^{n \times n}$$ has $$n$$ distinct eigenvalues $$\lambda_1, \lambda_2, ... \lambda_{n}$$ Then $$A$$ has $$n$$ linearly independent eigenvectors $$\alpha_1, \alpha_2, ... \alpha_{n}$$
+
+Proof: Mathematical Induction
+
+
+
+Basis step: 
+
+Show that $$A$$ with a distinct eigenvalue has linearly independent eigenvector set
+
+$$Ax=\lambda x$$ where $$A,x \in {1 \times 1}$$
+
+$$cx=\lambda x, x \neq 0$$
+
+$$\{x\}$$ is linearly independent
+
+
+
+Induction step:
+
+Induction hypothesis: Assume that $$\lambda_1, \lambda_2, ... \lambda_{n}$$ are unique (distinct) and $$\alpha_1, \alpha_2, ... \alpha_{n}$$ are linearly independent
+
+If $$\lambda_1, \lambda_2, ... \lambda_{n+1}$$ are distinct eigenvalues then $$\alpha_1, \alpha_2, ... \alpha_{n+1}$$ are linearly independent for $$A \alpha_{i}=\lambda_{i}\alpha_{i}$$
+
+$$P \rightarrow Q$$
+
+Proof: By contradiction $$(\sim Q \rightarrow \sim P)$$
+
+$$\sim Q: \exist c_{j}'s$$ such that $$\alpha_{n+1}=\sum_{j=1}^{n}c_{j}\alpha_{j}$$ 
+
+$$A\alpha_{n+1}=\lambda_{n+1}\alpha_{n+1}$$
+
+$$A\alpha_{n+1}=A\sum_{j=1}^{n}c_{j}\alpha_{j}=\sum_{j=1}^{n}c_{j}A\alpha_{j}=\sum_{j=1}^{n}c_{j}\lambda_{j}\alpha_{j}$$                $$Eq. 3$$
+
+$$A\alpha_{n+1}=\lambda_{n+1}\alpha_{n+1}=\lambda_{n+1}\sum_{j=1}^{n}c_{j}\alpha_{j}=\sum_{j=1}^{n}c_{j}\lambda_{n+1}\alpha_{j}$$          $$Eq. 4$$
+
+$$Eq. 3 - Eq. 4$$
+
+$$\sum_{j=1}^{n}c_{j}(\lambda_{j}-\lambda_{n+1})\alpha_j=0$$ where $$\alpha_{j} \neq 0$$
+
+$$\exist j: \lambda_{j}-\lambda_{n+1}=0$$ 
+
+$$\lambda_{j}=\lambda_{n+1}$$
+
+Contradiction $$\sim P$$
+
+------
+
+Thm: Projection matrix $$p: p^2 =p $$ and $$p=p^{T}$$, then $$A_{i}=0$$ or $$A_{i}=1$$
+
+Proof: $$px=\lambda x$$
+
+$$ppx=p\lambda x=\lambda p x =\lambda \lambda x=\lambda^2x$$
+
+$$ppx=px=\lambda x$$
+
+$$\lambda^2x=\lambda x$$
+
+$$\lambda \in \{0,1\}$$
+
+
+
+Thm: $$A$$ and $$A^{T}$$ have the same eigenvalues
+
+Proof: $$Det(A^{T}-\lambda I)=Det(A^{T}-\lambda I^{T})$$
+
+$$=Det((A-\lambda I)^{T})$$
+
+$$=Det(A-\lambda I)$$ where $$Det(A)=Det(A^{T})$$
+
+------
+
+$$\begin{bmatrix}2 & 1 \\ 0 & 0 \end{bmatrix}$$
+
+$$\begin{bmatrix}2-\lambda & 1 \\ 0 & -\lambda \end{bmatrix}$$
+
+Thm: $$Tr(A)=\sum_{i=1}^{n}a_{ii}=\sum_{i=1}^{n}\lambda_{i}$$
+
+Proof: $$Det(A-\lambda I)=\prod_{i=1}^{n}(\lambda_i-\lambda)=P_A(\lambda)$$
+
+$$(x+a_1)(x+a_2)...(x+a_n)=x^{n}+x^{n-1}(a_1+a_2+...+a_n)+x^{n-2}(a_1a_2+a_1a_3+...+a_{n-1}a_{n})+ ... + (a_1a_2...a_{n})$$
+
+RHS: $$\prod_{i=1}^{n}(\lambda_i-\lambda)=(-\lambda)^{n}+(-\lambda)^{n-1}(\lambda_1+\lambda_2+...+\lambda_{n})+(-\lambda)^{n-2}(\lambda_1\lambda_2+...\lambda_{n-1}\lambda_{n})$$
+
+LHS: $$Det(A-\lambda I)$$
+
+$$C=A-\lambda I = \begin{bmatrix} a_{11}-\lambda & a_{12} & ... & a_{1n}  \\ a_{21} & a_{22}-\lambda & ... & a_{2n} \\... & ... & ... & ...\\a_{n1} & a_{n2} & ...& a_{nn}-\lambda\end{bmatrix}$$
+
+$$Det(A- \lambda I)=\sum_{\sigma \in S_n} sgn(\sigma)c_1\sigma^1...c_{n}\sigma^{n}$$
+
+If look at the term of $$(-\lambda)^{n-1}$$
+
+$$(a_{11}-\lambda)(a_{22}-\lambda)...(a_{nn}-\lambda)$$
+
+$$(-\lambda)^{n}+(-\lambda)^{n-1}(a_{11}+...+a_{nn})$$
+
+$$\sum_{i=1}^{n}\lambda_{i}=\sum_{i=1}^{b}a_{ii}$$ 
+
+coefficient of $$(-\lambda)^{n-1}$$
 
