@@ -4428,3 +4428,262 @@ $$\sum_{i=1}^{n}\lambda_{i}=\sum_{i=1}^{b}a_{ii}$$
 
 coefficient of $$(-\lambda)^{n-1}$$
 
+## Week 7 Session 1
+
+### Outline
+
+Similar matrices
+
+Diagonalizable matrices
+
+Power and exponential of matrices
+
+Stability of differential equation
+
+------
+
+$$A=\begin{bmatrix} a & b \\ c & d\end{bmatrix}$$
+
+$$T \equiv Tr(A)=a+d$$
+
+$$D \equiv Det(A)=ad-bc$$
+
+$$P_A(\lambda)=Det(A-\lambda I)=Det\begin{bmatrix} a-\lambda & b \\ c & d-\lambda\end{bmatrix}$$
+
+$$=(a-\lambda)(d-\lambda)-bc$$
+
+$$=\lambda^2-(a+d)\lambda+ad-bc$$
+$$=\lambda^2-T\lambda+D$$
+
+Let $$P_A(\lambda)=0$$
+
+$$\lambda^2-T\lambda+D=0$$
+
+$$\lambda=\frac{T \pm \sqrt{T^2-4D}}{2}$$
+
+
+
+Thm: 
+
+$$A$$ and $$A^T$$ have the same eigenvalues
+
+Proof: 
+
+$$P_{A^T}(\lambda)=Det(A^T-\lambda I)=Det(A^T-\lambda I^T)$$
+
+$$=Det((A-\lambda I)^T)$$
+
+$$=Det(A-\lambda I)$$
+
+$$=P_A(\lambda)$$
+
+------
+
+### Similar matrices
+
+$$A$$ is similar to $$B$$ ($$A \sim B$$)
+
+Definition: $$A$$ is similar to $$B$$ is there exists an invertible matrix $$T$$ such that
+
+$$AT=TB$$
+
+$$T^{-1}AT=B$$
+
+$$A=TBT^{-1}$$
+
+
+
+Thm:
+
+ If $$A \sim B$$, then $$A$$ and $$B$$ have the same eigenvalues
+
+Proof:
+
+Assume that $$A \sim B$$
+
+$$B=T^{-1}AT$$
+
+$$P_B(\lambda)=Det(B-\lambda I)=Det(T^{-1}AT-\lambda I)$$
+
+$$=Det(T^{-1}AT-\lambda T^{-1}T)$$
+
+$$=Det(T^{-1}(AT-\lambda T))$$
+
+$$=Det(T^{-1}(A-\lambda I)T)$$
+
+$$=Det(T^{-1})Det(A-\lambda I)Det(T)$$
+
+$$=(Det(T))^{-1}Det(A-\lambda I)Det(T)$$
+
+$$=Det(A-\lambda I)$$
+
+$$=P_A(\lambda)$$
+
+
+
+#### Example
+
+$$A=\begin{bmatrix} 1 & 0 \\ 0 & 1\end{bmatrix}$$
+
+$$\lambda_1=\lambda_2=1$$
+
+
+
+$$B=\begin{bmatrix} 1 & 2 \\ 0 & 1\end{bmatrix}$$
+
+$$\lambda_1=\lambda_2=1$$
+
+
+
+$$T^{-1}AT=T^{-1}IT$$
+
+$$=T^{-1}T=I\neq B$$
+
+------
+
+Let $$x'=Ax$$ be the initial coordinate system
+
+$$T \gamma=AT\beta$$
+
+$$\gamma=T^{-1}AT \beta$$ be the new coordinate system
+
+$$T=\begin{bmatrix}... & ... & ... & ... \\ \alpha_1 & \alpha_2 & ... & \alpha_n\\ ... & ... & ... & ...\\\end{bmatrix}$$ where $$\alpha_1,\alpha_2,...\alpha_n$$ is basis of the new coordinate system
+
+$$x'=Ax$$
+
+$$\exist c_i's: x=c_1\alpha_1+c_2\alpha_2+...c_n\alpha_n$$
+
+$$x=\begin{bmatrix}... & ... & ... & ... \\ \alpha_1 & \alpha_2 & ... & \alpha_n\\ ... & ... & ... & ...\\\end{bmatrix} \begin{bmatrix}c_1 \\ c_2 \\...\\ c_n \end{bmatrix}=T\beta$$ where $$T=\begin{bmatrix}... & ... & ... & ... \\ \alpha_1 & \alpha_2 & ... & \alpha_n\\ ... & ... & ... & ...\\\end{bmatrix}$$ $$\beta=\begin{bmatrix}c_1 \\ c_2 \\...\\ c_n \end{bmatrix}$$
+
+$$x'=\begin{bmatrix}... & ... & ... & ... \\ \alpha_1 & \alpha_2 & ... & \alpha_n\\ ... & ... & ... & ...\\\end{bmatrix} \begin{bmatrix}d_1 \\ d_2 \\...\\ d_n \end{bmatrix}=T \gamma$$ where $$\gamma=\begin{bmatrix}d_1 \\ d_2 \\...\\ d_n \end{bmatrix}$$
+
+Note:
+
+$$T$$ is invertible because $$\alpha_1, ... \alpha_n$$ are linearly independent
+
+$$\beta=T^{-1}x$$ , $$\gamma=T^{-1}x'$$
+
+$$\gamma=T^{-1}x'$$              
+
+$$\gamma=T^{-1}Ax$$            - $$x'=Ax$$
+
+$$\gamma=T^{-1}AT \beta$$         - $$x=T \beta$$
+
+Recall:
+
+$$A$$ is similar to $$B$$ if $$\exist$$ invertible $$T$$ such that
+
+$$AT=TB$$
+
+$$A=TBT^{-1}$$
+
+$$B=T^{-1}AT$$
+
+
+
+$$x'=Ax$$ 
+
+$$\gamma=T^{-1}AT\beta$$ where $$B=T^{-1}AT$$
+
+$$T:$$ Transforms $$\beta$$ to the initial coordinate
+
+$$A:$$ Linear transformation in the initial coordinate
+
+$$T^{-1}:$$ Transforms back to the new coordinate
+
+------
+
+Note:
+
+1. $$A:A \sim A$$
+
+2. $$A \sim B \implies B \sim A$$
+
+   $$B=T^{-1}AT$$
+
+   Let $$S=T^{-1}, S^{-1}=T$$
+
+   $$TBT^{-1}=TT^{-1}ATT^{-1}$$
+
+   $$A=TBT^{-1}$$
+
+   $$A=S^{-1}BS$$
+
+3. If $$A \sim B$$ and $$B \sim C$$, then $
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
