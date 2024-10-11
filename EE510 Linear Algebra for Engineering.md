@@ -4609,61 +4609,255 @@ Note:
 
    $$A=S^{-1}BS$$
 
-3. If $$A \sim B$$ and $$B \sim C$$, then $
+3. If $$A \sim B$$ and $$B \sim C$$, then $$A \sim C$$
+
+------
+
+### Diagonalizable matrices
+
+Definition: $$A$$ is diagonalizable if there exists a diagonal matrix $$\Lambda$$ such that $$A$$ is similar to $$\Lambda$$  
+
+$$A \sim \Lambda$$
+
+$$A=T\Lambda T^{-1}$$ or $$\Lambda=T^{-1}AT$$
+
+Thm:
+
+$$A$$ is diagonalizable if and only if $$A$$ has linearly independent eigenvectors (LIE)
+
+$$P$$ if and only if $$Q$$ must satisfies:
+
+Claim 1: $$P \rightarrow Q$$
+
+Claim 2: $$Q \rightarrow P$$
 
 
 
+Claim 1: $$A$$ is diagonalizable $$\implies A$$ has linearly independent eigenvectors
+
+Proof: 
+
+$$AT=T\Lambda$$                            - Assumption $$T$$ is invertible
+
+$$A\begin{bmatrix}... & ... & ... & ... \\ \alpha_1 & \alpha_2 & ... & \alpha_n\\ ... & ... & ... & ...\\\end{bmatrix}=\begin{bmatrix}... & ... & ... & ... \\ \alpha_1 & \alpha_2 & ... & \alpha_n\\ ... & ... & ... & ...\\\end{bmatrix} \begin{bmatrix} \lambda_1 & 0 & ... & 0  \\ 0 & \lambda_2 & ... & 0 \\... & ... & ... & ...\\0 & ... & 0& \lambda_{n}\end{bmatrix}$$ where $$\Lambda=\begin{bmatrix} \lambda_1 & 0 & ... & 0  \\ 0 & \lambda_2 & ... & 0 \\... & ... & ... & ...\\0 & ... & 0& \lambda_{n}\end{bmatrix}$$
+
+$$\begin{bmatrix}... & ... & ... & ... \\ A \alpha_1 & A \alpha_2 & ... & A \alpha_n\\ ... & ... & ... & ...\\\end{bmatrix}=\begin{bmatrix}... & ... & ... & ... \\ \alpha_1 \lambda_1 & \alpha_2 \lambda_2 & ... & \alpha_n \lambda_n\\ ... & ... & ... & ...\\\end{bmatrix}$$
+
+$$A \alpha_i =\lambda_i \alpha_i$$ for $$i=\{1,2,...,n\}$$
+
+$$\alpha_i$$ is an eigenvector
+
+$$\alpha_1, ... \alpha_n$$ are linear independent                 - $$T$$ is invertible
+
+$$A$$ has linearly independent eigenvectors
 
 
 
+Claim 2: $$A$$ has linearly independent eigenvectors $$\implies A$$ is diagonalizable
+
+Proof:
+
+Let $$\alpha_1, ... \alpha_n$$ be the eigenvectors of $$A$$ and $$T=\begin{bmatrix}... & ... & ... & ... \\ \alpha_1 & \alpha_2 & ... & \alpha_n\\ ... & ... & ... & ...\\\end{bmatrix}$$
+
+$$AT=A\begin{bmatrix}... & ... & ... & ... \\ \alpha_1 & \alpha_2 & ... & \alpha_n\\ ... & ... & ... & ...\\\end{bmatrix}$$
+
+$$=\begin{bmatrix}... & ... & ... & ... \\ A\alpha_1 & A\alpha_2 & ... & A\alpha_n\\ ... & ... & ... & ...\\\end{bmatrix}$$
+
+$$=\begin{bmatrix}... & ... & ... & ... \\ \lambda_1\alpha_1 & \lambda_1\alpha_2 & ... & \lambda_n\alpha_n\\ ... & ... & ... & ...\\\end{bmatrix}$$
+
+$$=\begin{bmatrix}... & ... & ... & ... \\ \alpha_1 & \alpha_2 & ... & \alpha_n\\ ... & ... & ... & ...\\\end{bmatrix} \begin{bmatrix} \lambda_1 & 0 & ... & 0  \\ 0 & \lambda_2 & ... & 0 \\... & ... & ... & ...\\0 & ... & 0& \lambda_{n}\end{bmatrix}$$
+
+$$=T \Lambda$$
+
+$$T$$ is invertible 
+
+$$\alpha_1, ... \alpha_n$$ are linear independent
+
+$$A$$ is diagonalizable if and only if $$A$$ has linearly independent eigenvectors
+
+------
+
+#### Example
+
+$$A=\begin{bmatrix} 2 & 1 \\ 3 & 4\end{bmatrix}$$
+
+$$AE=E\Lambda$$
+
+$$A=E \Lambda E^{-1}$$
+
+$$\lambda=\frac{T \pm \sqrt{T^2-4D}}{2}$$
+
+$$T=2+4=6$$
+
+$$D=8-3=5$$
+
+$$\lambda_1=5, \lambda_2= 1$$
+
+For $$\lambda_1: $$
+
+$$(A-\lambda I)x=\mathbf{0}$$
+
+$$\begin{bmatrix} 2-5 & 1 \\ 3 & 4-5\end{bmatrix}x=\mathbf{0}$$
+
+$$\begin{bmatrix} -3 & 1 \\ 3 & -1\end{bmatrix}x=\mathbf{0}$$
+
+$$x=\begin{bmatrix} 1z \\ 3z \end{bmatrix}$$
+
+$$\alpha_1=\begin{bmatrix} 1 \\ 3 \end{bmatrix}$$
+
+For $$\lambda_2: $$
+
+$$(A-\lambda I)x=\mathbf{0}$$
+
+$$\begin{bmatrix} 2-1 & 1 \\ 3 & 4-1\end{bmatrix}x=\mathbf{0}$$
+
+$$\begin{bmatrix} 1 & 1 \\ 3 & 3\end{bmatrix}x=\mathbf{0}$$
+
+$$x=\begin{bmatrix} z \\ -z \end{bmatrix}$$
+
+$$\alpha_2=\begin{bmatrix} 1 \\ -1 \end{bmatrix}$$
+
+$$\Lambda=\begin{bmatrix} \lambda_1 & 0 \\ 0 & \lambda_2\end{bmatrix}=\begin{bmatrix} 5 & 0 \\ 0 & 1\end{bmatrix}$$
+
+$$E=\begin{bmatrix} \alpha_1 & \alpha_2 \end {bmatrix}=\begin{bmatrix} 1 & 1 \\ 3 & -1\end{bmatrix}$$
+
+$$A=E\Lambda E^{-1}$$
+
+$$E^{-1}=\frac{1}{(1)(-1)-(1)(3)}\begin{bmatrix} -1 & -1 \\ -3 & 1\end{bmatrix}$$
+
+Inverse of a matrix:
+
+If $$A=\begin{bmatrix} a & b \\ c & d\end{bmatrix}$$
+
+$$A^{-1}=\frac{1}{ad-bc}\begin{bmatrix} d & -b \\ -c & a\end{bmatrix}$$ where $$ad \neq bc$$
+
+------
+
+$$\frac{df}{dx}=f, f=e^{x}$$
+
+$$\frac{de^{cx}}{dx}=ce^{cx}$$ 
+
+------
+
+Power of matrices
+
+$$A^k=AAAAA...A$$ , $$k$$ in total
+
+Assume that $$A$$ is diagonalizable
+
+$$A^k=AAA...A$$
+
+$$=E\Lambda E^{-1} E\Lambda E^{-1} ... E\Lambda E^{-1}$$   where $$E^{-1}E=I$$
+
+$$=E\Lambda^{k} E^{-1}$$
+
+$$=E\begin{bmatrix} \lambda_1^k & 0 & ... & 0  \\ 0 & \lambda_2^k & ... & 0 \\... & ... & ... & ...\\0 & ... & 0& \lambda_{n}^k\end{bmatrix}E^{-1}$$
+
+Thm:
+
+If $$A$$ has eigenvalues $$\lambda_1,\lambda_2,...\lambda_n$$ then $$A^k$$ has eigenvalues $$\lambda_1^k, \lambda_2^k, ... \lambda_n^k$$ for $$k=1,2,...$$
+
+Proof:
+
+Basos step
+
+Induction step
 
 
 
+Thm:
 
+If $$A$$ is invertible and $$A$$ has eigenvalues $$\lambda_1,\lambda_2, ... \lambda_n$$ then $$A^{-1}$$ has eigenvalues $$\lambda_1^{-1}, \lambda_2^{-1},..., \lambda_n^{-1}$$
 
+Proof: 
 
+$$A\alpha=\lambda \alpha$$
 
+$$A^{-1}A\alpha=A^{-1}\lambda \alpha$$
 
+$$I \alpha=\lambda A^{-1} \alpha$$ 
 
+$$A^{-1}\alpha=\frac{1}{\lambda}\alpha=\lambda^{-1}\alpha$$
 
+------
 
+$$e^{x}=\sum_{n=0}^{\infty}\frac{x^{n}}{n!}$$
 
+$$e^{A}=\sum_{n=0}^{\infty}\frac{A^{n}}{n!}$$
 
+Assume that $$A$$ is disgonalizable
 
+$$A=E\Lambda E^{-1}$$
 
+$$e^{A}=\sum_{n=0}^{\infty}\frac{(E\Lambda E^{-1})^{n}}{n!}$$
 
+$$=\sum_{n=0}^{\infty}\frac{E\Lambda^{n} E^{-1}}{n!}$$
 
+$$=E(\sum_{n=0}^{\infty}\frac{\Lambda^{n} }{n!} )E^{-1}$$
 
+$$=E\begin{bmatrix} \sum_{n=0}^{\infty}\frac{\lambda_1^{n} }{n!} & 0 & ... & 0  \\ 0 & \sum_{n=0}^{\infty}\frac{\lambda_2^{n} }{n!} & ... & 0 \\... & ... & ... & ...\\0 & ... & 0& \sum_{n=0}^{\infty}\frac{\lambda_1^{n} }{n!}\end{bmatrix}E^{-1}$$
 
+$$=E\begin{bmatrix} e^{\lambda_1} & 0 & ... & 0  \\ 0 & e^{\lambda_2} & ... & 0 \\... & ... & ... & ...\\0 & ... & 0& e^{\lambda_n}\end{bmatrix}E^{-1}$$
 
+------
 
+Thm:
 
+If $$AB=BA$$, then $$e^{A+B}=e^Ae^B$$
 
+Proof:
 
+Binomial Theorem: $$(x+y)^n=\sum_{j=0}^{n} \binom{n}{j}x^{j}y^{n-j}$$
 
+$$(x+y)^2=(x+y)(x+y)=x^2+xy+yx+y^2=x^2+2xy+y^2$$
 
+$$e^Ae^B=(\sum_{i=0}^{\infty}\frac{A^i}{i!})(\sum_{j=0}^{\infty}\frac{B^j}{j!})$$
 
+$$=\sum_{i=0}^{\infty}\sum_{j=0}^{\infty}\frac{A^iB^j}{i!j!}$$
 
+Let $$l=i+j$$
 
+$$=\sum_{l=0}^{\infty}\sum_{j=0}^{l}\frac{A^{l-j}B^j}{(l-j)!j!}$$
 
+$$=\sum_{l=0}^{\infty} \frac{1}{l!}\sum_{j=0}^{l} \frac{l!}{j!(l-j)!}A^{l-j}B^j$$           - $$\binom{n}{j}=\frac{n!}{j!(n-j)!}$$
 
+$$=\sum_{l=0}^{\infty} \frac{1}{l!} \binom{l}{j}A^{l-j}B^j$$                             
 
+$$=\sum_{l=0}^{\infty} \frac{1}{l!} (A+B)^{l}$$                               - $$AB=BA$$
 
+$$=e^{A+B}$$
 
+------
 
+#### Example
 
+$$A= \begin{bmatrix} -2 & 1 \\ 1 & -2 \end{bmatrix}$$
 
+$$\lambda_1=-1, \lambda=-3$$
 
+$$T=-4, D=3$$
 
+$$\alpha_1=\begin{bmatrix}1 \\ 1 \end{bmatrix}, \alpha_2=\begin{bmatrix} 1 \\-1 \end{bmatrix}$$
 
+$$e^{At}=Ee^{\Lambda t}E^{-1}$$
 
+$$E=\begin{bmatrix} 1 & 1 \\ 1 & -1\end{bmatrix}$$
 
+$$E^{-1}=\frac{1}{-2} \begin{bmatrix}-1  & -1 \\ -1 & 1 \end{bmatrix}$$
 
+$$e^{At}=\begin{bmatrix} 1 & 1 \\ 1 & -1\end{bmatrix} \begin{bmatrix} e^{-t} & 0 \\ 0 & e^{-3t}\end{bmatrix} \frac{1}{-2} \begin{bmatrix}-1  & -1 \\ -1 & 1 \end{bmatrix}$$
 
+$$\lim_{t \rightarrow \infty}e^{At}=\begin{bmatrix} 1 & 1 \\ 1 & -1\end{bmatrix} \begin{bmatrix} \lim_{t \rightarrow \infty}e^{-t} & 0 \\ 0 & \lim_{t \rightarrow \infty}e^{-3t}\end{bmatrix} \frac{1}{-2} \begin{bmatrix}-1  & -1 \\ -1 & 1 \end{bmatrix}$$
 
+$$\lim_{t \rightarrow \infty}e^{-t}=0$$
 
+$$\lim_{t \rightarrow \infty}e^{-3t}=0$$
 
+$$\frac{du}{dt}=u \implies u=e^{t}$$
 
+$$\frac{du}{dt}=au \implies u=e^{at}$$
+
+$$\frac{du}{dt}=Au \implies u=e^{At}$$
 
 
 
