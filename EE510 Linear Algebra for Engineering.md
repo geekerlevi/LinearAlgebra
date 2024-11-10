@@ -4859,25 +4859,2481 @@ $$\frac{du}{dt}=au \implies u=e^{at}$$
 
 $$\frac{du}{dt}=Au \implies u=e^{At}$$
 
+------
+
+## Week 8 Session 1
+
+### Content
+
+Differential equation and matrix exponential
+
+Stability of differential equation
+
+Complex matrices
+
+------
+
+Review:
+
+1. $$A$$ is similar to $$B$$ means there exists an invertible matrix $$T$$ such that $$AT=TB, (T^{-1}AT=B)$$
+
+2. $$A$$ is diagonalizable means there exist invertible matrix $$T$$ and diagonal matrix $$\Lambda$$ such that $$AT=T\Lambda$$
+
+3. $$A$$ is diagonalizable if and only if $$A$$ has linearly independent eigenvectors
+
+4. $$e^{A}=\sum_{j=0}^{\infty}\frac{A^{j}}{j!}$$ where $$A$$ is an $$n \times n$$ matrix
+
+5. If $$A$$ is diagonalizable, $$e^{A}=E\sum_{j=0}^{\infty}\frac{\Lambda^{j}}{j!}E^{-1}$$ 
+
+   where $$E=\begin{bmatrix}... & ... & ... & ... \\ \alpha_1 & \alpha_2 & ... & \alpha_n\\ ... & ... & ... & ...\\\end{bmatrix}, \Lambda=\begin{bmatrix} \lambda_1 & 0 & ... & 0  \\ 0 & \lambda_2 & ... & 0 \\... & ... & ... & ...\\0 & ... & 0& \lambda_{n}\end{bmatrix}, A \alpha_i=\lambda_i\alpha_i$$
+
+------
+
+If $$A$$ is diagonalizable $$(A=E\Lambda E^{-1})$$
+
+$$e^{At}=\sum_{j=0}^{\infty}\frac{(At)^{j}}{j!}$$
+
+$$=\sum_{j=0}^{\infty}\frac{(E\Lambda E^{-1}t)^{j}}{j!}$$
+
+$$=\sum_{j=0}^{\infty}\frac{(E\Lambda tE^{-1})^{j}}{j!}$$
+
+$$=E(\sum_{j=0}^{\infty}(\Lambda t)^{j})E^{-1}$$
+
+$$=Ee^{\Lambda t}E^{-1}$$
+
+------
+
+$$\frac{df}{dt}=f, f(t)=e^t$$
+
+$$\frac{df}{dt}=af,f(t)=e^{at}$$
+
+$$\frac{du}{dt}=A u(t), u(t)=e^{At}u(0)$$
+
+#### Example
+
+![image-20241016155353605](C:\Users\Levi\AppData\Roaming\Typora\typora-user-images\image-20241016155353605.png)
+
+$$t=0$$
+
+$$\frac{dv}{dt}=(w-v)+(0-v)$$
+
+$$\frac{dw}{dt}=(v-w)+(0-w)$$
+
+$$u(t)=\begin{bmatrix}v(t)\\w(t)\end{bmatrix}$$
+
+$$\frac{du}{dt}=\begin{bmatrix}\frac{dv}{dt}\\\frac{dw}{dt}\end{bmatrix}$$
+
+$$\frac{dv}{dt}=-2v+w$$
+
+$$\frac{dw}{dt}=v-2w$$
+
+$$\frac{du}{dt}=\begin{bmatrix} -2 & 1 \\ 1 & -2 \end{bmatrix}\begin{bmatrix}v(t)\\w(t)\end{bmatrix}$$
+
+where $$A=\begin{bmatrix} -2 & 1 \\ 1 & -2 \end{bmatrix}, u(t)=\begin{bmatrix}v(t)\\w(t)\end{bmatrix}$$
+
+$$t \rightarrow \infty$$
+
+If $$\frac{du}{dt}=Au(t), u_0=\begin{bmatrix}v_0 \\ w_0 \end{bmatrix}$$
+
+then $$u(t)=e^{At}u_0$$
+
+$$e^{At} : A=\begin{bmatrix}-2 & 1 \\ 1 & -2 \end{bmatrix}$$
+
+$$T=-2+ -2 =-4$$
+$$D=4-1=3$$
+
+$$\lambda_1=-1, \lambda=-3$$
+
+$$\lambda_1 : \alpha_1=\begin{bmatrix} 1 \\ 1 \end{bmatrix}, \lambda_2:\alpha_2=\begin{bmatrix} 1 \\ -1 \end{bmatrix}$$
+
+$$E=\begin{bmatrix} \alpha_1 & \alpha_2\end{bmatrix}=\begin{bmatrix}1 & 1 \\ 1 & -1 \end{bmatrix}$$
+
+$$\Lambda=\begin{bmatrix}-1 & 0 \\ 0 & -3 \end{bmatrix}$$
+
+$$E^{-1}=\frac{-1}{2}\begin{bmatrix}-1 & -1 \\ -1 & 1 \end{bmatrix}$$
+
+Recall:
+
+If $$A=\begin{bmatrix} a & b \\ c & d\end{bmatrix}$$
+
+$$A^{-1}=\frac{1}{ad-bc}\begin{bmatrix} d & -b \\ -c & a\end{bmatrix}$$ where $$ad \neq bc$$
+
+$$e^{At}=Ee^{\Lambda t}E^{-1}$$
+
+$$=\begin{bmatrix}1 & 1 \\ 1 & -1 \end{bmatrix} \begin{bmatrix}e^{-t} & 0 \\ 0 & e^{-3t} \end{bmatrix} \frac{-1}{2}\begin{bmatrix}-1 & -1 \\ -1 & 1 \end{bmatrix}$$
+
+$$=\begin{bmatrix}1 & 1 \\ 1 & -1 \end{bmatrix} \frac{-1}{2}\begin{bmatrix}-e^{-t} & -e^{-t} \\ -e^{-3t} & e^{-3t} \end{bmatrix}$$
+
+$$=\frac{-1}{2} \begin{bmatrix}-e^{-t}-e^{-3t} & -e^{-t}+e^{-3t} \\ -e^{-t}+e^{-3t} & -e^{-t}-e^{-3t} \end{bmatrix}$$
+
+$$=\frac{1}{2} \begin{bmatrix}e^{-t}+e^{-3t} & e^{-t}-e^{-3t} \\ e^{-t}-e^{-3t} & e^{-t}+e^{-3t} \end{bmatrix}$$
+
+$$u(t)=e^{At}u_0$$
+
+$$=e^{At}\begin{bmatrix}v_0 \\ w_0 \end{bmatrix}$$
+
+------
+
+$$\frac{du}{dt}=Au(t), u(0)=u_0, A$$ is diagonalizable
+
+$$u(t)=e^{At}u_0=Ee^{\Lambda t}E^{-1}u_0$$
+
+$$u(t)=\begin{bmatrix}... & ... & ... & ... \\ \alpha_1 & \alpha_2 & ... & \alpha_n\\ ... & ... & ... & ...\\\end{bmatrix} \begin{bmatrix} e^{\lambda_1 t} & 0 & ... & 0  \\ 0 & e^{\lambda_2 t} & ... & 0 \\... & ... & ... & ...\\0 & ... & 0& e^{\lambda_{n} t}\end{bmatrix} [E^{-1}][u_0]$$
+
+$$=\begin{bmatrix}... & ... & ... & ... \\ \alpha_1 & \alpha_2 & ... & \alpha_n\\ ... & ... & ... & ...\\\end{bmatrix} \begin{bmatrix} e^{\lambda_1 t} & 0 & ... & 0  \\ 0 & e^{\lambda_2 t} & ... & 0 \\... & ... & ... & ...\\0 & ... & 0& e^{\lambda_{n} t}\end{bmatrix} \begin{bmatrix}c_1 \\ c_2\\ ... \\c_n\end{bmatrix}$$
+
+$$=\begin{bmatrix}... & ... & ... & ... \\ \alpha_1 & \alpha_2 & ... & \alpha_n\\ ... & ... & ... & ...\\\end{bmatrix} \begin{bmatrix}c_1 e^{\lambda_1 t} \\ c_2 e^{\lambda_2 t}\\ ... \\c_n e^{\lambda_n t}\end{bmatrix}$$
+
+$$=c_1 e^{\lambda_1 t}\alpha_1+c_2 e^{\lambda_2 t}\alpha_2+...c_n e^{\lambda_n t}\alpha_n$$
+
+where $$A\alpha_i=\lambda_i\alpha_i$$
+
+$$\lim_{t \rightarrow \infty} u(t)$$ Stability
+
+$$u(t)$$ as $$t \rightarrow \infty$$
+
+$$\lambda=a+ib$$
+
+$$e^{\lambda}=e^{a+ib}=e^ae^{ib}$$
+
+$$=e^{a}(\cos(b)+i \sin(b))$$
+
+$$e^{\Lambda t}=e^{at+ibt}=e^{at}(\cos(bt)+i\sin(bt))$$
+
+In general $$\frac{du}{dt}=Au(t)$$
+
+1. If all $$Re(\lambda_i)<0, \lim_{t \rightarrow \infty}e^{\lambda_i t} \rightarrow 0$$
+
+2. If all $$Re(\lambda_i) \leq 0$$ and some $$Re(\lambda_i)=0$$
+
+   $$\lim_{t \rightarrow \infty}e^{\lambda_i t}$$ is bounded
+
+3. If one $$Re(\lambda_i)>0$$, then $$e^{\lambda_i t} \rightarrow \infty$$
+
+Stability
+
+1. Stable System: All $$Re(\lambda_i)<0$$
+2. Neutrally Stable System: All $$Re(\lambda_i)\leq 0$$ and $$Re(\lambda_i)= 0$$
+3. Unstable System: There is at least one $$Re(\lambda_i)>0$$
+
+------
+
+$$A=\begin{bmatrix}a & b \\ c & d \end{bmatrix}$$
+
+$$\frac{du}{dt}=Au(t)$$
+
+$$D=+, T=- , \lambda_1=-1, \lambda_2=-3$$
+
+$$D=-, T=- , \lambda_1=1, \lambda_2=-3$$
+
+$$D=-, T=+ , \lambda_1=-1, \lambda_2=3$$
+
+If eigenvalues are real, then the stability test is direct
+
+1. The trace $$a+d$$ must be nagetive
+2. The determinant $$ad-bc$$ must be positive
+
+------
+
+### Higher order differential equations
+
+$$y'''-3y''+2y'=0$$
+
+$$y'''=\frac{d^3y}{dt^3}$$
+
+$$y''=\frac{d^2y}{dt^2}$$
+
+$$y'=\frac{dy}{dt}$$
+
+$$y'=v$$
+
+$$y''=v'$$
+
+Let $$w=v'=y''$$ then $$w'=v''=y'''=3y''-2y'$$
+
+$$\begin{bmatrix}y' \\ v'\\ w'\end{bmatrix}=\begin{bmatrix}v \\ w\\ 3w-2v\end{bmatrix}=\begin{bmatrix}0 & 1 & 0 \\ 0& 0&1\\ 0& -2&3\end{bmatrix}\begin{bmatrix}y \\ v\\ w\end{bmatrix}$$
+
+------
+
+#### Example
+
+### Coupled differntial equations
+
+$$\frac{dy}{dt}=ay(t),y(t)=e^{at}$$
+
+$$\frac{du}{dt}=Au$$ where  $$A$$ is diagonalizable
+
+change if coordinates: $$\frac{dv}{dt}=\Lambda v$$
+
+$$\begin{bmatrix} \frac{dy_1}{dt} \\ ... \\ \frac{dy_n}{dt}\end{bmatrix}=\begin{bmatrix} a_{11} &...& 0 \\ 0 &...& 0\\ 0 &...& a_{nn}\end{bmatrix}\begin{bmatrix}y_1 \\ ... \\ y_n\end{bmatrix}=\begin{bmatrix}a_{11}y_1(t) \\ ... \\ a_{nn}y_n(t)\end{bmatrix}$$
+
+$$u=Ev$$
+
+$$v=E^{-1}u$$
+
+$$E=\begin{bmatrix}... & ... & ... & ... \\ \alpha_1 & \alpha_2 & ... & \alpha_n\\ ... & ... & ... & ...\\\end{bmatrix}$$
+
+$$A=E\Lambda E^{-1}$$
+
+Show that $$\frac{dv}{dt}=\Lambda v$$
+
+$$\frac{dv}{dt}=\frac{d}{dt}E^{-1}u=E^{-1}\frac{du}{dt}=E^{-1}Au=E^{-1}AE v$$
+
+$$u_0$$ , $$v_0=E^{-1}u_0$$
+
+Solve for $$v(t)\rightarrow u(t)=Ev(t)$$
+
+------
+
+### Complex matrices
+
+Complex number: $$z=a+ib \in \C$$ where $$a,b \in \R$$
+
+$$a$$ is the real part, $$ib$$ is the imaginary part
+
+$$t$$ is $$\R$$, $$t=t+0i$$
+
+$$\sqrt{-1}=i, i^2=-1$$
+
+$$|z^2|=a^2+b^2$$
+
+#### Example
+
+If $$y=1+i$$
+
+then $$|y|^2=1^2+1^2=2$$
+
+$$z^{\ast}=(a+ib)^{\ast}=a-ib$$
+
+$$(z^{\ast})^\ast=((a+ib)^{\ast})^{\ast}=(a-ib)^{\ast}=a+ib$$
+
+If $$z=a+ib$$ and $$w=c+id$$
+
+then
+
+$$z+w=(a+ib)+(c+id)=(a+c)+i(b+d)$$
+
+$$zw=(a+ib)(c+id)=(ac-bd)+i(ad+bc)$$
+
+$$(zw)^{\ast}=z^{\ast}w^{\ast}=(a+ib)^{\ast}(c+id)^{\ast}=(a-ib)(c-id)=(ac-bd)-i(ad+bc)$$
+
+$$(zz^\ast)=|z|^2=(a+ib)(a+ib)=a^2+b^2$$
+
+------
+
+Let $$x \in \C^n$$, then $$x=\begin{bmatrix}x_1 \\ ... \\x_n\end{bmatrix}$$ and $$x_1, ... x_n \in \C$$
+
+$$x^{\ast}=\begin{bmatrix}x_1^{\ast} \\ ... \\x_n^{\ast}\end{bmatrix}$$ conjugate of a vector
+
+Norm:
+
+$$x\in \C^n$$, then $$||x||^2=\sum_{j=1}^{n}|x_j|^2=\sum_{j=1}^{n}x_j^{\ast}x_j=(x^\ast)^Tx$$
+
+Inner product
+
+$$x,y \in \C^n$$
+
+$$x\cdot y=\sum_{j=1}^{n}x_j^{\ast}y_j=(x^\ast)^Ty$$
+
+$$y\cdot x=\sum_{j=1}^{n}y_j^{\ast}x_j=(y^\ast)^Ty$$
+
+$$x \cdot y=(y \cdot x)^{\ast}$$
+
+#### Example
+
+$$x=\begin{bmatrix}1+i\\3i\end{bmatrix}, y=\begin{bmatrix}4 \\ 2-i \end{bmatrix}$$
+
+$$x\cdot y=(x^{\ast})^Ty={\begin{bmatrix}1-i\\-3i\end{bmatrix}}^T\begin{bmatrix}4 \\ 2-i \end{bmatrix}$$
+
+$$=4-4i-6i+3i^2=1-10i$$
+
+$$y\cdot x={\begin{bmatrix}4 \\ 2+i \end{bmatrix}}^T\begin{bmatrix}1+i\\3i\end{bmatrix}$$
+
+$$=4+4i+6i+3i^2=1+10i$$
 
 
 
+Let $$c \in \C, x,y \in \C^n$$
+
+$$cx \cdot y=\sum_{j=1}^{n}(cx_j)^{\ast}y_j=\sum_{j=1}^{n}c^\ast x_j^\ast y_j$$
+
+$$=c^\ast \sum_{j=1}^{n}x_j^\ast y_j$$
+
+$$=c^\ast (x \cdot y)$$
 
 
 
+$$x \cdot cy=\sum_{j=1}^{n}(x_j)^\ast(cy_j)=\sum_{j=1}^{n}x_j^\ast c y_j$$
+
+$$=c \sum_{j=1}^{n}x_j^\ast y_j$$
+
+$$=c(x \cdot y)$$
+
+------
+
+### Conjugate Transpose
+
+$$A^H$$ Hermitian operator 
+
+Let $$A \equiv [a_{ij}]$$, then
+
+$$A^H=(A^\ast)^T=(A^T)^\ast \equiv [a_{ij}^H]$$ where 
+
+$$a_{ij}^H=a_{ji}^\ast$$
+
+#### Example
+
+$$A=\begin{bmatrix} 1+i & 2-i \\ 3+2i & 4-5i\end{bmatrix}$$
+
+$$A^H=(A^\ast)^T={\begin{bmatrix} 1-i & 2+i \\ 3-2i & 4+5i\end{bmatrix}}^T=\begin{bmatrix} 1-i & 3-2i \\ 2+i & 4+5i\end{bmatrix}$$
+
+Let $$x,y \in \C^n$$ $$x$$ and $$y$$ are orthogonal if and only if $$x \cdot y=0$$
+
+$$x \cdot y$$ or $$x^Hy$$
+
+$$x \cdot y=(x^\ast)^Ty=x^Hy$$ 
+
+------
+
+## Week 8 Session 2
+
+### Outlines
+
+Complex matrices
+
+Fast Fourier Transform
+
+Schur's Decomposition
+
+------
+
+$$K$$
+
+conjugate transpose: $$A^H=(A^{\ast})^T=(A^T)^\ast$$
+
+If $$A \in \R^{m \times n}$$ , $$A^H=(A^\ast)^T=A^T$$
+
+Properties:
+
+1. $$(AB)^H=B^H A^H$$
+2. $$(A+B)^H=A^H+B^H$$
+3. $$(A^H)^H=A$$
+4. $$(A^{-1})^H=(A^H)^{-1}$$ if $$A$$ is invertible
+5. $$Det(A^H)=Det(A)^\ast$$
+6. $$Tr(A^H)=Tr(A)^\ast$$
+
+------
+
+Hermitian matrices
+
+$$A \in \C^{n \times n}$$ is Hermitian means that $$A^H=A$$
+
+If $$A \in \R^{n \times n}$$, then $$A$$ is Hermitian is and only if $$A$$ is symmetric
+
+$$A=A^T$$
+
+$$A^H=(A^\ast)^T=A^T$$
+
+Thm:
+
+If  $$A \in \C^{n \times n}$$ and $$A=A^H$$ then
+
+1. All its eigenvalues are real
+
+2. Distinct eigenvalues imply mutually orthogonal eigenvectors
+
+Proof:
+
+Claim 1:
+
+If $$A=A^H$$ and $$A \alpha = \lambda \alpha$$ then $$\lambda^\ast = \lambda$$
+Proof 1:
+
+$$A \alpha= \lambda \alpha$$
+$$\alpha^HA \alpha=\alpha^H \lambda \alpha= \lambda \alpha^H \alpha$$
+
+LHS: $$(\alpha^H A \alpha)^H=\alpha^H A^H (\alpha^H)^H$$
+
+$$=\alpha^H A^H \alpha$$
+
+$$=\alpha^H A \alpha$$
+
+$$=\lambda \alpha^H \alpha$$
+RHS: $$(\lambda \alpha^H \alpha)^H=\lambda^{\ast} \alpha^H (\alpha^H)^H$$
+
+$$=\lambda^\ast \alpha^H \alpha$$
+
+$$\lambda \frac{\alpha^H \alpha}{\alpha^H \alpha}=\lambda^\ast \frac{\alpha^H \alpha}{\alpha^H \alpha}$$
+
+$$\lambda=\lambda^\ast$$
 
 
 
+Claim 2:
+
+If $$A=A^H$$, $$A\alpha=\lambda_1 \alpha$$, $$A \beta=\lambda_2\beta$$, $$\lambda_1 \neq \lambda_2$$, then $$\alpha^H \beta =0$$
+Proof 2:
+
+$$A\alpha=\lambda_1 \alpha$$
+$$\beta^H A \alpha=\beta^H \lambda_1 \alpha=\lambda_1 \beta^H \alpha$$
+
+$$A \beta=\lambda_2 \beta$$
+$$\alpha^H A \beta=\alpha^H \lambda_2 \beta=\lambda_2\alpha^H \beta$$
+
+LHS: $$(\beta^H A \alpha)^H=\alpha^H A^H (\beta^H)^H$$
+
+$$=\alpha^H A^H \beta$$
+
+$$=\alpha^H A \beta$$
+
+$$=\lambda_2 \alpha^H \beta$$
+
+RHS: $$(\lambda_1\beta^H \alpha)^H= \lambda_1^{\ast} \alpha^H (\beta^H)^H$$
+
+$$=\lambda_1^{\ast}\alpha^H \beta$$
+
+$$=\lambda_1 \alpha^H \beta$$
+
+$$\lambda_2 \alpha^H \beta=\lambda^1 \alpha^H \beta$$
+
+$$(\lambda_2-\lambda_1)\alpha^H \beta=0$$
+
+As $$\lambda_2\neq \lambda_1$$
+
+$$\alpha^H \beta=0$$
+
+------
+
+### Skew Hermitian Matrices
+
+$$A \in \C^{n \times n}$$ and $$A=-A^H$$ or $$(-A=A^H)$$
+
+Thm: 
+
+If $$A \in \C^{n \times n}$$ and $$-A=A^H$$ then
+
+1. All its eigenvalues are imaginary
+2. Distinct eigenvalues imply mutually orthogonal eigenvectors
+
+Proof:
+
+Claim 1:
+
+If $$A \in \C^{n \times n}$$ and $$-A=A^H$$ and $$A\alpha=\lambda \alpha$$, then $$\lambda^\ast=-\lambda$$
+
+Proof 1:
+
+$$A\alpha=\lambda \alpha$$
+$$\alpha^H A \alpha=\alpha^H \lambda \alpha=\lambda \alpha^H \alpha$$
+
+LHS: $$(\alpha^H A \alpha)^H=\alpha^H A^H (\alpha^H)^H$$
+
+$$=\alpha^H A^H \alpha$$
+$$=\alpha^H (-A) \alpha$$
+$$=-\alpha^H A \alpha$$
+$$=-\alpha^H \lambda \alpha$$
+$$=-\lambda \alpha^H \alpha$$
+RHS: $$(\lambda \alpha^H \alpha)^H=\lambda^\ast \alpha^H (\alpha^H)^H$$
+
+$$=\lambda^\ast \alpha^H \alpha$$
+
+$$-\lambda \frac{\alpha^H \alpha}{\alpha^H \alpha}=\lambda^\ast \frac{\alpha^H \alpha}{\alpha^H \alpha}$$
+
+$$\lambda^\ast=-\lambda$$
 
 
 
+Claim 2:
+
+If $$A \in \C^{n \times n}, A=-A^H, A\alpha=\lambda_1 \alpha, A\beta=\lambda_2 \beta$$ and $$\lambda_1\neq \lambda_2$$ then $$\alpha^H \beta=0$$
+
+Proof 2:
+
+$$A \alpha=\lambda_1 \alpha$$
+$$\beta_H A \alpha=\beta_H \lambda_1 \alpha=\lambda_1 \beta^H \alpha$$
+
+$$A\beta=\lambda_2 \beta$$
+
+$$\alpha^H A \beta=\alpha^H \lambda_2 \beta=\lambda_2 \alpha^H \beta$$
+
+LHS: $$(\beta^H A \alpha)^H=\alpha^H A^H (\beta^H)^H$$
+
+$$=\alpha^H A^H \beta$$
+$$=\alpha^H(-A)\beta$$
+$$=-\alpha^H \lambda_2 \beta$$
+$$=-\lambda_2 \alpha^H \beta$$
+
+RHS: $$(\lambda_1 \beta^H \alpha)^H=\lambda_1^\ast \alpha^H (\beta^H)^H$$
+
+$$=\lambda_1^\ast \alpha^H \beta$$
+$$=-\lambda_1\alpha^H \beta$$
+
+$$-\lambda_2 \alpha^H \beta=-\lambda_1 \alpha^H \beta$$
+$$(\lambda_1-\lambda_2)\alpha^H \beta=0$$
+
+As $$\lambda_1 \neq \lambda_2$$
+
+$$\alpha^H \beta=0$$
+
+------
+
+### Unitary matrix
+
+$$A \in \C^{n \times n}$$ is a unitary matrix means that $$AA^H=A^H A=I$$ $$(A^{-1}=A^H)$$
+
+If $$A$$ is real and unitary, then $$AA^T=A^TA=I$$ $$(A^{-1}=A^T)$$
+
+Thm:
+
+If $$A$$ is a unitary matrix then.
+
+1. All its eigenvalues are on the unit circle $$(\lambda_i)=1$$
+2. Distinct eigenvalues imply mutually orthogonal eigenvectors
+
+Proof:
+
+Claim 1:
+
+If $A^{-1}=A^H$ and $$A \alpha=\lambda \alpha$$, then $$|\lambda^2|=\lambda \lambda^\ast=1$$
+
+Proof 1:
+
+$$A\alpha=\lambda \alpha$$
+$$\alpha^H A \alpha=\alpha^H \lambda \alpha=\lambda \alpha^H \alpha$$
+
+LHS: $$(\alpha^H A \alpha)^H=\alpha^H A^H (\alpha^H)^H$$
+
+$$=\alpha^H A^H \alpha$$
+$$=\alpha^H A^{-1} \alpha$$
+$$=\alpha^H \lambda^{-1} \alpha$$
+
+$$=\frac{1}{\lambda}\alpha^H \alpha$$
+
+RHS: $$(\lambda \alpha^H \alpha)^H=\lambda^\ast \alpha^H (\alpha^H)^H$$
+
+$$=\lambda^\ast \alpha^H \alpha$$
+$$\frac{1}{\lambda} \frac{\alpha^H \alpha}{\alpha^H \alpha}=\lambda^\ast\frac{\alpha^H \alpha}{\alpha^H \alpha}$$
+
+$$\lambda \lambda^\ast=1$$
 
 
 
+Claim 2:
+
+$$x: ||x||^2=x^H x$$
+
+$$y: ux$$ and $$u$$ is a unitary matrix
+
+$$||y||^2=(ux)^Hux=x^Hu^Hux=x^Hx=||x||^2$$
+
+$$u=\begin{bmatrix} ... &... &...& ...\\\ \alpha_1 & \alpha_2 &... & \alpha_n \\ ... &... &...& ...\end{bmatrix}$$
+
+$$\alpha_i \alpha_j =\alpha_i^H\alpha_j=\begin{cases} 0 &\text{if\:} i \neq j\\ 1 &\text{if\:} i = j\end{cases}$$
+
+$$u^Hu=I$$
+
+| Real                       | Complex                    |
+| -------------------------- | -------------------------- |
+| Symmetric: $$A=A^T$$       | Hermitian: $$A=A^H$$       |
+| Skew Symmetric: $$A=-A^T$$ | Skew Hermitian: $$A=-A^H$$ |
+| Orthogonal: $$A^T=A^{-1}$$ | Unitary: $$A^H=A^{-1}$$    |
+
+#### Example
+
+$$u=\begin{bmatrix} \cos{\theta} & -\sin{\theta} \\ \sin{\theta} & \cos{\theta}\end{bmatrix}$$ and $$x=\begin{bmatrix}x_1 \\ x_2 \end{bmatrix}$$
+
+$$u=\begin{bmatrix} 1-i & 1+i \\ 1+i & 1-i \end{bmatrix}$$
+
+------
+
+### Discrete Fourier Transform(DFT)
+
+$$x[n], 0\leq n \leq N-1$$
+
+$$x[k], 0 \leq k \leq N-1$$
+
+$$X[k]=\sum_{n=0}^{N-1}x[n] e^{-\frac{i2\pi nk}{N}}$$
+
+$$=\sum_{n=0}^{N-1}x[n]\omega_N^{nk}$$ where $$\omega_N=e^{-\frac{i2 \pi}{N}}$$
+
+$$X[n]=\frac{1}{N}\sum_{k=0}^{N-1}x[k]e^{\frac{i2 \pi nk}{N}}$$
+
+$$=\frac{1}{N} \sum_{k=0}^{N-1}x[k]\omega_N^{-nk}$$
+
+$$X=\begin{bmatrix} 1 & 1 & ... & 1\\ 1 & \omega_N &... & \omega_N^{N-1} \\ ... &...&...&...\\1 & \omega_N^{N-1} &... & \omega_N^{(N-1)(N-1)}\end{bmatrix} \begin{bmatrix}x[0]\\...\\x[N-1]\end{bmatrix}$$
+
+where $$F_N=\begin{bmatrix} 1 & 1 & ... & 1\\ 1 & \omega_N &... & \omega_N^{N-1} \\ ... &...&...&...\\1 & \omega_N^{N-1} &... & \omega_N^{(N-1)(N-1)}\end{bmatrix}$$ and $$x=\begin{bmatrix}x[0]\\...\\x[N-1]\end{bmatrix}$$
+
+$$x=\frac{1}{N} F_N^-1X$$
+
+$$N^2=$$ the number of multiplication operations
+
+$$N(N-1)=$$ the number of addition operations
+
+$$N^2+N^2-N \implies O(N^2)$$
+
+### Fast Fourier Transform
+
+$$X=F_Nx$$
+
+$$N=2^r$$ , $$r \in \Z^{+}$$
+
+$$X=ABCx$$
+
+$$X=\begin{bmatrix}I_{\frac{N}{2}} & D_{\frac{N}{2}} \\ I_{\frac{N}{2}} & -D_{\frac{N}{2}}\end{bmatrix} \begin{bmatrix}F_{\frac{N}{2}} & 0 \\ 0 & -F_{\frac{N}{2}}\end{bmatrix} \begin{bmatrix}\text{even-odd row permutations}\end{bmatrix}x$$
+
+$$\begin{bmatrix}x[0]\\x[1]\\...\\x[N-1]\end{bmatrix} \implies cx \implies \begin{bmatrix}x[0]\\x[2]\\...\\x[N-2]\\x[1]\\x[3]\\...\\x[N-1]\end{bmatrix}$$ where $$\begin{bmatrix}x[0]\\x[2]\\...\\x[N-2]\end{bmatrix}=x'$$ and $$\begin{bmatrix}x[1]\\x[3]\\...\\x[N-1]\end{bmatrix}=x''$$
+
+$$X=\begin{bmatrix}I_{\frac{N}{2}} & D_{\frac{N}{2}} \\ I_{\frac{N}{2}} & -D_{\frac{N}{2}}\end{bmatrix} \begin{bmatrix}F_{\frac{N}{2}} & 0 \\ 0 & F_{\frac{N}{2}}\end{bmatrix} \begin{bmatrix}x' \\ x''\end{bmatrix}$$
+
+$$F_{\frac{N}{2}}=\begin{bmatrix} 1 & 1 & ... & 1\\ 1 & \omega_{\frac{N}{2}} &... & \omega_{\frac{N}{2}}^{\frac{N}{2}-1} \\ ... &...&...&...\\1 & \omega_{\frac{N}{2}}^{\frac{N}{2}-1} &... & \omega_{\frac{N}{2}}^{(\frac{N}{2}-1)(\frac{N}{2}-1)}\end{bmatrix}$$
+
+$$(\frac{N}{2})^2 \equiv$$ number of multiplications
+
+$$(\frac{N}{2})^2 -\frac{N}{2}\equiv$$ number of additions
+
+$$X=\begin{bmatrix}I_{\frac{N}{2}} & D_{\frac{N}{2}} \\ I_{\frac{N}{2}} & -D_{\frac{N}{2}}\end{bmatrix} \begin{bmatrix}F_{\frac{N}{2}} x' \\ F_{\frac{N}{2}}x''\end{bmatrix}$$ where $$\begin{bmatrix}F_{\frac{N}{2}} x'\end{bmatrix}=z'$$ and $$\begin{bmatrix}F_{\frac{N}{2}}x''\end{bmatrix}=z''$$
+
+$$I_{\frac{N}{2}}=\begin{bmatrix} 1 & 0 & ...& 0\\ 0 & 1 &... & 0 \\ ...&...&...&...\\0&...&0&1\end{bmatrix} \in {\frac{N}{2} \times \frac{N}{2}}$$
+
+$$D_{\frac{N}{2}}=\begin{bmatrix} 1 & 0 & ...& 0\\ 0 & \omega_N^1 &... & 0 \\ ...&...&...&...\\0&...&0&\omega_N^{\frac{N}{2}-1}\end{bmatrix}=Diag(1,\omega_N^1, ...\omega_N^{\frac{N}{2}-1} ) \in {\frac{N}{2} \times \frac{N}{2}}$$
+
+$$X=\begin{bmatrix}z'+D_{\frac{N}{2}} z'' \\ z'-D_{\frac{N}{2}}z''\end{bmatrix}$$ where $$\begin{bmatrix}z'+D_{\frac{N}{2}} z''\end{bmatrix}, 0\leq k < \frac{N}{2}$$ and $$\begin{bmatrix}z'-D_{\frac{N}{2}}z''\end{bmatrix}, \frac{N}{2}\leq k \leq N-1$$
+
+$$X[k]=z'[k]+\omega_N^kz''[k]$$ where $$0\leq k < \frac{N}{2}$$
+
+$$X[k]=z'[k-\frac{N}{2}]-\omega_N^{k-\frac{N}{2}}z''[k-\frac{N}{2}]$$ where $$\frac{N}{2}\leq k \leq N-1$$
+
+$$F_{\frac{N}{2}} x'= \begin{bmatrix}I_{\frac{N}{4}} & D_{\frac{N}{4}} \\ I_{\frac{N}{4}} & -D_{\frac{N}{4}}\end{bmatrix} \begin{bmatrix}F_{\frac{N}{4}} & 0 \\ 0 & -F_{\frac{N}{4}}\end{bmatrix} \begin{bmatrix}\text{even-odd row permutations}\end{bmatrix}x'$$
+
+FFT: $$O(N log_2N)$$
+
+------
+
+$$A$$ is diagonalizable if and only if $$A$$ has LIE
+
+Schur's Decomposition
+
+$$A \in \C^{n \times n}$$ is unitarily similar to an upper triangular matrix
+
+$$A=UTU^H$$
+
+where $$U$$ is unitary and $$T$$ is upper triangle
+
+## Week 9 Session 1
+
+### Outlines
+
+Schur's Decomposition
+
+Normal Matrices
+
+------
+
+Thm:
+Every $$A \in \C^{n \times n}$$ is unitarily similar to an upper triangular matrix $$T_n$$
+
+$$A=UTU^H$$ where $$U$$ is unitary and $$T$$ is upper triangle
+
+$$A^r=(UTU^H)(UTU^H)...(UTU^H)=UT^rU^H$$
+
+Proof: by mathematical induction
+
+Basis Step: $$n=1$$
+
+$$A=[a]$$
+
+$$A=[1][a][1]^H$$
+
+Induction Step:
+
+Induction hypothesis: If $$A_n \in \C^{n \times n}$$, then $$A$$ is unitarily similar to an upper triangular matrix $$T_n$$
+
+$$A_n=V_n T_n V_n^H$$ where $$V_n^H=V_n^{-1}$$
+
+Claim:
+
+If $$A_{n+1} \in \C^{(n+1)\times {n+1}}$$ then $$A_{n+1}=V_{n+1}T_{n+1} V_{n+1}^H$$ where $$V_{n+1}$$ is unitary and $$T_{n+1}$$ is upper triangular
+
+$$T_{n+1}=V_{n+1}^HA_{n+1}V_{n+1}$$
+
+Proof:
+
+$$\exist x \neq 0: A_{n+1}x=\lambda x$$
+
+$$\exist x_j \neq 0$$ because $$x \neq 0$$
+
+Let $$E=\{e_1,e_2,...,e_{j-1},e_j,e_{j+1},...e_{n+1}\}$$
+
+$$e_1=\begin{bmatrix} 1 \\ 0\\0 \\...\\0\\0\end{bmatrix}$$ , $$e_2=\begin{bmatrix} 0 \\ 1\\0 \\...\\0\\0\end{bmatrix} ... e_{n+1}=\begin{bmatrix} 0 \\ 0\\0 \\...\\0\\1\end{bmatrix}$$
+
+$$L=\{e_1,e_2,...,e_{j-1},x,e_{j+1},...e_{n+1}\}$$
+
+$$L$$ is linearly independent
+
+$$L'=\{x,e_1,e_2,...,e_{j-1},e_{j+1},...e_{n+1}\}$$
+
+Apply Gram-Schmidt to $$L$$ to given $$S$$ and normalize
+
+$$S=\{\alpha_1,\alpha_2,...,\alpha_{j-1},\alpha_j,\alpha_{j+1},...\alpha_{n+1}\}$$
+
+where $$\alpha_1=\frac{x}{||x||}$$
+
+$$\alpha_i \alpha_j=\begin{cases} 1 &\text{if\:} i \neq j \\ 1 & \text{if\:} i =j\end{cases}$$
+
+$$U_{n+1}=\begin{bmatrix} ...&...&...&...\\ \alpha_1& \alpha_2& ... & \alpha_{n+1} \\...&...&...&...\end{bmatrix}$$
+
+$$\widetilde{U_n}=\begin{bmatrix} ...&...&...\\  \alpha_2& ... & \alpha_{n+1} \\...&...&...\end{bmatrix}$$
+
+$$U_{n+1}=\begin{bmatrix} \alpha_1 & \widetilde{U_n}\end{bmatrix}$$
+
+$$U_{n+1}^H=\begin{bmatrix} \alpha_1^H \\ \widetilde{U_n}^H\end{bmatrix}$$
+
+$$U_{n+1}^H A_{n+1} U_{n+1}=\begin{bmatrix} \alpha_1^H \\ \widetilde{U_n}^H\end{bmatrix} A_{n+1} \begin{bmatrix} \alpha_1 & \widetilde{U_n}\end{bmatrix}$$
+
+$$=\begin{bmatrix} \alpha_1^H \\ \widetilde{U_n}^H\end{bmatrix}  \begin{bmatrix} A_{n+1} \alpha_1 & A_{n+1} \widetilde{U_n}\end{bmatrix}$$
+
+$$=\begin{bmatrix}  \alpha_1^H A_{n+1} \alpha_1 &  \alpha_1^H A_{n+1} \widetilde{U_n}\\ \widetilde{U_n}^H A_{n+1} \alpha_1 & \widetilde{U_n}^H A_{n+1} \widetilde{U_n}\end{bmatrix}$$
+
+Say $$b=\alpha_1^H A_{n+1} \alpha_1$$, $$\beta=\widetilde{U_n}^H A_{n+1} \alpha_1$$, $$B_n=\widetilde{U_n}^H A_{n+1} \widetilde{U_n}$$
 
 
 
+$$b=\alpha_1^H A_{n+1} \alpha_1$$ 
+
+Dimension: $$(1\times (n+1))((n+1)\times (n+1))((n+1)\times 1)=1 \times 1$$
+
+$$=\alpha_1^H A_{n+1} \frac{x}{||x||}$$
+
+$$=\alpha_1^H \lambda \frac{x}{||x||}$$
+
+$$=\frac{x^H}{||x||} \lambda \frac{x}{||x||}$$
+
+$$=\lambda \frac{x^Hx}{||x||^2}$$
+
+$$=\lambda$$
 
 
 
+$$\beta=\widetilde{U_n}^H A_{n+1} \alpha_1$$
+
+$$=\widetilde{U_n}^H A_{n+1} \frac{x}{||x||}$$
+
+$$=\widetilde{U_n}^H \lambda \frac{x}{||x||}$$
+
+$$=\lambda  \widetilde{U_n}^H \alpha_1 $$
+
+$$=\lambda \begin{bmatrix} ... & \alpha_2^H &  ... \\ ... & \alpha_3^H &  ... \\ ...&...&...\\... & \alpha_{n+1}^H &  ...\end{bmatrix} \alpha_1=\mathbf{0}$$
+
+
+
+$$U_{n+1}^H A_{n+1} U_{n+1}=\begin{bmatrix} \lambda &  \alpha_1^H A_{n+1} \widetilde{U_n}\\ \ \mathbf{0} & \widetilde{U_n}^H A_{n+1} \widetilde{U_n}\end{bmatrix}$$
+
+$$B_n \in \C^{n \times n}$$
+
+If $$B_n \in \C^{n \times n}$$, then $$B_n=V_nT_nV_n^H$$ as the Induction Hypothesis
+
+where $$V_n$$ is unitary and $$T_n$$ is upper triangular
+
+$$B_n=V_nT_nV_n^H=\widetilde{U_n}^H A_{n+1} \widetilde{U_n}$$
+
+$$T_n=V_n^H  \widetilde{U_n}^H A_{n+1} \widetilde{U_n} V_n$$
+
+$$V_{n+1}=U_{n+1} \begin{bmatrix}1 & \mathbf{0}^H \\ \mathbf{0} & V_n\end{bmatrix}$$
+
+Sub-claim: $$V_{n+1}^H A_{n+1} V_{n+1}=T_{n+1}$$
+
+$$V_{n+1}^H A_{n+1} V_{n+1}=\begin{bmatrix}1 & \mathbf{0}^H \\ \mathcal{0} & V_n^H\end{bmatrix}  U_{n+1}^H A_{n+1} U_{n+1} \begin{bmatrix}1 & \mathbf{0}^H \\ \mathcal{0} & V_n\end{bmatrix} $$
+
+$$=\begin{bmatrix}1 & \mathbf{0}^H \\ \mathbf{0} & V_n^H\end{bmatrix}  \begin{bmatrix} \lambda &  \alpha_1^H A_{n+1} \widetilde{U_n}\\ \ \mathbf{0} & \widetilde{U_n}^H A_{n+1} \widetilde{U_n}\end{bmatrix} \begin{bmatrix}1 & \mathbf{0}^H \\ \mathbf{0} & V_n\end{bmatrix}$$
+
+$$=\begin{bmatrix}1 & \mathbf{0}^H \\ \mathbf{0} & V_n^H\end{bmatrix}  \begin{bmatrix} \lambda &  \alpha_1^H A_{n+1} \widetilde{U_n} V_n\\ \ \mathbf{0} & \widetilde{U_n}^H A_{n+1} \widetilde{U_n}V_n\end{bmatrix} $$
+
+$$=\begin{bmatrix} 1 &  \alpha_1^H A_{n+1} \widetilde{U_n} V_n\\ \ \mathbf{0} & V_n^H\widetilde{U_n}^H A_{n+1} \widetilde{U_n}V_n\end{bmatrix}$$
+
+$$=\begin{bmatrix} 1 &  \alpha_1^H A_{n+1} \widetilde{U_n} V_n\\ \ \mathbf{0} & T_n\end{bmatrix}=T_{n+1}$$
+
+$$T_{n+1}$$ is a upper triangular
+
+
+
+$$V_{n+1}^H V_{n+1}=I_{n+1}$$
+
+------
+
+### Schur's Decomposition
+
+$$A \in \C^{n \times n}$$
+
+$$k \in \{1,2,...,n-1\}$$
+
+Initialize: $$T_0=A$$
+
+Step 1:
+
+Define $$A_k \equiv (n-k+1) \times (n-k+1) $$ submatrix in the lower right position of $$T_{k-1}$$
+
+$$T_{k-1}=\begin{bmatrix} ... & ... \\ ... & A_k\end{bmatrix}$$
+
+Step 2:
+
+Find an eigenvalue $$\lambda$$ for $$A_k$$ and its corresponding eigenvector $$x$$
+
+$$A_kx=\lambda x$$
+
+Step 3:
+
+Construct a unitary matrix $$N_k$$ which has its first column as $$\frac{x}{||x||}$$
+
+Use Gram-Schmidt + normalize
+
+$$N_k \equiv$$
+
+Step 4:
+
+For $$k=1$$ , set $$U_1=N_1$$
+
+For $$k>1$$ , $$U_k=\begin{bmatrix} I & 0 \\ 0 & N_k\end{bmatrix}$$
+
+Step 5:
+
+$$T_k=U_k^HT_{k-1}U_k$$
+
+------
+
+#### Example
+
+$$A=\begin{bmatrix} 4 & 0 & 1 \\ 1 & 3 & -1 \\ -1& 0 & 2 \end{bmatrix}$$
+
+Find a Schur's Decomposition of $$A$$
+
+$$k=\{1,2\}$$, $$n=3$$
+
+Initialize
+
+$$T_0=A=\begin{bmatrix} 4 & 0 & 1 \\ 1 & 3 & -1 \\ -1& 0 & 2 \end{bmatrix}$$
+
+$$k=1$$
+
+Step 1:
+
+$$A_1 \equiv (3-1+1) \times (3-1+1)=3 \times 3$$
+
+$$A_1=\begin{bmatrix} 4 & 0 & 1 \\ 1 & 3 & -1 \\ -1& 0 & 2 \end{bmatrix}$$
+
+Step 2:
+
+$$A_1 x=\lambda x$$
+
+$$\lambda=3$$
+
+$$x=\begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}$$
+
+$$A_1x=3x$$
+
+Step 3:
+
+$$N_1$$ $$\{e_1,...,x,...,e_n\}$$ $$\rightarrow$$ GS $$\rightarrow$$ Normalize
+
+$$N_1=\begin{bmatrix}0 & 1 & 0 \\ 1 & 0 & 0\\0 & 0 & 1\end{bmatrix}=\begin{bmatrix} \frac{x}{||x||} & \alpha_2 & \alpha_3\end{bmatrix}$$
+
+$$N_1^H N_1=N_1^TN_1=I$$
+
+Step 4:
+$$U_1=\begin{bmatrix}0 & 1 & 0\\ 1& 0 & 0\\0&0&1\end{bmatrix}$$
+
+Step 5:
+
+$$T_1=U_1^H T_0 U_1=U_1^T T_0 U_1$$    - $$U_1$$ is real
+
+$$T_1=\begin{bmatrix}0 & 1 & 0\\ 1& 0 & 0\\0&0&1\end{bmatrix}\begin{bmatrix} 4 & 0 & 1 \\ 1 & 3 & -1 \\ -1& 0 & 2 \end{bmatrix}  \begin{bmatrix}0 & 1 & 0\\ 1& 0 & 0\\0&0&1\end{bmatrix}$$
+
+$$=\begin{bmatrix}0 & 1 & 0\\ 1& 0 & 0\\0&0&1\end{bmatrix}\begin{bmatrix} 0 & 4 & 1 \\ 3 & 1 & -1 \\ 0& -1 & 2 \end{bmatrix}$$
+
+$$=\begin{bmatrix}3 & 1 & -1\\ 0& 4 & 1\\0&-1&2\end{bmatrix}$$
+
+
+
+$$k=2$$
+
+Step 1:
+
+$$A_2 \equiv (3-2+1) \times (3-2+1)=2 \times 2$$
+
+$$A_2=\begin{bmatrix}4 & 1 \\-1 & 2\end{bmatrix}$$
+
+Step 2:
+
+$$A_2=\begin{bmatrix}4 & 1 \\-1 & 2\end{bmatrix}$$
+
+$$\lambda=3$$
+
+$$x=\begin{bmatrix}1\\-1\end{bmatrix}$$
+
+$$A_2x=3x$$
+
+Step 3:
+
+$$N_2$$
+
+$$E=\{e_1,e_2\}$$
+
+$$L=\{e_1,x\}$$
+
+$$\alpha_1=x=\begin{bmatrix}1\\-1\end{bmatrix}$$
+
+$$\alpha_2=e_1-\frac{e_1 \cdot \alpha_1}{\alpha_1 \cdot \alpha_1}\alpha_1$$
+
+$$=\begin{bmatrix}1\\0\end{bmatrix} - \frac{1}{2} \begin{bmatrix}1\\-1\end{bmatrix}$$
+
+$$=\begin{bmatrix}{\frac{1}{2}}\\{\frac{1}{2}}\end{bmatrix}$$
+
+$$\alpha_1=\begin{bmatrix}1\\-1\end{bmatrix}, \alpha_2=\begin{bmatrix}{\frac{1}{2}}\\{\frac{1}{2}}\end{bmatrix}$$
+
+$$\beta_1=\frac{1}{\sqrt{2}}\begin{bmatrix}1\\-1\end{bmatrix}= \begin{bmatrix}\frac{1}{\sqrt{2}}\\-\frac{1}{\sqrt{2}}\end{bmatrix},\beta_2=\begin{bmatrix}\frac{1}{\sqrt{2}}\\\frac{1}{\sqrt{2}}\end{bmatrix}$$
+
+$$N_2=\begin{bmatrix}\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}\\-\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}\end{bmatrix}$$
+
+Step 4:
+
+$$k \neq 1$$
+
+$$U_k=\begin{bmatrix}I & 0 \\ 0 & N_k\end{bmatrix}$$
+
+$$U_2=\begin{bmatrix} 1 & 0&0\\0& \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}\\0& -\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}\end{bmatrix}$$
+
+Step 5:
+
+$$T_2=U_2^HT_1U_2$$
+
+$$=\begin{bmatrix} 1 & 0&0\\0& \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}\\0& \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}\end{bmatrix} \begin{bmatrix}3 & 1 & -1\\ 0& 4 & 1\\0&-1&2\end{bmatrix}\begin{bmatrix} 1 & 0&0\\0& \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}\\0& -\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}\end{bmatrix}$$
+
+$$=\begin{bmatrix}3 & \frac{2}{\sqrt{2}} & 0\\ 0& 3 & 2\\0&0&3\end{bmatrix}$$
+
+$$T_2=U_2^HT_1U_2$$
+
+$$=U_2^H U_1^HT_0 U_1 U_2$$
+
+$$=U_2^HU_1^H A U_1 U_2$$
+
+where $$U_2^HV_1^H=V^H, U_1U_2=V$$
+
+If $$A=UTU^H$$ then
+
+$$Det(A-\lambda I)=Det(A-\lambda U U^H)$$
+
+$$=Det(UTU^H-\lambda UIU^H)$$
+
+$$=Det(U(T-\lambda I)U^H)$$
+
+$$=Det(U)Det(T-\lambda I)Det(U^H)$$
+
+$$=Det(T-\lambda I)$$
+
+## Week 9 Session 2
+
+### Outlines
+
+Normal Matrices
+
+Ellipsoid in $$\R^n$$
+
+------
+
+If $$A \in \C^{n \times n}$$, then $$\exist U$$ and $$T$$ such that
+
+$$A=UTU^H$$         - $$(T=U^HAU)$$
+
+where $$U$$ is unitary and $$T$$ is upper triangular
+
+Thm:
+
+$$Det(e^A)=e^{Tr(A)}$$
+
+If $$A$$ is diagonalizable
+
+$$e^A=E\begin{bmatrix}e^{\lambda_1} & ... & 0 \\ 0 & ... & 0 \\ 0& ...&e^{\lambda_n}\end{bmatrix}E^{-1}$$ 
+
+Proof:
+
+$$e^A=\sum_{k=0}^{\infty} \frac{A^k}{k!}$$
+
+$$=\sum_{k=0}^{\infty}\frac{(UTU^H)^k}{k!}$$  - Schur's Decomposition
+
+$$=\sum_{k=0}^{\infty}\frac{UT^kU^H}{k!}$$    - $$U^HU=I$$
+
+$$=U (\sum_{k=0}^{\infty}\frac{T^k}{k!}) U^H$$
+
+Let $$L=\begin{bmatrix} t_{11} & t_{12} & ... & t_{1n} \\ 0 & t_{22} & ... & t_{2n}\\ 0 & 0& ... &...\\0& ...&0 & t_{nn}\end{bmatrix}$$ , $$t_{ij}=0$$ if $$t >j$$
+
+$$X=TT \implies x_{ii}=\sum_{k=1}^{n} t_{ik} t_{ki} = |t_{ii}|^2+\sum_{k=1, k\neq i}^n t_{ik}t_{ki}$$
+
+where $$\sum_{k=1, k\neq i}^n t_{ik}t_{ki}=0$$
+
+$$e^A=U (\sum_{k=0}^{\infty}T^k)U^H$$
+
+$$=U \sum_{k=0}^{\infty} (\frac{1}{k!} \begin{bmatrix} t_{11}^k & \_ & \_ & \_ \\ 0 & t_{22}^k & \_ & \_ \\ 0& ... & ...&\_\\ 0& 0& 0& t_{nn}^k\end{bmatrix})U^H$$
+
+$$=U  (\frac{1}{k!} \begin{bmatrix} \sum_{k=0}^{\infty}t_{11}^k & \_ & \_ & \_ \\ 0 & \sum_{k=0}^{\infty}t_{22}^k & \_ & \_ \\ 0& ... & ...&\_\\ 0& 0& 0& \sum_{k=0}^{\infty}t_{nn}^k\end{bmatrix})U^H$$
+
+$$=U  (\frac{1}{k!} \begin{bmatrix} e^{t_{11}} & \_ & \_ & \_ \\ 0 & e^{t_{22}} & \_ & \_ \\ 0& ... & ...&\_\\ 0& 0& 0& e^{t_{nn}}\end{bmatrix})U^H$$
+
+Let $$\widetilde{T}=\begin{bmatrix} e^{t_{11}} & \_ & \_ & \_ \\ 0 & e^{t_{22}} & \_ & \_ \\ 0& ... & ...&\_\\ 0& 0& 0& e^{t_{nn}}\end{bmatrix}$$
+
+$$e^A=U \widetilde{T}U^H$$
+
+$$Det(e^A)=Det(U \widetilde{T}U^H)$$
+
+$$=Det(U)Det(\widetilde{T})Det(U^H)$$            - $$U^H=U^{-1}$$
+
+$$=Det(\widetilde{T})$$
+
+$$=\prod_{j=1}^{n}e^{t_{jj}}$$
+
+$$=e^{\sum_{j=1}^{n}t_{jj}}$$
+
+$$=e^{Tr(T)}$$
+
+Note:
+
+$$Det(A-\lambda I)=Det(UTU^H-\lambda I)$$
+
+$$=Det(UTU^H-\lambda U I U^H)$$
+
+$$=Det(U(T-\lambda I)U^H)$$
+
+$$=Det(U)Det(T-\lambda I)Det(U^H)$$
+
+$$=Det(T-\lambda I)$$
+
+$$Tr(A)=Tr(T)$$
+
+$$Det(e^A)=e^{Tr(T)}=e^{Tr(A)}$$
+
+------
+
+### Normal Matrices
+
+Definition:
+$$A \in \C^{n \times n}$$ is normal if and only if $$AA^H=A^HA$$
+
+Thm:
+
+Spectral Theorem:
+
+$$A \in \C^{n \times n}$$ is normal if and only if $$A$$ is unitarily diagonalizable
+
+$$P:$$ $$A \in \C^{n \times n}$$ is normal
+
+$$Q:$$ $$A$$ is unitarily diagonalizable
+
+$$A^HA=AA^H$$ if and only if $$A=U \Lambda U^H$$
+
+Claim 1: $$P \implies Q$$
+
+If $$A^HA=AA^H$$ then $$A=UTU^H$$
+
+Proof:
+
+$$A=UTU^H$$
+
+$$A^H=(UTU^H)^H=UT^HU^H$$
+
+$$AA^H=UTU^HUT^HU^H$$
+
+$$AA^H=UT U^HU T^H U^H=UT I T^H U^H$$
+
+$$A^HA=UT^HU^HUTU^H=UT^HITU^H$$
+
+$$U^H U TT^H U^HU=U^HUT^HTU^HU$$
+
+$$X=TT^H, Y=T^HT$$
+
+$$X=Y$$
+
+$$TT^H=T^HT$$
+
+$$TT^H=X \equiv [x_{ij}], T^HT=Y \equiv [y_{ij}]$$
+
+$$T=\begin{bmatrix} t_{11} & t_{12} & ... & t_{1n} \\ 0 & t_{22} & ... & t_{2n}\\ 0 & 0& ... &...\\0& ...&0 & t_{nn}\end{bmatrix}, T^H=\begin{bmatrix} t_{11}^\ast & 0 & ... & 0 \\ t_{12}^\ast & t_{22}^\ast & ... & 0\\ ... & ...& ... &0\\t_{1n}^\ast& t_{2n}^\ast&... & t_{nn}^\ast\end{bmatrix}$$
+
+$$x_{ii}=\sum_{k=i}^n t_{ik}t_{ik}^\ast=\sum_{k=i}^n |t_{ik}|^2=\sum_{k=i+1}^n |t_{ik}|^2+|t_{ii}|^2$$
+
+$$ T^H=\begin{bmatrix} t_{11}^\ast & 0 & ... & 0 \\ t_{12}^\ast & t_{22}^\ast & ... & 0\\ ... & ...& ... &0\\t_{1n}^\ast& t_{2n}^\ast&... & t_{nn}^\ast\end{bmatrix},T=\begin{bmatrix} t_{11} & t_{12} & ... & t_{1n} \\ 0 & t_{22} & ... & t_{2n}\\ 0 & 0& ... &...\\0& ...&0 & t_{nn}\end{bmatrix}$$
+
+$$y_{ii}=\sum_{k=1}^i t_{ki}^\ast t_{ki}=\sum_{k=1}^i |t_{ki}|^2=\sum_{k=1}^{i-1} |t_{ki}|^2+|t_{ii}|^2$$
+
+For $$x_{11}=y_{11}$$
+
+$$x_{11}=\sum_{k=2}^n |t_{1k}|^2 +|t_{11}|^2=\sum_{k=1}^{1}|t_{k1}|^2=y_{11}$$
+
+$$\sum_{k=2}^n |t_{1k}|^2 +|t_{11}|^2=|t_{11}|^2$$
+
+$$\sum_{k=2}^n |t_{1k}|^2=0$$
+
+where $$t_{1k} \geq 0$$, then $$t_{12}=t_{13}=...=t_{1n}=0$$
+
+For $$x_{11}=y_{22}$$
+
+$$x_{22}=\sum_{k=3}^{n}|t_{2k}|^2+|t_{22}|^2=\sum_{k=1}^{1} |t_{k2}|^2+|t_{22}|^2$$
+
+$$\sum_{k=3}^{n}|t_{2k}|^2+|t_{22}|^2=|t_{12}|^2+|t_{22}|^2$$
+
+$$\sum_{k=3}^{n}|t_{2k}|^2=0$$
+
+where $$t_{2k} \geq 0$$, then $$t_{22}=t_{23}=...=t_{2n}=0$$
+
+For $$x_{33}=y_{33}$$
+
+$$\sum_{k=4}^{n}|t_{3k}|^2+|t_{33}|^2=|t_{13}|^2+|t_{23}|^2+|t_{33}|^2$$
+
+$$t_{34}=t_{35}=...=t_{3n}=0$$
+
+$$...$$
+
+$$x_{nn}=y_{nn}$$
+
+$$t_{ij} =0$$ for $$i \neq j$$
+$$T$$ is a diagonal matrix
+
+------
+
+$$A \in \C^{n \times n}$$
+
+$$\lim_{r \rightarrow \infty} A^r = \mathbf{0}$$
+
+Thm: 
+
+$$A^r \rightarrow \mathbf{0} $$ as $$r \rightarrow \infty$$ if and only if $$|\lambda_i|<1$$ for all eigenvalues of $$A$$
+
+Proof:
+
+$$P$$ if and only if $$Q$$ means
+
+1. $$P \implies Q$$
+2. $$Q \implies Q$$
+
+Claim 1:
+
+If $$A^r \rightarrow \mathbf{0}$$ as $$r \rightarrow \infty$$ then $$|\lambda_i|<1$$ for all eigenvalues of $$A$$
+
+$$P \rightarrow Q$$
+
+$$\sim P \rightarrow \sim Q$$
+
+$$\sim Q: $$ Assume that $$\exist \lambda_{j}$$ such that $$|\lambda_{j}|\geq 1$$
+
+$$Ax=\lambda_j x$$                - $$x \neq \mathbf{0}$$
+
+$$A^rx=\lambda_j^r x$$
+
+$$\lim_{r \rightarrow \infty} A^r x= \lim_{r \rightarrow \infty} \lambda_j^r x$$
+
+As $$\lim_{r \rightarrow \infty} \lambda_j^r x \neq 0$$, $$\lim_{r \rightarrow \infty} A^r x \neq 0, x\neq 0$$
+
+$$\lim_{r \rightarrow \infty} A^r \neq 0$$ which is $$\sim P$$
+
+If $$A^r \rightarrow \mathbf{0}$$ as $$r \rightarrow \infty$$ then $$|\lambda_j|<1$$ for all eigenvalues of $$A$$
+
+
+
+Claim 2:
+
+If $$|\lambda_j|<1$$ for all eigenvalues of $$A$$ then $$A^r \rightarrow \mathbf{0}$$ as $$r \rightarrow \infty$$
+
+Case 1: $$A$$ has unique eigenvalues
+
+Proof:
+
+Unique eigenvalues $$\implies$$ Linearly independent eigeenvectors
+
+$$A=E \Lambda E^{-1}$$
+
+$$\Lambda=Diag(\lambda_1,...\lambda_n)$$
+
+$$\lim_{r \rightarrow \infty} A^r =\lim_{r \rightarrow \infty} E \Lambda^r E^{-1}$$
+
+$$=E\begin{bmatrix} \lim_{r \rightarrow \infty} {\lambda_1}^r & ... & 0 \\ 0 & ... & 0 \\ 0& ...&\lim_{r \rightarrow \infty} {\lambda_n}^r\end{bmatrix}E^{-1}$$
+
+$$=E\begin{bmatrix} 0 & ... & 0 \\ 0 & ... & 0 \\ 0& ...&0\end{bmatrix}E^{-1}$$               - $$|\lambda_i|<1$$
+
+$$=\mathbf{0}$$
+
+$$A^r=UT^r U^H$$
+
+$$T^r=U^HA^rU$$
+
+$$A^r \rightarrow \mathbf{0}$$ if and only if $$T^r \rightarrow \mathbf{0}$$
+
+
+
+$$A^r=E \Lambda^r E^{-1}$$
+
+$$\Lambda^r=E^{-1}A^rE$$
+
+$$A^r \rightarrow \mathbf{0}$$ if and only if $$\Lambda^r \rightarrow \mathbf{0}$$
+
+
+
+Case 2: $$A$$ has repeated eigenvalues
+
+Proof:
+
+$$A=UTT^H$$         - Schur's Decomposition
+
+$$|a| \leq b \implies -b \leq |a|\leq b$$
+
+If $$-b \rightarrow 0, b \rightarrow 0$$ then $$a=0$$
+
+$$A=U\begin{bmatrix} t_{11} & t_{12} & ... & t_{1n} \\ 0 & t_{22} & ... & t_{2n}\\ 0 & 0& ... &...\\0& ...&0 & t_{nn}\end{bmatrix}U^H$$
+
+Repeated Eigenvalues
+
+Majorize $$T$$ by $$M$$
+
+$$M=\begin{bmatrix} \mu_1 & \alpha & ... & \alpha \\ 0 & \mu_2 & ... & \alpha\\ 0 & 0& ... &...\\0& ...&0 & \mu_n\end{bmatrix}$$
+
+$$|\lambda_i| \leq \mu_i <1$$
+
+$$\mu_1, \mu_2, ..., \mu_n$$ are unique
+
+$$\lambda_1=0.8, \lambda_2=0.8$$
+
+$$\mu_1=0.8, \mu_2=0.81$$
+
+$$\alpha=\max_{i,j , i \neq j} |t_{ij}|$$
+
+$$|t_{ij}|^r \leq m_{ij}^r$$
+
+$$\lim_{r \rightarrow \infty}M^r = \mathbf{0}$$
+
+$$-m_{ij}^r \leq t_{ij}^r \leq m_{ij}^r$$
+
+$$\lim_{r \rightarrow \infty}M^r = \mathbf{0} \implies \lim_{r \rightarrow \infty}T^r = \mathbf{0}$$
+
+$$\lim_{r \rightarrow \infty}A^r = \lim_{r \rightarrow \infty}UT^rU^H$$
+
+$$=U(\lim_{r \rightarrow \infty}T^r)U^H$$
+
+$$=\mathbf{0}$$
+
+
+
+$$T_r=\begin{bmatrix} t_{11}^r & \_ & \_ & \_ \\ 0 & t_{22}^r & ... & \_\\ 0 & 0& ... &...\\0& ...&0 & t_{nn}^r\end{bmatrix}, A \equiv [a_{ij}]$$
+
+$$M=\begin{bmatrix} \mu_1^r & \beta & ... & \beta \\ 0 & \mu_2^r & ... & \beta\\ 0 & 0& ... &...\\0& ...&0 & \mu_n^r\end{bmatrix}, B \equiv [b_{ij}]$$
+
+$$a_{ij} \leq b_{ij}$$
+
+$$\lim_{r \rightarrow \infty}-M^r = \mathbf{0}$$
+
+$$\lim_{r \rightarrow \infty}M^r = \mathbf{0}$$
+
+------
+
+### Ellipsoids in $$\R^n$$
+
+Gaussian Vector
+
+$$X \sim \mathbf{N}(\mu_x,k_{xx})$$
+
+$$f_X(x)=\frac{1}{(2 \pi)^{\frac{n}{2}}(Det(k_{xx}))^\frac{1}{2}} e^{-\frac{(x-\mu _x)^T k_{xx}^{-1}(x-\mu_x)}{2}}$$
+
+$$x^2+y^2=1$$ or $$x_1^2+x_2^2=1$$
+
+$$A =A^T \sim \Lambda (\lambda_1, \lambda_2,...,\lambda_n)$$
+
+$$A=A^H,\lambda_i \in \R$$
+
+Special case: $$\lambda_i >0$$ - Positive Definite
+
+$$\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$$
+
+![image-20241025212155596](C:\Users\Levi\AppData\Roaming\Typora\typora-user-images\image-20241025212155596.png)
+
+## Week 10 Session 1
+
+### Outlines
+
+Ellipsoids in $$\R^n$$
+Positive Definite Matrices
+
+Rayleigh Quotients: Principal component analysis (PCA)
+
+------
+
+### Principle component analysis (PCA)
+
+This is a linear dimensionality reduction methods that captures maximum variance in the data.
+
+![image-20241030111602043](C:\Users\Levi\AppData\Roaming\Typora\typora-user-images\image-20241030111602043.png)
+
+How do we find $$P_1,P_2$$ ?
+
+1. Data and covariance matrix
+
+   Data: $$X: n \times p$$
+
+   $$n:$$ number of samples
+
+   $$p:$$ number of features
+
+   $$j<p$$
+
+   Compute the covariance matrix $$K_{xx}$$
+
+2. Principal components: Find a set of new orthogonal axes (principal components) that maximize variance in the data
+
+   Find $$P_1:$$ This is the direction with the most variance
+
+   Find $$P_2:$$ This is orthogonal to $$P_1$$ and captures the second most variance
+
+3. Rayleigh Quotient and Variance
+
+   Consider $$x$$ such that $$||x||^2=1$$ and $$x$$ represents a direction in the feature space
+
+   Variance of the projected data in the direction of $$x$$ is the Rayleigh quotient
+
+   $$R(x,k)=\frac{x^Tkx}{x^Tx}$$
+
+------
+
+### Ellipsoids in $$\R^n$$
+
+$$A=A^H$$
+
+$$A=A^H \implies \lambda_i \in \R$$
+
+special case: $$\lambda_i>0$$ positive definite
+
+In $$\R^2:\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$$
+
+$$E_2=\{(x,y)\in \R^2:\frac{x^2}{a^2}+\frac{y^2}{b^2}=1\}$$
+
+![image-20241030112149271](C:\Users\Levi\AppData\Roaming\Typora\typora-user-images\image-20241030112149271.png)
+
+In $$\R^3: \frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}=1$$
+
+$$E_3=\{(x,y,z)\in \R^3: \frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}=1$$
+
+Unit sphere in $$\R^3:a=b=c=1$$
+
+$$S_3=\{(x,y,z)\in \R^3:x^2+y^2+z^2=1\}$$
+
+$$E_n=\{x \in \R^n:||x||^2=1\}$$
+
+$$||x||^2=|x_1|^2+|x_2|^2+...+|x_n|^2$$
+
+$$||x||^2=x^Hx=x^HIx$$
+
+$$x^HAx$$ such that $$A=A^H, \lambda_i>0, \forall i: 1 \leq i \leq n$$
+
+Generalize to: $$x^T Ax$$ such that $$A=A^T, \lambda_i>0, \forall i$$
+
+$$x^TAx=\begin{bmatrix}x_1 & ... & x_n\end{bmatrix} \begin{bmatrix}a_{11} & ... & a_{1n} \\ ... & ... & ...\\a_{n1} & ... & a_{nn}\end{bmatrix} \begin{bmatrix} x_1 \\ ... \\x_n\end{bmatrix}=\sum_{i=1}^{n}\sum_{j=1}^{n}a_{ij}x_ix_j$$
+
+where $$x^T=\begin{bmatrix}x_1 & ... & x_n\end{bmatrix}, A= \begin{bmatrix}a_{11} & ... & a_{1n} \\ ... & ... & ...\\a_{n1} & ... & a_{nn}\end{bmatrix}, x= \begin{bmatrix} x_1 \\ ... \\x_n\end{bmatrix}$$
+
+If $$A=I: \lambda_1=1, \lambda_2=1, e_1=\begin{bmatrix}1 \\0\end{bmatrix}, e_2=\begin{bmatrix}0 \\1\end{bmatrix}$$
+
+Principal axes: Principal axis and the normal vector have the same direction
+
+$$P_i=cn$$ where $$c$$ is a non-zero constant
+
+
+
+#### Example
+
+$$A=2 \times 2=I$$
+
+$$x^TIx=x_1^2+x_2^2$$
+
+$$E_2=\{x \in \R^2: x^TIx=1\}$$
+
+$$x_1^2+x_2^2=1$$
+
+$$e_1=P_1=\begin{bmatrix}1 \\0\end{bmatrix}, e_2=P_2= \begin{bmatrix}0 \\1\end{bmatrix}$$
+
+
+
+Thm:
+
+Principal axes of ellipsoid $$x^TAx=I$$ are the eigenvector of $$A$$, for real $$A=A^T$$ and $$\lambda>0, \forall i$$
+
+Proof:
+
+$$\phi(x)=x^Tax$$
+
+$$\nabla_x \phi(x)=\nabla_x x^TAx$$
+
+$$=\begin{bmatrix} \frac{\partial\phi(x)}{\partial x_1}\\ ...\\\frac{\partial\phi(x)}{\partial x_n} \end{bmatrix}$$
+
+For any $$k: 1 \leq k \leq n$$
+
+$$\frac{\partial\phi(x)}{\partial x_k}=\frac{\partial}{\partial x_k}x^TAx$$
+
+$$=\frac{\partial}{\partial x_k}\sum_{i=1}^{n}\sum_{j=1}^{n}a_{ij}x_ix_j$$
+
+$$=\sum_{i=1}^{n}\sum_{j=1}^{n}a_{ij} \frac{\partial}{\partial x_k} (x_ix_j)$$
+
+$$=\sum_{i=1}^{n}\sum_{j=1}^{n}a_{ij} (x_i\frac{\partial x_j}{\partial x_k} + x_j\frac{\partial x_i}{\partial x_k})$$
+
+$$=\sum_{i=1}^{n} a_{ik}x_i+\sum_{j=1}^{n}a_{jk}x_j$$           - $$A=A^T$$
+
+$$=2 \sum_{i=1}^n a_{ik}x_i$$
+
+$$\nabla_x \phi(x)==\begin{bmatrix} 2 \sum_{i=1}^n a_{i1}x_i \\ ...\\2 \sum_{i=1}^n a_{in}x_i \end{bmatrix}=2Ax$$
+
+$$2A P_i=cP_i \implies AP_i=\frac{c}{2}P_i$$
+
+
+
+Property: If $$A=A^T$$ and $$\lambda_i>0 ,\forall i$$ then the length of principal axis $$P_i$$ is such that 
+
+$$||P_i||=\frac{1}{\sqrt{\lambda_i}}$$
+
+Proof:
+
+$$AP_i=\lambda_i P_i$$
+
+$$E_n=\{x \in \R^n: x^TAx=1\}$$
+
+$$P_i^TAP_i=P_i^T \lambda_i P_i=\lambda_iP_i^TP_i=\lambda_i||P_i||^2$$
+
+$$\lambda_i ||P_i||^2=1$$
+
+$$||P_i||=\frac{1}{\sqrt{\lambda_i}}$$
+
+![image-20241030115939017](C:\Users\Levi\AppData\Roaming\Typora\typora-user-images\image-20241030115939017.png)
+
+
+
+#### Example
+
+$$2x_1^2-2\sqrt{2}x_1x_2+3x_2^2=1$$
+$$\begin{bmatrix}x_1 & x_2\end{bmatrix}\begin{bmatrix} 2 & -2\sqrt{2} \\ -\sqrt{2} & 3\end{bmatrix} \begin{bmatrix} x_1 \\ x_2 \end{bmatrix}=1$$
+
+$$A=\begin{bmatrix} 2 & -2\sqrt{2} \\ -\sqrt{2} & 3\end{bmatrix}, T=5,D=4$$
+
+$$\lambda=\frac{T \pm \sqrt{T^2-4D}}{2}=\frac{5 \pm \sqrt{5^2-4 \cdot 4}}{2}$$
+
+$$\lambda_1=1,\lambda_2=4$$
+
+$$e_1=\begin{bmatrix} \sqrt{2} \\ 1 \end{bmatrix}, e_2=\begin{bmatrix}-1 \\ \sqrt{2} \end{bmatrix}$$
+
+![image-20241030121823442](C:\Users\Levi\AppData\Roaming\Typora\typora-user-images\image-20241030121823442.png)
+
+$$||P_1||=\frac{1}{\sqrt{\lambda_1}}=\frac{1}{1}, ||P_2||=\frac{1}{\sqrt{\lambda_2}}=\frac{1}{\sqrt{4}}=\frac{1}{2}$$
+
+------
+
+### Positive Definite Matrices
+
+$$A=A^H$$
+
+Definition: $$A$$ is positive definite if and only if $$x^HAx>0$$ for all $$x \neq \mathbf{0}$$
+
+Positive Semi-Definite (PSD): $$A$$ is PSD if and only if $$x^HAx \geq 0, \forall x \neq \mathbf{0}$$
+
+Negative Definite (ND): $$A$$ is ND if and only if $$x^HAx < 0, \forall x \neq \mathbf{0}$$
+
+Negative Semi-Definite (NSD): $$A$$ is NSD if and only if $$x^HAx \leq 0, \forall x \neq \mathbf{0}$$
+
+$$x^H Ix = x^Hx=||x||^2 >0$$             - $$I$$ is PD
+
+Thm:
+
+$$A=A^H:A$$ is positive definite if and only if $$\lambda_i>0, \forall i$$
+
+$$P \rightarrow Q, Q \rightarrow P$$
+
+Claim 1:
+
+$$A=A^H:$$ If $$A$$ is positive definite, then $$\lambda_i>0, \forall i$$
+
+Proof: 
+
+$$A \alpha_i=\lambda_i \alpha_i$$      - $$\alpha_i \neq 0$$
+
+$$x^HAx > 0$$        - $$A$$ is positive definite
+
+Let $$u_i=\frac{\alpha_i}{||\alpha_i||}$$
+
+$$u_i^HAu_i=u_i^H\lambda_i u_i=\lambda_i u_i^H u_i=\lambda_i ||u_i||^2=\lambda_i >0$$
+
+QED
+
+Claim 2:
+
+$$A=A^H:$$ If all eigenvalues are positive, then $$x^HAx>0, \forall x \neq 0$$
+
+Proof:
+
+$$A=A^H$$
+
+There exist orthonormal eigenvectors $$u_1,u_2,...u_n$$ (because $$A$$ is a normal matrix) such that 
+
+$$u_i^Hu_j=u_i \cdot u_j=\begin{cases} 0 & \text{if\:} i \neq j \\ 1 & \text{if\:} i=j\end{cases}$$
+
+For any $$x,\exist c_1, ... c_n$$ such that
+
+$$x=\sum_{i=1}^n c_iu_i, x \in \C^n$$
+
+$$Ax=A\sum_{i=1}^n c_iu_i$$
+
+$$=\sum_{i=1}^n c_i A u_i$$
+
+$$=\sum_{i=1}^n c_i \lambda_i u_i$$
+
+$$x^H=(\sum_{i=1}^n c_iu_i)^H=\sum_{i=1}^n c_i^\ast u_i^H$$
+
+$$x^HAx=\sum_{i=1}^n c_i^\ast u_i^H\sum_{j=1}^n c_j \lambda_j u_j$$
+
+$$=\sum_{i=1}^n \sum_{j=1}^n c_i^\ast c_j  \lambda_j u_i^H   u_j$$
+
+$$=\sum_{i=1}^n  c_i^\ast c_j  \lambda_j ||u_i||^2$$
+
+$$=\sum_{i=1}^n  c_i^\ast c_j  \lambda_j >0$$     - $$\lambda_i>0, \exist c_j \neq 0$$
+
+QED
+
+$$A=A^H: A$$ is a PD if and only if $$\lambda_i>0, \forall i$$
+
+
+
+Cor: ($$A=A^H)$$
+
+1.  $$A$$ is negative definite if and only if $$\lambda_i<0, \forall i$$
+2.  $$A$$ is positive semi-definite if and only if $$\lambda_i\geq0, \forall i$$
+3.  $$A$$ is negative semi-definite if and only if $$\lambda_i\leq0, \forall i$$
+
+------
+
+Fact: $$A=A^H:A$$ is positive if and only if all upper left square submatrices $$A_i$$ have $$Det(A_i)>0$$
+
+![image-20241030123419664](C:\Users\Levi\AppData\Roaming\Typora\typora-user-images\image-20241030123419664.png)
+
+ 
+
+------
+
+### Rayleigh Quotient ($$R(x)$$)
+
+$$A=A^H \implies \lambda_i\in \R$$
+
+Definition: Rayleigh Quotient $$R(x)=\frac{x^HAx}{x^Hx}=\frac{\sum_{i=1}^n\sum_{j=1}^n a_{ij}x_i^\ast x_j}{\sum_{i=1}^n|x_i|^2}$$
+
+$$A$$ is PD
+
+$$\lambda_1\geq \lambda_2 \geq ... \geq \lambda_n >0$$
+
+![image-20241030123706557](C:\Users\Levi\AppData\Roaming\Typora\typora-user-images\image-20241030123706557.png)
+
+$$Ax=\lambda x$$
+
+$$x^TAx=x^T\lambda x=\lambda||x||^2$$
+
+$$R(x)=\frac{\lambda||x||^2}{||x||^2}=\lambda$$
+
+## Week 10 Session 2
+
+### Outlines
+
+Rayleigh Quotient
+
+Random Vectors
+
+Whitening
+
+------
+
+### Rayleigh Quotient
+
+$$A=A^H$$
+
+Definition: Rayleigh Quotient $$R(x)=\frac{x^HAx}{x^Hx}=\frac{\sum_{i=1}^n\sum_{j=1}^n a_{ij}x_i^\ast x_j}{\sum_{i=1}^n|x_i|^2}$$
+
+$$A=A^H \implies \lambda_i \in \R \forall i, \lambda_1 \geq \lambda_2 \geq ... \geq \lambda_n$$
+
+For real matrix $$A$$ and real vector $$x: R(x)=\frac{x^TAx}{x^Tx}$$
+
+![image-20241109220655988](C:\Users\Levi\AppData\Roaming\Typora\typora-user-images\image-20241109220655988.png)
+
+$$U^TAU=U AU=||U||||AU|| \cos{\theta}$$
+
+------
+
+### Principal component analysis (PCA)
+
+This is a linear dimensionality reduction method that captures the maximum variance in the data.
+
+![image-20241030111602043](C:\Users\Levi\AppData\Roaming\Typora\typora-user-images\image-20241030111602043.png)
+
+How do we find $$P_1,P_2$$ ?
+
+1. Data and covariance matrix
+
+   Data: $$X: n \times p$$
+
+   $$n:$$ number of samples
+
+   $$p:$$ number of features
+
+   $$j<p$$
+
+   Compute the covariance matrix $$K_{xx}$$
+
+2. Principal components: Find a set of new orthogonal axes (principal components) that maximize variance in the data
+
+   Find $$P_1:$$ This is the direction with the most variance
+
+   Find $$P_2:$$ This is orthogonal to $$P_1$$ and captures the second most variance
+
+3. Rayleigh Quotient and Variance
+
+   Consider $$x$$ such that $$||x||^2=1$$ and $$x$$ represents a direction in the feature space
+
+   Variance of the projected data in the direction of $$x$$ is the Rayleigh quotient
+
+   $$R(x,k)=\frac{x^Tkx}{x^Tx}$$
+
+------
+
+### Thm: Rayleigh Principle
+
+If $$A=A^H$$ and $$\lambda_1 \geq \lambda_2 \geq ... \geq \lambda_n$$ for eigenvalues $$\lambda_i$$ then
+
+$$\lambda_1 =\max_{||x||=1} x^HAx$$
+
+and maximum is at $$x=u_1$$ where $$Au_1=\lambda_1 u_1$$
+
+$$A=A^H$$ 
+
+$$\{x \in \C^{n \times 1}: ||x|| =1\}$$
+
+$$\max_{||x||=1} x^HAx=\max_{||x||=1} \frac{x^HAx}{x^Hx}$$
+
+Proof:
+
+ $$A=A^H$$                        - Assumption
+
+$$A$$ is normal                    - $$AA^H=A^HA$$
+
+$$A$$ has orthonormal eigenvectors $$u_1,u_2,..., u_n$$ such that:
+
+$$u_i^H u_j= u_i \cdot u_j=\delta_{ij}=\begin{cases} 0 & \text{if\:} i \neq j \\ 1 & \text{if\:} i=j\end{cases}$$
+
+and $$A u_i = \lambda_i u_i$$
+
+$$\forall x \in \C^{n \times 1}: \exist c_1, c_2, ... ,c_n$$ such that 
+
+$$x= \sum_{i=1}^{n} c_iu_i$$
+
+$$Ax=A \sum_{i=1}^{n} c_iu_i= \sum_{i=1}^{n} c_iAu_i=\sum_{i=1}^{n} c_i \lambda_i u_i$$
+
+$$x^H=(\sum_{i=1}^{n} c_iu_i)^H=\sum_{i=1}^{n}c_i^\ast u_i^H$$
+
+$$x^HAx=\sum_{j=1}^{n} c_i \lambda_i u_i \sum_{i=1}^{n}c_i^\ast u_i^H$$
+
+$$=\sum_{i=1}^{n}  \sum_{j=1}^{n}    c_i^\ast c_i \lambda_i u_i^H u_j$$        - $$u_i^H u_j=\delta_{ij}$$
+
+$$=\sum_{i=1}^{n} |c_i|^2 \lambda_i$$
+
+$$||x||^2=x^Hx=(\sum_{i=1}^{n} c_iu_i)^H(\sum_{i=1}^{n} c_iu_i)$$
+
+$$=\sum_{i=1}^{n}  \sum_{j=1}^{n} c_i^\ast c_i  u_i^H u_j$$
+
+$$=\sum_{i=1}^{n} |c_i|^2 $$
+
+$$x^HAx= \sum_{i=1}^{n} |c_i|^2 \lambda_i$$
+
+$$=\lambda_1 |c_1|^2 +\lambda_2 |c_2|^2 + ... + \lambda_n |c_n|^2$$
+
+$$\leq \lambda_1 |c_1|^2 + \lambda_1 |c_2|^2 + ... \lambda_1 |c_n|^2$$
+
+$$=\lambda_1 \sum_{i=1}^{n}|c_i|^2$$
+
+$$=\lambda_1$$
+
+Therefore, $$x^HAx \leq \lambda_1$$
+
+If $$x=\sum_{i=1}^{n} c_i u_i = u_i + \sum_{j=1, j \neq i}^{n} 0 u_j$$
+
+So $$x^HAx= \sum_{i=1}^{n}|c_i|\lambda_i=\lambda_i$$ if $$x =u_i$$
+
+$$x=u_1 \implies x^HAx=\lambda_1$$
+
+------
+
+Cor:
+
+$$\min_{||x||=1}x^HAx$$
+
+$$\lambda_1= \max_{||x|| \neq 0} \frac{x^HAx}{x^Hx}$$
+
+$$\max_{||x|| \neq 0} \frac{x^HAx}{x^Hx}=\max_{||x|| \neq 0} \frac{x^HAx}{||x||^2}$$
+
+$$=\max_{||x|| \neq 0} (\frac{x}{||x||})^HA(\frac{x}{||x||})$$
+
+$$=\max_{||u||=1}u^HAu=\lambda_1$$
+
+------
+
+Thm:
+
+If $$A=A^H$$ with eigenvalues $$\lambda_1 \geq \lambda_2 \geq ... \geq \lambda_n$$ then
+
+for $$i \geq 2$$, $$\lambda_i=\max_{||x||=1, u_1 \cdot x= u_2 \cdot x=...=u_{i-1} \cdot x=0} x^HAx=0$$
+
+where $$Au_i=\lambda_iu_i$$
+
+$$\lambda_i=\max\{x^HAx: ||x||=1, u_1 \cdot x= u_2 \cdot x=...=u_{i-1} \cdot x=0\}$$
+
+Proof:
+
+Pick $$x \in \C^n$$ such that $$||x||=1$$
+
+$$u_1, u_2, ... u_n$$ are orthonormal eigenvectors of $$A$$
+$$x =\sum_{i=1}^{n} c_i u_i$$ for some $$c_1,c_2, ... c_n$$
+
+$$u_j \cdot x=u_j^H \sum_{i=1}^{n}c_i u_i= \sum_{i=1}^{n}c_i u_j^H u_i=c_j$$
+
+$$u_1 \cdot x = u_2 \cdot x= ... = u_{i-1} \cdot x =0$$
+
+$$c_1=c_2=...=c_{i-1}=0$$
+
+$$1=x^Hx=\sum_{j=1}^{n}|c_j|^2=\sum_{j=i}^{n}|c_j|^2$$
+
+$$x^HAx=\sum_{j=1}\lambda_j |c_j|^2$$
+
+$$=\sum_{j=i}^{n} \lambda_j |c_j|^2$$                                    - $$c_1=c_2=...=c_{i-1}=0$$
+
+$$=\lambda_i |c_i|^2 + \lambda_{i+1} |c_{i+1}|^2 + ... + \lambda_n |c_n|^2$$
+
+$$\leq \lambda_i |c_i|^2 + \lambda_{i} |c_{i+1}|^2 + ... + \lambda_i |c_n|^2$$
+
+$$=\lambda_i \sum_{j=i}^{n} |c_j|^2$$
+
+$$=\lambda_i$$
+
+If $$x=u_i$$
+
+$$x=u_i+ \sum_{j \neq i}^n 0 u_j \implies c_i=1, c_j=0, \forall j \neq i$$
+
+$$u_i^HA u_i = u_i^H \lambda_i u_i=\lambda_i u_i^H u_i=\lambda_i$$
+
+### Courant minimax principle
+
+$$\lambda_{i+1}=\min_{v_1, ... v_i, i<n} (\max_{||x||=1, v_1 \cdot x=v_2 \cdot x=...=v_i \cdot x =0} x^HAx)$$
+
+------
+
+### Random Vectors
+
+$$X: \Omega \rightarrow \R$$ such that pullbacks are measurable
+
+Expectation/ Mean $$E[X], \mu_X$$
+
+Variance $$Var[X], \sigma_X^2$$
+
+$$X=\begin{bmatrix} X_1 \\ ... \\X_n\end{bmatrix}$$ where $$X_1, X_n$$ are random variable, $$X$$ is the random vector
+
+$$E[X]=\begin{bmatrix} E[X_1] \\ ... \\ E[X_n]\end{bmatrix}=\begin{bmatrix} \mu_1 \\ ... \\ \mu_n\end{bmatrix}=\mu_X$$
+
+Covariance matrix: $$K_{xx}=E[(X-\mu_X)(X-\mu_X)^T]$$
+
+$$K_{xx}=\begin{bmatrix} \sigma_1^2 & \sigma_{12} & ... & \sigma_{1n} \\ \sigma_{21} & \sigma_2^2 & ... & \sigma_{2n} \\ ... & ... & ... & ...\\ \sigma_{n1} & \sigma_{n2} & ... & \sigma_{n}^2 \end{bmatrix}$$
+
+Say $$\sigma_{2n}=Cov(X_2,X_n)$$
+
+$$K_{xx}$$ is real
+
+$$K_{xx}$$ is symmetric
+
+$$K_{xx}$$ is positive semi-definite
+
+$$K_{xx}=K_{xx}^T$$ means $$Cov(X_i,X_j)=Cov(X_j,X_i), \sigma_{ij}=\sigma_{ji}$$
+
+$$\sigma_i^2 \geq 0$$
+Probability density function of a Gaussian vector $$X$$
+
+$$X \sim \text{Gaussian} (\mu_X, K_{xx})$$
+
+$$f_X(x)=\frac{1}{(2 \pi)^{\frac{n}{2}}} (Det(K_{xx}))^{\frac{1}{2}} exp (- \frac{(x-\mu_X)^T K_{xx}^{-1} (X-\mu_X)}{2})$$
+
+Linear transformation of a random vector $$X$$
+
+$$Y=AX$$
+
+$$E[Y]=AE[X]=A\mu_X$$
+
+$$K_{yy}=A K_{xx} A^T$$
+
+### Whitening
+
+Given: $$X$$ has a covariance $$K_{xx}$$, find $$A$$ such that $$Y=AX$$ and $$K_{yy}=I_n$$
+
+$$K_{yy}=I_n \implies Y_1, Y_2, ... Y_n $$ are uncorrelated
+
+$$K_{xx}$$ is positive definite $$\lambda_i >0$$
+
+Thm: 
+
+If $$X \sim K_{xx}$$ and $$Y=AX$$, then $$A= \Lambda^{-\frac{1}{2}}E^T$$
+
+whiten $$K_{xx}: K_{yy}=I$$ where
+
+$$K_{xx} e_i =\lambda_i e_i, \lambda_i>0, \forall i = 1,2,...,n$$
+
+$$E=\begin{bmatrix} e_1 & e_2 & ... & e_n\end{bmatrix}, \Lambda=\begin{bmatrix} \lambda_1 & 0 & ... & 0 \\ 0 & \lambda_2 & ... & 0 \\ ...& ... & ...& ...\\ 0& 0 & ... & \lambda_n\end{bmatrix}$$
+
+$$K_{xx}=E \Lambda E^T$$ spectral theorem and $$K_{xx}$$ is symmetric $$\implies $$ normal
+
+$$E^TE=I$$
+
+Note: If $$A$$ is real, then $$A^T=A^H$$
+
+Proof:
+
+$$K_{yy}=A K_{xx} A^T$$
+
+$$=A E \Lambda E^T A^T$$                      - $$K_{xx}=E \Lambda E^T$$ (spectral theorem)
+
+Let $$A=\Lambda^{-\frac{1}{2}}E^T$$
+
+$$= \Lambda^{-\frac{1}{2}}E^T  E \Lambda E^T(\Lambda^{-\frac{1}{2}}E^T)^T $$
+
+$$=\Lambda^{-\frac{1}{2}} \Lambda \Lambda^{-\frac{1}{2}}$$
+
+$$=I$$
+$$\Lambda^{-\frac{1}{2}}=\begin{bmatrix} \lambda_1^{-\frac{1}{2}} & 0 & ... & 0 \\  0 & \lambda_2^{-\frac{1}{2}} & ... & 0 \\ ...& ... & ...& ...\\ 0& 0 & ... & \lambda_n^{-\frac{1}{2}}\end{bmatrix}$$
+
+$$||e_i||=1, e_i \cdot e_j=\delta_{ij}$$
+
+## Week 11 Session 1
+
+### Outlines
+
+Jordan Canonical Form (JCF)
+
+Cholesky Decomposition $$A=LL^H$$
+
+------
+
+### Jordan Canonical Form
+
+Linearly independent eigenvectors: $$A=E \Lambda E^{-1}$$
+
+where $$\Lambda$$ is the diagonal matrix
+
+$$A$$ is similar to $$J$$ where $$J$$ is a diagonal block matrix
+
+$$J=\text{Diagonal}(J_1,J_2,...J_s)$$ where $$J_k$$ is Jordan block for $$k \in \{1,...,s\}$$
+
+$$J=\begin{bmatrix} J_{11} & 0 & 0& ... & 0\\ 0 & J_{22} & 0 & ... & 0\\0& 0& J_{33} & ... & 0\\...& ...& ... & ... & ...\\ 0 & 0 & 0 & ... & J_{nn}\end{bmatrix}\\$$ where $$J_{ii}$$ is a matrix
+
+$$A$$ is similar $$J$$ if and only if $$\exists$$ exists an invertible $$P$$ such that
+
+$$A=PJP^{-1}$$
+
+Jordan Block
+
+$$J_k=\begin{bmatrix} \lambda_k & x & 0& ... & 0\\ 0 & \lambda_k & x & ... & 0\\0& 0& \lambda_k & ... & 0\\...& ...& ... & ... & ...\\ 0 & 0 & 0 & ... & \lambda_k\end{bmatrix}$$
+
+Alternatively
+
+$$J_k=\begin{bmatrix} \lambda_k & 0 & 0& ... & 0\\ x & \lambda_k & 0 & ... & 0\\0& x& \lambda_k & ... & 0\\...& ...& ... & ... & ...\\ 0 & 0 & 0 & ... & \lambda_k\end{bmatrix}$$
+
+$$A \in n \times n$$
+
+Distinct eigenvalues are $$\lambda_1,\lambda_2,...,\lambda_r, r \leq n$$ 
+
+$$P_A(\lambda)=\prod_{i=1}^{r} (\lambda_i-\lambda)^{m_i}$$
+
+$$m_i$$ is the multiplicity for $$\lambda_i$$ and $$\sum_{i=1}^{r}m_i=n$$
+
+$$A \in 6 \times 6$$
+
+$$\lambda_1=\lambda_2=\lambda_3=\lambda_4=3 \implies \lambda_1=3,m_1=4$$
+
+$$\lambda_5=\lambda_6=2 \implies \lambda_2=2,m_2=2$$
+
+$$P_A(\lambda)=(3-\lambda)^4(2-\lambda)^2$$
+
+$$J=\text{Diagonal}(J_1,...,J_s)$$ where $$s$$ is the number of linearly independent eigenvectors
+
+Compute the Jordan Block $$J_k$$
+
+$$m_k \equiv$$ multiplicity of $$\lambda_k$$ for distinct eigenvalues $$\lambda_1,...\lambda_r$$
+
+$$m_k=1: $$ 1 linearly independent eigenvector
+
+$$J_k=[\lambda_k]$$
+
+$$m_k=2:\lambda_k$$ is repeated twice
+
+Case 1: 1 linearly independent eigenvector
+
+$$J_k=\begin{bmatrix} \lambda_k & 1 \\ 0 & \lambda_k \end{bmatrix}$$
+
+Case 2: 2 linearly independent eigenvectors
+
+$$J_k=\begin{bmatrix} \lambda_k & 0 \\ 0 & \lambda_k \end{bmatrix}$$
+
+$$m_k=3:$$
+
+Case 1: 1 linearly independent eigenvector
+
+$$J_k=\begin{bmatrix} \lambda_k & 1 & 0\\ 0 & \lambda_k & 1 \\ 0 & 0 & \lambda_k \end{bmatrix}$$
+
+Case 2: 2 linearly independent eigenvectors
+
+$$J_k=\begin{bmatrix} \lambda_k & 1 & 0\\ 0 & \lambda_k & 0 \\ 0 & 0 & \lambda_k \end{bmatrix}$$
+
+Case 3: 3 linearly independent eigenvectors
+
+$$J_k=\begin{bmatrix} \lambda_k & 0 & 0\\ 0 & \lambda_k & 0 \\ 0 & 0 & \lambda_k \end{bmatrix}$$
+
+$$m_k=4$$
+
+------
+
+$$A=PJP^{-1}$$
+
+#### Example
+
+Let $$A=\begin{bmatrix} 4 & 0 & 0 \\ 0 & 4 & 1 \\ 1 & 0 & 4\end{bmatrix}$$
+
+Find the Jordan decomposition of $$A$$
+
+Find $$J$$ 
+
+$$P_A(\lambda)=Det(A-\lambda I)$$
+
+$$=Det(\begin{bmatrix}4-\lambda & 0 & 0 \\ 0 & 4-\lambda & 1 \\ 1 & 0 & 4-\lambda\end{bmatrix})$$
+
+$$=(4-\lambda)(4-\lambda)(4-\lambda)$$
+
+$$=(4-\lambda)^3$$
+
+$$\lambda_1=\lambda_2=\lambda_3=4$$
+
+$$(A-\lambda I)x =\mathbf{0}$$
+
+$$\begin{bmatrix} 0 & 0 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0\end{bmatrix}x=\mathbf{0}$$
+
+$$x=c \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}, c \neq 0$$
+
+$$\text{Dim} (n(A-\lambda I))$$
+
+We have 1 linearly independent eigenvector
+
+$$J=\begin{bmatrix} 4 & 1 & 0 \\ 0 & 4 & 1 \\ 0 & 0 & 4\end{bmatrix}$$
+
+$$A=PJP^{-1}$$
+
+$$AP=PJ$$
+
+$$A\begin{bmatrix} P_1 & P_2 & P_3 \end{bmatrix}=\begin{bmatrix} P_1 & P_2 & P_3 \end{bmatrix}J$$
+
+$$A\begin{bmatrix} P_1 & P_2 & P_3 \end{bmatrix}= \begin{bmatrix} P_1 & P_2 & P_3 \end{bmatrix} \begin{bmatrix} 4 & 1 & 0 \\ 0 & 4 & 1 \\ 0 & 0 & 4\end{bmatrix}$$
+
+$$\begin{bmatrix} AP_1 & AP_2 & AP_3 \end{bmatrix}=\begin{bmatrix} AP_1 & P_1+4P_2 & P_2+4P_3 \end{bmatrix}$$
+
+$$\begin{bmatrix} |& |& |\\P_1 & P_2 & P_3\\ |& |& | \end{bmatrix}\begin{bmatrix} 4 & 1 & 0 \\ 0 & 4 & 1 \\ 0 & 0 & 4\end{bmatrix}$$
+
+$$AP_1=4P_1$$
+
+$$P_1=\begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}$$
+
+$$AP_2=P_1+4P_2$$
+
+$$(A-4I)P_2=P_1$$
+
+$$\begin{bmatrix} 0 & 0 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0\end{bmatrix}P_2=\begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}$$
+
+$$P_2=\begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}$$
+
+$$AP_3=P_2+4P_3$$
+
+$$(A-4I)P_3=P_2$$
+
+$$\begin{bmatrix} 0 & 0 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0\end{bmatrix}P_3=\begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}$$
+
+$$P_3=\begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}$$
+
+$$P=\begin{bmatrix} P_1 & P_2 & P_3 \end{bmatrix}=\begin{bmatrix} 0 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 0\end{bmatrix}$$
+
+$$P^{-1}=\begin{bmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0\end{bmatrix}$$
+
+$$A=PJP^{-1}$$
+
+$$=\begin{bmatrix} 0 & 0 & 1 \\ 1 & 0 & 0 \\ 0 & 1 & 0\end{bmatrix} \begin{bmatrix} 4 & 1 & 0 \\ 0 & 4 & 1 \\ 0 & 0 & 4\end{bmatrix} \begin{bmatrix} 0 & 1 & 0 \\ 0 & 0 & 1 \\ 1 & 0 & 0\end{bmatrix}$$
+
+$$=\begin{bmatrix}J_1 & 0 \\ 0 & J_2\end{bmatrix}$$
+
+------
+
+Eigenvalues and eigenvector of diagonal block matrices
+
+$$A=\begin{bmatrix} 2 & -1 & 0 & 0 \\ -1 & 2 & 0 & 0 \\0& 0 & 3 & 1\\ 0 & 0 & 1 &3 \end{bmatrix}$$
+
+$$A_1=\begin{bmatrix} 2 & -1 \\ -1 & 2 \end{bmatrix}, A_2=\begin{bmatrix} 3 & 1 \\ 1 & 3 \end{bmatrix}$$
+
+$$\lambda_1,\lambda_2, \lambda_3, \lambda_4$$
+
+$$A_1 u_1=\gamma_1 u_1, A_1u_2=\gamma_2u_2, (u_1,u_2)- 2 \times1$$
+
+$$A_2 v_1=\beta_1 v_1, A_2v_2=\beta_2v_2, (v_1,v_2)- 2 \times1$$
+
+$$\lambda_1=\gamma_1$$
+
+$$Ax_1=\lambda_1x_1$$
+
+$$x_1=\begin{bmatrix} u_1 \\ \mathbf{0} \end{bmatrix}$$
+
+$$\lambda_2=\gamma_2$$
+
+$$Ax_2=\lambda_2x_2$$
+
+$$x_2=\begin{bmatrix} u_2 \\ \mathbf{0} \end{bmatrix}$$
+
+$$\lambda_3=\beta_1$$
+
+$$Ax_3=\lambda_3x_3$$
+
+$$x_3=\begin{bmatrix} \mathbf{0}\\ v_1 \end{bmatrix}$$
+
+$$\lambda_4=\beta_4$$
+
+$$Ax_4=\lambda_4 x_4$$
+
+$$x_4=\begin{bmatrix} \mathbf{0}\\ v_2 \end{bmatrix}$$
+
+### Cholesky Decomposition
+
+$$c \in \R$$
+
+$$c=dd, d>0, d \in \R$$
+
+$$A \in n \times n = LL^H$$
+
+$$A=A^H$$ and $$A$$ is positive definite
+
+where $$L$$ - is lower triangular
+
+​                - $$l_{ii}>0,l_{ii} \in \R$$
+
+$$A=LDU$$
+
+where $$L$$ is lower triangular matrix, $$D$$ is the diagonal matrix, $$U$$ is the upper triangular matrix
+
+$$=LD^{1/2}D^{1/2}U$$
+
+$$=LD^{1/2} (U^H(D^{1/2})^{H})^H$$
+
+$$L_1=LD^{1/2}, L_2^H=(U^H(D^{1/2})^{H})^H$$
+
+$$A=\begin{bmatrix} 4 & -2 & -4 \\ -2 & 5 & 8 \\ -4 & 8 & 32\end{bmatrix}$$
+
+$$A=LL^H$$
+
+$$A=A^H$$ because $$A$$ is real and $$A=A^T$$
+
+$$A_{11}=\begin{bmatrix}4\end{bmatrix}, Det(A_{11}) > 0 $$ 
+
+$$A_{22}=\begin{bmatrix}4 & -2 \\ -2 & 5\end{bmatrix}, Det(A_{22})=20-4=16>0$$
+
+$$A_{33}=A: Det(A_{33})=4 [(5)(32)-(8)(8)] +2 [(-2)(32)-(8)(-4)] -4[(-2)(8)-(-4)(5)]>0$$
+
+$$A=\begin{bmatrix} 4 & -2 & -4 \\ -2 & 5 & 8 \\ -4 & 8 & 32\end{bmatrix}$$
+
+$$R_1:R_1$$
+
+$$R_2:R_2+\frac{1}{2}R_1$$
+
+$$R_3:R_3+R_1$$
+
+$$\begin{bmatrix} 4 & -2 & -4 \\ 0 & 4 & 6 \\ 0 & 6 & 28\end{bmatrix}$$
+
+$$R_1:R_1$$
+
+$$R_2:R_2$$
+
+$$R_3:R_3-\frac{3}{2}R_2$$
+
+$$\begin{bmatrix} 4 & -2 & -4 \\ 0 & 4 & 6 \\ 0 & 0 & 9\end{bmatrix}=U$$
+
+$$A=LU$$
+
+$$=\begin{bmatrix} 1 & 0 & 0 \\ -\frac{1}{2} & 1 & 0 \\ -1 & \frac{3}{2} & 1\end{bmatrix}\begin{bmatrix} 4 & -2 & -4 \\ 0 & 4 & 6 \\ 0 & 0 & 9\end{bmatrix}$$
+
+$$=\begin{bmatrix} 1 & 0 & 0 \\ -\frac{1}{2} & 1 & 0 \\ -1 & \frac{3}{2} & 1\end{bmatrix} \begin{bmatrix} 4 & 0 & 0 \\ 0 & 4 & 0 \\ 0 & 0 & 9\end{bmatrix}\begin{bmatrix} 1 & -\frac{1}{2} & -1 \\ 0 & 1 & \frac{3}{2} \\ 0 & 0 & 1\end{bmatrix}$$
+
+where $$L=\begin{bmatrix} 1 & 0 & 0 \\ -\frac{1}{2} & 1 & 0 \\ -1 & \frac{3}{2} & 1\end{bmatrix}, L^T=\begin{bmatrix} 1 & -\frac{1}{2} & -1 \\ 0 & 1 & \frac{3}{2} \\ 0 & 0 & 1\end{bmatrix}$$
+
+$$=\begin{bmatrix} 1 & 0 & 0 \\ -\frac{1}{2} & 1 & 0 \\ -1 & \frac{3}{2} & 1\end{bmatrix} \begin{bmatrix} 2 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 3\end{bmatrix} (\begin{bmatrix} 2 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 3\end{bmatrix})^T (\begin{bmatrix} 1 & 0 & 0 \\ -\frac{1}{2} & 1 & 0 \\ -1 & \frac{3}{2} & 1\end{bmatrix})^T$$
+
+where $$\begin{bmatrix} 1 & 0 & 0 \\ -\frac{1}{2} & 1 & 0 \\ -1 & \frac{3}{2} & 1\end{bmatrix} \begin{bmatrix} 2 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 3\end{bmatrix}=\begin{bmatrix} 2 & 0 & 0\\-1 & 2 & 0\\ -2 & 3 & 3 \end{bmatrix}=L', (\begin{bmatrix} 2 & 0 & 0 \\ 0 & 2 & 0 \\ 0 & 0 & 3\end{bmatrix})^T (\begin{bmatrix} 1 & 0 & 0 \\ -\frac{1}{2} & 1 & 0 \\ -1 & \frac{3}{2} & 1\end{bmatrix})^T=\begin{bmatrix} 2 & -1 & -2\\0 & 2 & 3\\ 0 & 0 & 3 \end{bmatrix}=(L')^T$$
+
+------
+
+### Cholesky Algorithm
+
+$$A=\begin{bmatrix} a_{11} & a_{12} & ...& a_{1n} \\ a_{21} & a_{22} & ... & a_{2n} \\ ... & ... & ... & ...\\a_{n1} & a_{n2} & ... & a_{nn}\end{bmatrix}$$
+
+$$A=A^H$$ and $$A$$ is PD
+
+$$L=\begin{bmatrix} l_{11} & 0 & ... & 0\\ l_{21} & l_{22} & ... & 0 \\ ... & ... & ... & ...\\l_{n1} & l_{n2} & ... & l_{nn}\end{bmatrix}$$
+
+Step 1: Initialization
+
+Set $$l_{ij}=0, \forall i,j : i<j$$
+
+$$l_{11}=\sqrt{a_{11}}$$
+
+$$l_{i1}=\frac{a_{i1}}{l_{11}}$$ for $$ i \in \{2,...,n\}$$
+
+set $$j=2$$
+
+Step 2: If $$j=n+1$$, stop; the algorithm is complete
+
+Otherwise:
+
+Define $$Li'$$ for $$(i=j,j+1,...n)$$ to be a column vector of dimension $$j-1$$ whose components are respectively the first $$j-1$$ elements in the $$i^{th}$$ row of $$L$$
+
+$$L_2'=[]$$
+
+Step 3: Compute $$l_{jj}=\sqrt{a_{jj}-L_j' \cdot L_j'}$$
+
+Step 4: If $$j=n$$ skip to Step 5
+
+Otherwise: $$l_{ij}=\frac{a_{ij}-L_i' \cdot L_j'}{l_{jj}}$$
+
+Step 5: Increase $$j$$ by 1, return to Step 2
+
+#### Example
+
+$$A=\begin{bmatrix} 4 & -2 & -4 \\ -2 & 5 & 8 \\ -4 & 8 & 32\end{bmatrix}$$
+
+Step 1: $$l_{11}=\sqrt{a_{11}}=\sqrt{4}=2$$
+
+$$L=\begin{bmatrix} 2 & 0 & 0 \\ -1 & 2 & 0 \\ -2 & 3 & 2\end{bmatrix}$$
+
+$$l_{21}=\frac{a_{21}}{l_{11}}=\frac{-2}{2}=-1$$
+
+$$l_{31}=\frac{a_{31}}{l_{11}}=\frac{-4}{2}=-2$$
+
+$$j=2$$
+
+Step 2: $$L_2'=\begin{bmatrix}-1\end{bmatrix}, L_3'=\begin{bmatrix}-2\end{bmatrix}$$
+
+Step 3: $$l_{22}=\sqrt{a_{22}-L_2' L_2'}=\sqrt{5-1}=2$$
+
+Step 4: $$j \neq n$$
+
+$$l_{23}=\frac{a_{23}-L_2' L_3'}{l_{23}}=\frac{8-L_2' L_3'}{l_{22}}=\frac{8-(-1)(-2)}{2}=3$$
+
+Step 5: $$j=2+1=3$$
+
+$$j=3$$
+
+Step 2: $$L_i'$$ such that $$i \in \{j,...,n\}$$
+
+$$l_{32}=\frac{a_{32}-L_3' \cdot L_2'}{l_{22}}=\frac{8-(-2)(-1)}{2}=3$$
+
+$$L_3'=\begin{bmatrix} -2 \\ 3 \end{bmatrix}$$
+
+Step 3: $$l_{33}=\sqrt{a_{33}-L_3' \cdot L_3'}=\sqrt{22-13}=3$$
+
+Step 4:
+
+$$j=j+1=4$$
+
+## Week 11 Session 2
+
+### Outlines
+
+Cholesky Algorithm
+
+Singular Value Decomposition (SVD)
+
+Pseudo-inverse
+
+------
+
+### Singular Value Decomposition (SVD)
+
+Let $$A \in \C ^{m \times n}$$, then
+
+$$A=U\Sigma V^H$$
+
+where $$U \in {m \times m}, \Sigma \in {m \times n}, V^H \in {n \times n}$$
+
+where $$U^HU=UU^H=I \in \C^{m \times m}$$    - $$U$$ is unitary
+
+​            $$V^HV=VV^H=I \in \C^{n \times n}$$      - $$V$$ is unitary
+
+$$\Sigma$$ is a semi-diagonal matrix of non-negative real numbers
+
+Ex.
+
+$$\Sigma=\begin{bmatrix} 1 & 0 \\ 0 & 1 \\ 0 & 0 \end{bmatrix}$$
+
+$$\Sigma=\begin{bmatrix} 1 & 0 & 0\\ 0 & 4 & 0\end{bmatrix}$$
+
+The number of non zero numbers in $$\Sigma=\text{Rank}(A)$$
+
+------
+
+How to find $$U, \Sigma, V$$
+
+$$U= \begin{bmatrix} u_1 & u_2 & ... & u_m \end{bmatrix}$$
+
+where $$u_i's$$ are the eigenvectors of $$AA^H$$
+
+$$V=\begin{bmatrix} v_1 & v_2 & ... & v_n \end{bmatrix}$$
+
+where $$v_i's$$ are the eigenvectors of $$A^HA$$
+
+$$u_i's$$ are orthornormal
+
+$$v_i's$$ are orthonormal
+
+Note: $$(A^HA)^H=A^H (A^H)^H=A^H A$$            - $$A^HA$$ is Hermitian
+
+​            $$(AA^H)^H=(A^H)^H A^H=AA^H$$          - $$AA^H$$ is Hermitian
+
+$$A^HA=(U\Sigma V^H)^H (U\Sigma V^H)$$
+
+$$=V \Sigma^H U^H U\Sigma V^H$$                                              - $$U^HU=I$$
+
+$$=V \Sigma^H \Sigma V^H$$
+
+so $$\Sigma^H \Sigma$$ contains the eigenvalues of $$A^HA$$
+
+Similarly
+
+$$AA^H=(U\Sigma V^H)(U\Sigma V^H)^H$$
+
+$$=U\Sigma V^H V \Sigma^H U^H$$                                              - $$V^HV=I$$
+
+$$=U \Sigma \Sigma^H U^H$$
+
+so $$\Sigma \Sigma^H$$ contains the eigenvalues of $$A^HA$$
+
+Since $$\Sigma$$ is a real matrix, $$\Sigma \Sigma^H=\Sigma \Sigma^T$$ and $$\Sigma^H \Sigma=\Sigma^T \Sigma$$
+
+<u>Diagonal</u>: $$\Sigma \Sigma^H$$ and $$\Sigma^H \Sigma$$ contain $$\sigma_1^2, \sigma_2^2, ... , \sigma_r^2$$ which are the eigenvalues of $$A^HA$$ and $$AA^H$$
+
+Note that $$r=\text{Rank}(A)$$
+
+$$\sigma_i's$$ are the singular value
+
+------
+
+Fact: Let $$A=U \Sigma V^H$$
+
+$$\sigma$$ is a singular if and only if $$\exist u \in \C^{m \times 1}$$ and $$\exist v \in \C^{n \times 1}$$ 
+
+such that $$||u||=||v||=1, Av= \sigma u, A^H u =\sigma v$$
+
+Note: Always use this to test the validity of your answer
+
+------
+
+If $$A \in \R^{m \times n}$$, then $$A=U \Sigma V^T$$
+
+where $$U$$ is orthogonal, $$V$$ is orthogonal, and $$\Sigma$$ is real with non-negative numbers
+
+------
+
+#### Example
+
+Let $$A=\begin{bmatrix} 2 & 0 \\ 0 & -3 \\ 0 & 0\end{bmatrix}$$
+
+$$A^TA=\begin{bmatrix} 2 & 0 & 0 \\ 0 & -3 & 0\end{bmatrix}\begin{bmatrix} 2 & 0 \\ 0 & -3 \\ 0 & 0\end{bmatrix}=\begin{bmatrix} 4 & 0 \\ 0 & 9 \end{bmatrix}$$
+
+$$\lambda_1=4, \lambda_2=9$$
+
+$$v_1=\begin{bmatrix} 1 \\ 0 \end{bmatrix},v_2=\begin{bmatrix} 0 \\ 1 \end{bmatrix}$$
+
+$$\sigma_1=\sqrt{4}=2$$
+
+$$\sigma_2=\sqrt{9}=3$$
+
+$$\Sigma=\begin{bmatrix} 2 & 0\\ 0 & 3\\ 0 & 0\end{bmatrix}, V=\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}$$
+
+$$Av_1=\sigma_1 u_1$$
+
+$$\begin{bmatrix} 2 & 0 \\ 0 & -3 \\ 0 & 0\end{bmatrix} \begin{bmatrix} 1 \\ 0 \end{bmatrix} = 2 u_1 = \begin{bmatrix} 2 \\ 0 \\ 0 \end{bmatrix}$$
+
+$$u_1=\begin{bmatrix} 1 \\ 0 \\ 0\end{bmatrix}$$
+
+$$Av_2=\sigma_2u_2$$
+
+$$\begin{bmatrix} 2 & 0 \\ 0 & -3 \\ 0 & 0\end{bmatrix} \begin{bmatrix} 0 \\ 1 \end{bmatrix} = 3 u_2 = \begin{bmatrix} 0 \\ -3 \\ 0\end{bmatrix}$$
+
+$$u_2=\begin{bmatrix} 0 \\ -1 \\ 0\end{bmatrix}$$
+
+$$AA^T=\begin{bmatrix} 2 & 0 \\ 0 & -3 \\ 0 & 0\end{bmatrix} \begin{bmatrix} 2 & 0 & 0 \\ 0 & -3 & 0\end{bmatrix}=\begin{bmatrix} 4 & 0 & 0 \\ 0 & 9 & 0\\ 0 & 0 & 0\end{bmatrix}$$
+
+$$\lambda=0$$
+
+$$(AA^T-\lambda I)x =\mathbf{0}$$
+
+$$AA^Tx=\mathbf{0}$$
+
+$$\begin{bmatrix} 4 & 0 & 0 \\ 0 & 9 & 0\\ 0 & 0 & 0\end{bmatrix}x=\mathbf{0}$$
+
+$$x=u_3=\begin{bmatrix} 0 \\ 0 \\ 1\end{bmatrix}$$
+
+$$A=U \Sigma V^H= \begin{bmatrix} 1 & 0 & 0 \\ 0 & -1 & 0\\ 0 & 0 & 1\end{bmatrix} \begin{bmatrix} 3 & 0 \\ 0 & 2 \\ 0 & 0\end{bmatrix} (\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}) ^T$$
+
+------
+
+### Pseudo-Inverse
+
+If $$A \in \C^{m \times n}$$ and $$A^{+}$$ is the pseudo-inverse of $$A$$, then
+
+1. $$AA^{+}A=A$$
+2. $$A^{+}AA^{+}=A^{+}$$
+3. $$(AA^{+})^H=AA^{+}$$
+4. $$(A^{+}A)^H=A^{+}A$$
+
+For $$A= U \Sigma V^H, A^{+}=VD^{-1}U^H$$
+
+$$AA^H=U \Sigma V^H (U \Sigma V^H)^H$$
+
+$$=U \Sigma V^H V \Sigma^H U^H$$
+
+$$=U \Sigma \Sigma^H U^H$$
+
+#### Example
+
+For $$A=\begin{bmatrix} 2 & 0 \\ 0 & -3 \\ 0 & 0\end{bmatrix}$$, Find $$A^{+}$$
+
+$$A=U \Sigma V^H= \begin{bmatrix} 1 & 0 & 0 \\ 0 & -1 & 0\\ 0 & 0 & 1\end{bmatrix} \begin{bmatrix} 3 & 0 \\ 0 & 2 \\ 0 & 0\end{bmatrix} (\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}) ^T$$
+
+$$A^{+}=VD^{-1}U^H=\begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} \begin{bmatrix} \frac{1}{2} & 0 & 0 \\ 0 & \frac{1}{3} & 0 \end{bmatrix} \begin{bmatrix} 1 & 0 & 0 \\ 0 & -1 & 0\\ 0 & 0 & 1\end{bmatrix}$$
+
+------
+
+$$A=\begin{bmatrix} 4 & 0 \\ -4 & 0 \\ 0 & 1\end{bmatrix}$$
+
+$$A= U \Sigma V^H$$
+
+$$U: AA^H, V: A^HA$$
+
+$$A^HA=A^TA=\begin{bmatrix} 25 & 0 \\ 0 & 1 \end{bmatrix}$$
+
+$$\lambda_1=25, \lambda_2=1$$
+
+$$x_1=\begin{bmatrix} 1 \\ 0 \end{bmatrix}, x_2=\begin{bmatrix} 0 \\ 1 \end{bmatrix}$$
+
+$$\Sigma=\begin{bmatrix} 5 & 0 \\ 0 & 1 \\ 0& 0\end{bmatrix}$$
+
+------
+
+### Schur's Decomposition
+
+$$A=\begin{bmatrix} 4 & 0 & -1 \\ 1 & 3 & -1 \\ -1 & 0 & 2\end{bmatrix}$$
+
+$$A=UTU^H$$
+
+$$n=3$$
+
+$$k \in \{1, ..., n-1\} \implies k\in \{1,2\}$$
+
+Initialize: 
+
+$$T_0=A=\begin{bmatrix} 4 & 0 & -1 \\ 1 & 3 & -1 \\ -1 & 0 & 2\end{bmatrix}$$
+
+$$A_k=T_{k-1}$$
+
+$$k=1$$
+
+Step 1: 
+
+$$A_1=T_0=\begin{bmatrix} 4 & 0 & -1 \\ 1 & 3 & -1 \\ -1 & 0 & 2\end{bmatrix}$$
+
+Step 2: $$\lambda=3$$
+
+$$x= \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix} \leftarrow x_2$$
+
+Step 3: $$E=\{e_1,e_2,e_3\}$$
+
+$$E^{-1}=\{e_1, x, e_3\}$$      - Linearly independent
+
+$$e_1=\begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix} , e_2= \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}, e_3=\begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}$$
+
+$$L=\{x, e_1, e_3\}$$
+
+Apply Gram-Schmidt
+
+$$\beta_1=\alpha_1=x=\begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}$$
+
+$$\beta_2=\alpha_2-\frac{\alpha_2 \cdot \beta_1}{\beta_1 \cdot \beta_1}\beta_1=\begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}$$
+
+$$\beta_3=\alpha_3-\frac{\alpha_3 \cdot \beta_1}{\beta_1 \cdot \beta_1}\beta_1-\frac{\alpha_3 \cdot \beta_2}{\beta_2 \cdot \beta_2}\beta_2=\begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}$$
+
+$$N_1=\begin{bmatrix} 0 & 1 & 0 \\ 1 & 0 & 0\\ 0 & 0 &1\end{bmatrix}$$
+
+Step 4: $$U_1=N_1=\begin{bmatrix} 0 & 1 & 0 \\ 1 & 0 & 0\\ 0 & 0 &1\end{bmatrix}$$
+
+Step 5: $$T_1=U_1^H T_0 U_1= \begin{bmatrix} 3 & 1 & -1 \\ 0 & 4 & 1\\ 0 & -1 & 2\end{bmatrix}$$
+
+$$k=2$$
+
+Step 1: 
+
+$$A_2=\begin{bmatrix} 4 & 1 \\ -1 & 2 \end{bmatrix}$$
+
+Step 2: 
+
+$$\lambda=3$$
+
+$$x= \begin{bmatrix} 1 \\ -1 \end{bmatrix}$$
+
+Step 3:
+
+$$E=\{e_1,e_2\}$$
+
+$$e_1=\begin{bmatrix} 1 \\ 0 \end{bmatrix},e_2=\begin{bmatrix}0 \\ 1 \end{bmatrix}$$
+
+$$E'=\{e_1,x\}$$ or $$\{x,e_2\}$$
+
+$$L=\{x,e_2\}$$
+
+$$x= \begin{bmatrix} 1 \\ -1 \end{bmatrix}, e_2=\begin{bmatrix}0 \\ 1 \end{bmatrix}$$ 	
+
+Apply Gram-Schmidt
+
+$$\beta_1=\alpha_1=\begin{bmatrix} 1 \\ -1 \end{bmatrix}$$
+
+$$\beta_2=\alpha_2--\frac{\alpha_2 \cdot \beta_1}{\beta_1 \cdot \beta_1}\beta_1=\begin{bmatrix} \frac{1}{2} \\ \frac{1}{2} \end{bmatrix}$$
+
+$$\widetilde{\beta_1}= \frac{1}{\sqrt{2}} \begin{bmatrix} 1 \\ -1 \end{bmatrix}=\begin{bmatrix} \frac{1}{\sqrt{2}} \\ -\frac{1}{\sqrt{2}} \end{bmatrix},\widetilde{\beta_2}= \begin{bmatrix} \frac{1}{\sqrt{2}} \\ \frac{1}{\sqrt{2}} \end{bmatrix}$$
+
+$$N_2=\begin{bmatrix} \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\ -\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}\end{bmatrix}$$
+
+Step 4:
+
+$$U_2=\begin{bmatrix} 1 & \mathbf{0} \\ \mathbf{0} & N_2\end{bmatrix}=\begin{bmatrix} 1 & 0 & 0 \\ 0 & \frac{1}{\sqrt{2}}  &\frac{1}{\sqrt{2}} \\ 0 & -\frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}\end{bmatrix}$$
+
+Step 5:
+
+$$T_2=U_2^HT_1U_2$$
+
+$$=\begin{bmatrix} 3 & \frac{2}{\sqrt{2}} & 0 \\ 0 & 3  & 2 \\ 0 & 0 & 3\end{bmatrix}$$
+
+$$T_2=U_2^HT_1U_2$$
+
+$$=U_2^HU_1^H T_0 U_1U_2$$
+
+$$=U_2^HU_1^H A U_1U_2$$
+
+$$=(U_1U_2)^H A (U_1U_2)$$
+
+$$U=U_1U_2, T=T_2$$
 
