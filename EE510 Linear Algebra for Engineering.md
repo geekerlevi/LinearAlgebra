@@ -7335,3 +7335,914 @@ $$=(U_1U_2)^H A (U_1U_2)$$
 
 $$U=U_1U_2, T=T_2$$
 
+------
+
+## Week 12 Session 1 (Only 1)
+
+### Outlines
+
+Markov Matrices
+
+Linear Programming
+
+Minimax Game
+
+------
+
+### Markov Matrices
+
+Definition: $$x \in \R^{n}$$ is a probability vector if $$x_i \geq 0$$ for $$ i \in \{1,2,...,n\}$$ and $$\sum_{i=1}^{n}x_i=1$$
+
+Definition: $$P \in \R^{n \times n }$$ us a stochastic matrix if 
+
+$$P=[x^{(1)} x^{(2)}...x^{(n)}]$$
+
+where $$x^{i} \in \R^{n}$$ is a probability vector
+
+Definition: $$P$$ is regular if $$\exist k \in \Z^{+}:P^{k}_{ij} > 0, \forall_{i,j}$$
+
+$$P^{k}_{ij}=[P^k]_{ij}$$
+
+#### Example
+
+$$A=\begin{bmatrix} 0 & 1/2 \\ 1 & 1/2 \end{bmatrix}$$ 
+
+Is $$A$$ regular or not?
+
+$$A^2= \begin{bmatrix} 0 & 1/2 \\ 1 & 1/2 \end{bmatrix} \begin{bmatrix} 0 & 1/2 \\ 1 & 1/2 \end{bmatrix}=\begin{bmatrix} 1/2 & 1/4 \\ 1/2 & 3/4 \end{bmatrix}$$
+
+$$A$$ is regular
+
+$$A=\begin{bmatrix} \ & x_1 & x_2\\ x_1 & 0 & 1/2 \\ x_2& 1 & 1/2 \end{bmatrix}$$
+
+![image-20241117214149881](C:\Users\Levi\AppData\Roaming\Typora\typora-user-images\image-20241117214149881.png)
+
+$$B=\begin{bmatrix} \ & x_1 & x_2\\ x_1 & 1 & 1/2 \\ x_2& 0 & 1/2 \end{bmatrix}$$
+
+Is $$B$$ regular?
+
+$$B^2=\begin{bmatrix}  1 & 1/2 \\  0 & 1/2 \end{bmatrix} \begin{bmatrix}  1 & 1/2 \\  0 & 1/2 \end{bmatrix}=\begin{bmatrix}  1 & 3/4 \\  0 & 1/4 \end{bmatrix}$$
+
+$$B^{k}=E\Lambda^{k} E^{-1}=\begin{bmatrix}  1 & 1-(1/2)^k \\  0 & (1/2)^k \end{bmatrix}$$
+
+$$B$$ is not regular
+
+![image-20241117220002959](C:\Users\Levi\AppData\Roaming\Typora\typora-user-images\image-20241117220002959.png)
+
+Fact: Perron–Frobenius theorem
+
+$$A \in \R^{n \times n}= [a_{ij}], a_{ij} \geq 0$$
+
+There exists a leading eigenvalue $$\lambda_k$$ such that $$\lambda_k \geq |\lambda_i|, \forall i \neq k$$
+
+Thm: If $$P$$ is a stochastic and regular matrix then
+
+1. There exists a probability vector $$e$$ such that
+
+   $$Pe=e$$ $$(\lambda=1)$$ leading eigenvalue
+
+2. $$\lim_{k \rightarrow \infty} P^k=E=[e e e ... e]$$
+
+$$\lambda_k=1$$
+
+$$1>|\lambda_i| ,\forall i \neq k$$ 
+
+$$P=F\Lambda F^{-1}$$
+
+$$=F \begin{bmatrix} 1 & 0 & ... & 0 \\ 0 & \lambda_2 & ... & 0 \\ ... & ... & ... & ... \\ 0 & ... & 0& \lambda_n\end{bmatrix}F^{-1}$$
+
+$$\lim_{u \rightarrow  \infty}P^k=\lim_{k \rightarrow \infty} (F \Lambda F^{-1})^k$$
+
+$$=\lim_{k \rightarrow \infty}F \Lambda^k F^{-1}$$
+
+$$=\lim_{k \rightarrow \infty}F \begin{bmatrix} 1^k & 0 & ... & 0 \\ 0 & \lambda_2^k & ... & 0 \\ ... & ... & ... & ... \\ 0 & ... & 0& \lambda_n^k\end{bmatrix}F^{-1}$$
+
+$$=F \begin{bmatrix} 1 & 0 & ... & 0 \\ 0 & 0 & ... & 0 \\ ... & ... & ... & ... \\ 0 & ... & 0& 0\end{bmatrix}F^{-1}$$
+
+3. For any probability vector $$x \in \R^n$$
+
+   $$\lim_{k \rightarrow \infty}P^k x=e$$
+
+------
+
+$$A$$ is a stochastic matrix
+
+$$x_0 \in \R^n$$ is the probability vector at time $$t=0$$
+
+$$x_1 \equiv$$ (Probability vector at time $$t=1)=Ax_0$$
+
+$$x_{t+1}=Ax_t$$
+
+$$x_t=A^tx_0$$
+
+Google Page Rank Algorithm
+
+$$P \equiv \begin{bmatrix} \ & x_1 & x_2 & ... & x_n\\ x_1 &  &  \\ x_2&  &  \\ ... \\ x_n \end{bmatrix}$$
+
+$$Pe=e=\begin{bmatrix}e_1 \\ ... \\e_n\end{bmatrix}$$
+
+$$Pe=e$$
+
+------
+
+Optimization
+
+minimize $$f_0(x)$$ which is the objective function
+
+such that: $$f_i(x ) \leq 0 $$ for $$i=1,...,n$$
+
+$$h_j(x)=0 $$ for $$j=1,...,p$$
+
+$$x-$$ optimization variable
+
+$$f_0: \R^{n} \rightarrow \R$$ is the objective function/ cost function
+
+Domain $$D$$ of an optimization problem:
+
+The set of all points for which the constraint and objective function are defined.
+
+Feasible point: $$ x \in D$$ is a feasible point if it satisfies the constraints
+
+A set of all feasible points is called a feasible set.
+
+#### Example
+
+minimize $$2x_1+3x_2+4x_3$$
+
+such that $$x_1+x_2+x_3=3$$
+
+$$x_1 \geq 0, x_2 \geq 0, x_3 \geq 0$$
+
+![image-20241117222435118](C:\Users\Levi\AppData\Roaming\Typora\typora-user-images\image-20241117222435118.png)
+
+$$2x_1+3x_2+4x_3 \geq 2x_1+2x_2+2x_3$$
+
+$$x_1=3, x_2=x_3=0$$
+
+$$2x_1=2x_1$$
+
+------
+
+maximize $$f_0(x)$$
+
+subject to $$f_i(x) \leq 0$$ for $$i=1,...,n$$
+
+$$h_j(x)=0$$ for $$j=1,...,p$$
+
+$$f_0$$ is the satisfaction or utility
+
+Linear Programming
+
+Minimization + Inequality + Affine or Linear functions
+
+minimize $$c^Tx+d$$
+
+subject to $$Gx \leq h, G \in \R^{m \times n}$$
+
+$$Ax=b, A \in \R^{p \times n}$$
+
+$$Gx \leq h \implies [Gx]_{i} \leq h_i$$
+
+minimize $$2x_1+3x_2+4x_3$$
+
+subject to $$x_1+x_2+x_3=3$$
+$$x_1 \geq 0, x_2 \geq 0, x_3 \geq 0$$
+$$c= \begin{bmatrix}2 \\ 3 \\ 4 \end{bmatrix},d=0,G=\begin{bmatrix}-1 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & -1 \end{bmatrix}$$ 
+
+Takes back $$-x_1 \leq 0 ,-x_2 \leq 0, -x_3 \leq 0$$ same as $$x_1 \geq 0, x_2 \geq 0, x_3 \geq 0$$
+
+$$A= \begin{bmatrix} 1 & 1 & 1 \end{bmatrix},b=3,x=\begin{bmatrix} x_1 \\ x_2 \\x_3 \end{bmatrix}$$
+
+minimize $$c^Tx$$
+
+subject to $$Gx \leq 0$$
+
+$$Ax=b$$
+
+$$c=\{x: a^Tx=b\}$$
+
+$$=\{x:a^T(x-x_0)=0,a^Tx_0=b\}$$
+
+$$a^Tx-a^Tx_0=0$$
+
+$$a^Tx-b=0$$
+
+$$a^Tx=b$$
+
+![image-20241118145702053](C:\Users\Levi\AppData\Roaming\Typora\typora-user-images\image-20241118145702053.png)
+
+$$D=\{x: a^Tx \geq b\}$$
+
+$$=\{x:a^T(x-x_0)\geq0,a^Tx_0=b\}$$
+
+$$D$$ exists on the top shadow
+
+Multiple conditions
+
+![image-20241118150142267](C:\Users\Levi\AppData\Roaming\Typora\typora-user-images\image-20241118150142267.png)
+
+### Duality
+
+| Primal Form                        | Dual Form                        |
+| ---------------------------------- | -------------------------------- |
+| min                                | max                              |
+| max                                | min                              |
+| optimization variable              | constraint                       |
+| constraint                         | optimization variable            |
+| $$\max b^Ty$$                      | $$\min{c^Tx}$$                   |
+| such that $$A^Ty \leq c, y\geq 0$$ | such that $$Ax \geq b,x \geq 0$$ |
+
+$$b^Ty \leq (Ax)^Ty=x^TA^Ty \leq x^Tc=c^Tx$$ - scalar
+
+$$\max b^Ty \leq \min c^Tx$$
+
+### Minimax Game
+
+subtopic under Game Theory
+
+P1 vs P2
+
+P1 = Actions by P1 are $$x_1,x_2,...x_n$$
+
+P2 = Actions by P2 are $$y_1,y_2,...y_n$$
+Payoff matrix: $$A=[a_{ij}]$$ 
+
+Payoff from P1 to P2
+
+zero-sum game: 
+
+$$A= \begin{bmatrix} \ & y_1 & y_2\\ x_1 & 3 & 6 \\ x_2& 9 & 18 \end{bmatrix}$$
+
+P1 wants to pick $$x_1$$ - lose less, P2 wants to pick $$y_2$$ - collect more
+$$A= \begin{bmatrix} \ & y_1 & y_2\\ x_1 & 3 & 18 \\ x_2& 9 & 6 \end{bmatrix}$$
+
+## Week 13 Session 1
+
+### Outlines
+
+Minimax Matrix Game
+
+Optimal Strategy
+
+Dominated Moves
+
+------
+
+### Minimax - Subtopic under Game Theory
+
+Minimax Matrix Game
+
+$$P_1$$ vs $$P_2$$
+
+$$P_1:$$ Player 1
+
+$$P_2:$$ Player 2
+
+Actions of $$P_1 \equiv \{x_1,...,x_n\}$$
+
+Actions of $$P_2 \equiv \{y_1,...,y_2\}$$
+
+Payoff: $$A = [a_{ij}]$$ $$\begin{cases} \text{Payoff of }P_1 \text{\: to\:} P_2\\ \text{Payoff of }P_2 \text{\: to\:} P_1 \end{cases}$$ 
+
+Find the optimal strategies $$x^{\ast}, y^{\ast}$$ where $$x^{\ast}$$ is for $$P_1$$, $$y^{\ast}$$ is for $$P_2$$
+
+zero-sum game: Amount paid by one player = Amount paid to the other player
+
+$$\begin{bmatrix} \ & y_1 & y_2\\ x_1 & 3 & 9 \\ x_2& 6 & 18 \end{bmatrix}$$
+
+$$A \equiv$$ Payoff from $$P_1$$ to $$P_2$$
+
+$$x^{\ast}=\begin{bmatrix} 1 \\ 0 \end{bmatrix}, y^\ast=\begin{bmatrix} 0 \\ 1 \end{bmatrix}$$ 
+
+$$x: x_i \geq 0, \sum x_i =1$$
+
+$$y: y_j \geq 0, \sum y_j=1$$
+
+Pure Strategy
+
+A strategy $$x$$ is pure if and only if $$\exist x_j : x_j=1$$ and $$x_i=0$$ for all $$i \neq j$$
+
+------
+
+$$\begin{bmatrix} \ & y_1 & y_2\\ x_1 & 3 & 18 \\ x_2& 9 & 6 \end{bmatrix}$$
+
+$$\begin{bmatrix} \ & \ & y_1 & y_2\\ \ & & q & 1-q\\ x_1 & p & 3 & 18 \\ x_2 & 1-p & 9 & 6 \end{bmatrix}$$
+
+For $$P_1: y_1=y_2$$
+
+$$3p+9(1-p)=18p+6(1-p)$$
+
+$$p=1/6$$
+
+For $$P_2:x_1=x_2$$
+
+$$3q+18(1-q)=9q+6(1-q)$$
+
+$$q=2/3$$
+
+$$x^\ast =\begin{bmatrix} p* \\ 1-p* \end{bmatrix}=\begin{bmatrix} 1/6 \\ 5/6 \end{bmatrix}$$
+
+$$y^\ast =\begin{bmatrix} q* \\ 1-q* \end{bmatrix}=\begin{bmatrix} 2/3 \\ 1/3 \end{bmatrix}$$
+
+------
+
+### Symmetric Game
+
+$$A=-A^T$$
+
+#### Example
+
+$$A=$$
+
+|      | R    | P    | S    |
+| ---- | ---- | ---- | ---- |
+| R    | 0    | -1   | 1    |
+| P    | 1    | 0    | -1   |
+| S    | -1   | 1    | 0    |
+
+$$A=-A^T$$
+
+$$A=[a_{ij}]$$ - $$A$$ is the payoff from $$P_2$$ to $$P_1$$
+
+Expected win for a strategy
+
+|         | R    | P    | S    |
+| ------- | ---- | ---- | ---- |
+| $$P_1$$ | 1/4  | 1/2  | 1/4  |
+| $$P_2$$ | 1/2  | 1/3  | 1/6  |
+
+| $$P_1$$ | $$P_2$$ | Number of outcomes             | Payoff |
+| ------- | ------- | ------------------------------ | ------ |
+| R       | R       | $$N \cdot 1/4 \cdot 1/2=N/8$$  | 0      |
+| R       | P       | $$N \cdot 1/4 \cdot 1/3=N/12$$ | -1     |
+| R       | S       | $$N \cdot 1/4 \cdot 1/6=N/24$$ | 1      |
+| P       | R       | $$N \cdot 1/2 \cdot 1/2=N/4$$  | 1      |
+| P       | P       | $$N \cdot 1/2 \cdot 1/3=N/6$$  | 0      |
+| P       | S       | $$N \cdot 1/2 \cdot 1/6=N/12$$ | -1     |
+| S       | R       | $$N \cdot 1/4 \cdot 1/2=N/8$$  | -1     |
+| S       | P       | $$N \cdot 1/4 \cdot 1/3=N/12$$ | 1      |
+| S       | S       | $$N \cdot 1/4 \cdot 1/6=N/24$$ | 0      |
+
+Expected number of wins
+
+$$=(N/8 \cdot 0) + (N/12 \cdot -1) +(N/24 \cdot 1) +(N/4 \cdot 1) +(N/6 \cdot 0) +(N/12 \cdot -1) +(N/8 \cdot -1) +(N/12 \cdot 1) +(N/24 \cdot 0)$$
+
+$$=N/12$$
+
+Expected win: $$\sum_{j=1}^{m} \sum_{i=1}^{n}x_i a_{ij} y_{j} =x^TAy$$
+
+Value of a game: optimal strategy
+
+$$A \equiv$$ Payoff from $$P_2$$ to $$P_1$$
+
+$$x^\ast$$ - optimal strategy of $$P_1$$
+
+$$y^\ast$$ - optimal strategy of $$P_2$$
+
+$$V(A)={x^\ast}^T A y^\ast$$
+
+$$V(A)=\max_{x} \min_{y} x^T Ay=\min_{y} \max_{x} x^TAy$$
+
+$$x: x_i \geq 0, \sum x_i =1$$
+
+$$y: y_j \geq 0, \sum_{y_j}=1$$
+
+$$V(A)$$
+
+For any $$x:\min_{y} x^TAy$$
+
+$$c=A^Tx$$ where $$ c^T=x^TA$$
+
+such that $$y_j \geq 0, \sum_{y_j}=1$$
+
+$$= \min_{y} c^Ty$$
+
+such that $$y_j \geq 0, \sum_{y_j}=1, c=A^Tx$$
+
+$$=\min_{y} c_1y_1 +c_2y_2+ ... + c_ny_n$$
+
+such that $$y_j \geq 0, \sum_{y_j}=1, c=A^Tx$$
+
+$$=\min(c_1, c_2, ... , c_n)=$$ min entry of $$A^Tx=z$$
+
+such that $$c=A^Tx$$
+
+$$c_1y_1+...+c_ny_n \geq \min(c_1,c_2,..., c_n)=z$$
+
+$$V(A)=\max_{x}z$$
+
+such that $$z \leq A^Tx, x_i \geq 0, \sum x_i=1$$
+
+------
+
+$$c_1y_1+c_2y_2+c_3y_3$$
+
+$$\min(0 \cdot 1 y_1 + 0 \cdot 2y_2 -0 \cdot 3y_3)$$
+
+$$y_1+y_2+y_3=1$$
+
+$$y_1 \geq0,y_2 \geq 0, y_3 \geq 0$$
+
+------
+
+$$V(A)=\min_{y} \max_{x} x^TAy$$
+
+For any $$y: \max_{x} x^TAy$$           - $$b=Ay$$
+
+such that $$x_i \geq 0, \sum x_i =1$$
+
+$$=\max_{x} x^Tb$$
+
+such that $$x_i \geq 0, \sum{x_i}=1, b=Ay$$
+
+$$=max_{x} b_1x_1+b_2x_2 + ... + b_nx_n$$
+
+such that $$x_i \geq 0, \sum x_i=1, b=Ay$$ 
+
+$$=\max(b_1,b_2,...b_n)$$
+
+such that $$b=Ay$$
+
+$$=$$ max entry of $$Ay=\omega$$
+
+$$V(A)=\min_{y} \omega$$
+
+such that $$y_j \geq 0, \sum y_j=1$$
+
+$$\begin{bmatrix} \omega \\ ... \\ \omega \end{bmatrix} \geq Ay$$
+
+------
+
+Minimax Theorem: For any matrix $$A$$, the value of the game with payoff $$A$$ can be computed as
+
+$$V(A)=\max_{x} \min_{y} x^TAy=\min_{y} \max_{x} x^TAy$$
+
+such that $$\forall i : x_i \geq 0, \forall: y_j \geq 0, \sum_{i=1}^{n}x_i=1, \sum_{j=1}^{m}y_j=1$$
+
+Theorem: 
+
+Let $$A$$ be the payoff matrix, then the two stochastic vectors $$x^\ast$$ and $$y^\ast$$ are optimal strategies for  player $$P_1$$ AND $$P_2$$ if and only if
+
+min entry of $${x^\ast}^TA =$$ max entry of $$Ay^\ast=V(A)$$
+
+------
+
+Proposition: $$A \in \R^{n \times n }$$
+
+$$V(A)=-V(-A^T)$$
+
+$$V(A)=\max_{x} \min_{y} x^TAy$$
+
+Proof:
+
+$$V(-A^T)=\max_{x} \min_{y} x^T(-A^T) y$$
+
+$$=\max_{x} \min_{y} -x^TA^Ty$$
+
+![image-20241124185313597](C:\Users\Levi\AppData\Roaming\Typora\typora-user-images\image-20241124185313597.png)
+
+$$=\max_{x}-\max_{y} x^TA^Ty$$       - $$\min(-f)=-\max(f)$$
+
+$$=-\min_{x} \max_{y} x^TA^Ty$$
+
+$$=-\min_{x} \max_{y} y^TAx$$
+
+$$=-\min_{y} \max_{x}x^TAy$$ - change of variable $$x \rightarrow y, y \rightarrow x$$
+
+$$=-V(A)$$
+
+$$V(-A^T)=-V(A) \implies V(A)=-V(-A^T)$$
+
+Corollary
+
+If $$A=-A^T$$
+
+$$V(A)=-V(-A^T) \text{\:\:substitute}(A=-A^T)\implies V(A)=-V(A)$$
+
+$$V(A)=0$$
+
+------
+
+Dominated Moves ($$A \equiv$$ Payoff of $$P_2$$ to $$P_1$$ )
+
+If $$P_1$$ has two moves, say $$\#k$$ and $$\#i$$ such that $$a_{kj}=a_{ij} \forall j$$ then $$\#k$$ dominates $$\#i$$
+
+Proposition: If a matrix $$A$$ is such that $$a_{kj} \geq a_{ij} \forall j$$, then there exists an optimal strategy such that $$x_i^\ast=0$$
+
+#### Example 
+
+Let $$A$$ be the payoff $$P_1$$ from $$P_2$$
+
+$$A=\begin{bmatrix} 5 & 4 & -3 & -5 & -2 \\  3 & -3 & 7 & 1 & 2 \\ 9 & -1 & 8 & 5 & 6\\10 & -2 & 9 & 4 & 3\end{bmatrix}$$
+
+Find the optimal strategies $$x^\ast$$ from $$P_1$$ AND $$y^\ast$$ for $$P_2$$
+
+$$A \equiv \begin{bmatrix} \ & \#1 & \#2 & \#3 & \#4 & \#5\\ \#1 & 5 & 4 & -3 & -5 & -2 \\ \#2 & 3 & -3 & 7 & 1 & 2 \\ \#3 &9 & -1 & 8 & 5 & 6\\\#4 &10 & -2 & 9 & 4 & 3\end{bmatrix}$$
+
+Select $$y \#1, y\#3, y\#4$$ 
+
+$$y_1^\ast=0, y_3^\ast=0$$
+
+$$A'= \begin{bmatrix} \ & \#2 & \#4 & \#5 \\ \#1 & 4 & -5 & -2 \\ \#2 & -3 & 1 & 2 \\ \#3 &-1 & 5 & 6\\\#4 &-2 & 4 & 3\end{bmatrix}$$
+
+Select $$x \#2, x\#3, x\#4$$ 
+
+$$x_2^\ast=0, x_4^\ast=0$$
+
+$$A''=\begin{bmatrix} \ & \#2 & \#4 & \#5 \\ \#1 & 4 & -5 & -2 \\ \#3 & -1 & 5 & 6 \end{bmatrix}$$
+
+Select $$y \#4, y\#5$$ 
+
+$$y_5^\ast=0$$
+
+$$A'''=\begin{bmatrix} \ & \#2 & \#4 \\ \#1 & 4 & -5\\ \#3 & -1 & 5  \end{bmatrix}$$
+
+$$\begin{bmatrix} \ & q & 1-q \\ p & 4 & -5\\ 1-p & -1 & 5  \end{bmatrix}$$
+
+$$4p+(-1)(1-p)=-5p+5(1-p)$$
+
+$$p=2/5, 1-p=3/5$$
+
+$$4q+(-5)(1-q)=(-1)q+5(1-q)$$
+$$q=2/3,1-q=1/3$$
+
+$$x^\ast =\begin{bmatrix} x_1^\ast \\ x_2^\ast \\ x_3^\ast \\ x_4^\ast \end{bmatrix}=\begin{bmatrix} 2/5  \\ 0 \\ 3/5 \\0\end{bmatrix}, y^\ast =\begin{bmatrix} y_1^\ast \\ y_2^\ast \\ y_3^\ast \\ y_4^\ast \\ y_5^\ast\end{bmatrix}=\begin{bmatrix} 0  \\ 2/3 \\ 1/3 \\0\end{bmatrix}$$
+
+## Week 13 Session 2
+
+### Outlines
+
+Minimax Matrix Games: GANs
+
+Matrix Calculus
+
+------
+
+#### Example
+
+$$A=\begin{bmatrix} 5 & 4 & -3 & -5 & -2 \\  3 & -3 & 7 & 1 & 2 \\ 9 & -1 & 8 & 5 & 6\\10 & -2 & 9 & 4 & 3\end{bmatrix}$$
+
+Find the optimal strategies $$x^\ast$$ and $$y^\ast$$ 
+
+$$\begin{bmatrix} \ & \#1 & \#2 & \#3 & \#4 & \#5\\ \#1 & 5 & 4 & -3 & -5 & -2 \\ \#2 & 3 & -3 & 7 & 1 & 2 \\ \#3 &9 & -1 & 8 & 5 & 6\\\#4 &10 & -2 & 9 & 4 & 3\end{bmatrix}$$
+
+$$A \equiv $$Payoff from $$P_2$$ to $$P_1$$
+
+$$V(A)=\max_{x} \min_{y} x^TAy$$
+
+$$A \equiv \begin{bmatrix} \ & \#1 & \#2 & \#3 & \#4 & \#5\\ \#1 & 5 & 4 & -3 & -5 & -2 \\ \#2 & 3 & -3 & 7 & 1 & 2 \\ \#3 &9 & -1 & 8 & 5 & 6\\\#4 &10 & -2 & 9 & 4 & 3\end{bmatrix}$$
+
+Select $$y \#1, y\#3, y\#4$$ 
+
+$$y \#4$$ is always $$y\#1, y\#3$$
+
+left with $$y \#4, y\#2, \#5$$ as  $$y\#2, \#5$$ as there is always terms conflicting 
+
+$$y_1^\ast=0, y_3^\ast=0$$
+
+$$A'= \begin{bmatrix} \ & \#2 & \#4 & \#5 \\ \#1 & 4 & -5 & -2 \\ \#2 & -3 & 1 & 2 \\ \#3 &-1 & 5 & 6\\\#4 &-2 & 4 & 3\end{bmatrix}$$
+
+Select $$x \#2, x\#3, x\#4$$ 
+
+left with $$x\#1,x\#3$$ as $$x\#1$$ is conflicting
+
+$$x_2^\ast=0, x_4^\ast=0$$
+
+$$A''=\begin{bmatrix} \ & \#2 & \#4 & \#5 \\ \#1 & 4 & -5 & -2 \\ \#3 & -1 & 5 & 6 \end{bmatrix}$$
+
+Select $$y \#4, y\#5$$ 
+
+left with $$y\#2,y\#4$$ as $$x\#5$$ is conflicting
+
+$$y_5^\ast=0$$
+
+$$A'''=\begin{bmatrix} \ & \#2 & \#4 & \ \\ \#1 & 4 & -5 & p\\ \#3 & -1 & 5  & 1-p \\ \ & q & 1-q\end{bmatrix}$$
+
+$$P_1: $$  $$4p+(-1)(1-p)=-5p+5(1-p)$$
+
+$$p=2/5,1-p=3/5$$
+
+$$P_2:$$ $$4q+(-5)(1-q)=-q+5(1-q)$$
+
+$$q=2/3, 1-q=1/3$$
+
+$$x^\ast =\begin{bmatrix} x_1^\ast \\ x_2^\ast \\ x_3^\ast \\ x_4^\ast \end{bmatrix}=\begin{bmatrix} 2/5  \\ 0 \\ 3/5 \\0\end{bmatrix}, y^\ast =\begin{bmatrix} y_1^\ast \\ y_2^\ast \\ y_3^\ast \\ y_4^\ast \\ y_5^\ast\end{bmatrix}=\begin{bmatrix} 0  \\ 2/3 \\0\\ 1/3 \\0\end{bmatrix}$$
+
+$$V(A)=\max_{x} \min_{y}x^TAy={x^\ast}^TAy^\ast$$
+
+$$x_i \geq 0, \sum x_i =1, y_j \geq 0, \sum y_j =1$$
+
+$${x^\ast}^TAy^\ast=\begin{bmatrix} 2/5  & 0 & 3/5 &0\end{bmatrix}\begin{bmatrix} 5 & 4 & -3 & -5 & -2 \\  3 & -3 & 7 & 1 & 2 \\ 9 & -1 & 8 & 5 & 6\\10 & -2 & 9 & 4 & 3\end{bmatrix}\begin{bmatrix} 0  \\ 2/3 \\0\\ 1/3 \\0\end{bmatrix}$$
+
+$$=1$$
+
+------
+
+$$P_1 \rightarrow \max$$   $$x^\ast$$
+
+$$P_2 \rightarrow \min$$    $$y^\ast$$
+
+Thm: $$x^\ast$$ and $$y^\ast$$ are the optimal strategies for a payoff $$A$$ (i.e., payoff from $$P_2$$ to $$P_1$$) if and only if
+
+$$V(A)=$$ min entry of $${x^\ast}^T=A$$ = max entry of $$Ay^\ast$$
+
+$${x^\ast}^TA$$
+
+$$\begin{bmatrix} 2/5  & 0 & 3/5 &0\end{bmatrix}\begin{bmatrix} 5 & 4 & -3 & -5 & -2 \\  3 & -3 & 7 & 1 & 2 \\ 9 & -1 & 8 & 5 & 6\\10 & -2 & 9 & 4 & 3\end{bmatrix}=\begin{bmatrix} 37/5 & 5/5 & 18/5 & 5/5 & 14/5\end{bmatrix}$$
+
+min entry $$x^TA=1$$
+
+$$Ay^\ast$$
+
+ $$\begin{bmatrix} 5 & 4 & -3 & -5 & -2 \\  3 & -3 & 7 & 1 & 2 \\ 9 & -1 & 8 & 5 & 6\\10 & -2 & 9 & 4 & 3\end{bmatrix}\begin{bmatrix} 0  \\ 2/3 \\0\\ 1/3 \\0\end{bmatrix}=\begin{bmatrix} 3/3  \\ -5/3 \\ 3/3\\0\end{bmatrix}$$
+
+max entry of $$Ay^\ast=1$$
+
+------
+
+### Generative Adversarial Networks (GANs)
+
+![image-20241124200352906](C:\Users\Levi\AppData\Roaming\Typora\typora-user-images\image-20241124200352906.png)
+
+Latent variable $$Z \sim \mathcal{N} (0,I)$$
+
+![image-20241124200425469](C:\Users\Levi\AppData\Roaming\Typora\typora-user-images\image-20241124200425469.png)
+
+$$\min_{D} \max_{G} V(D,G)$$
+
+------
+
+### Matrix Calculus
+
+$$x=\begin{bmatrix} x_1 \\ x_2 \\ ... \\x_n \end{bmatrix} \in n \times 1$$
+
+$$f(x)$$ where $$f:\R^n \rightarrow \R$$
+
+$$\bigtriangledown_xf(x)=\frac{df(x)}{dx}=\begin{bmatrix} \frac{\partial f(x)}{\partial x_1} \\ ... \\ \frac{\partial f(x)}{\partial x_n}\end{bmatrix}$$
+
+- Directional Derivative along $$u: ||u||=1$$
+
+  $$\bigtriangledown_x f(x) \cdot u$$
+
+- Matrix-by-scalar
+
+  $$F \in \R^{m \times n}$$
+
+  $$\frac{dF}{dy}=[\frac{\partial F_{ij}}{\partial y}]=\begin{bmatrix} \frac{\partial F_{11}}{\partial y} & \frac{\partial F_{12}}{\partial y} & ... & \frac{\partial F_{1n}}{\partial y} \\ ... & .... & ... & ... \\ \frac{\partial F_{m1}}{\partial y} & ... & ... & \frac{\partial F_{mn}}{\partial y}\end{bmatrix}$$
+
+- Scalar-by-matrix
+
+  Let $$X \equiv [x_{ij}]$$
+
+  $$\frac{dF}{dx}=[\frac{\partial f}{ \partial x_{ij}}]= \begin{bmatrix} \frac{\partial f}{\partial x_{11}} & \frac{\partial f}{\partial x_{12}} & ... & \frac{\partial f}{\partial x_{1n}} \\ ... & .... & ... & ... \\ \frac{\partial f}{\partial x_{m1}} & ... & ... & \frac{\partial f}{\partial x_{mn}}\end{bmatrix}$$
+
+------
+
+$$Ax$$ where $$A \in m \times n, x \in n \times 1, Ax \in m \times 1$$
+
+$$\frac{dAx}{dx}=A^T$$
+
+$$A \equiv [a_{ij}]$$
+
+## Week 14 Session 1 (Only 1)
+
+### Outlines
+
+Gershgorin's Circles
+
+Matrix Calculus (Maximum Likelihood Estimation)
+
+Linear Regression
+
+------
+
+### Gershgorin's Circle
+
+$$Ax=\lambda x$$
+
+Theorem: For any square matrix, $$A \in \C^{n \times n}$$, it is true that it satisfies at least one of the following inequalities
+
+$$|\lambda-a_{ii}| \leq \sum_{j=1, j \neq i}^{n} |a_{ij}|$$
+
+where $$\sum_{j=1, j \neq i}^{n} |a_{ij}|=r$$
+
+$$A \equiv [a_{ij}]$$
+
+![image-20241128161933803](C:\Users\Levi\AppData\Roaming\Typora\typora-user-images\image-20241128161933803.png)
+
+$$A=\begin{bmatrix} 3 & 4 & 5 \\ 0 & 1 & 2 \\ 3 & 1 & 3 \end{bmatrix}$$
+
+$$r_1=|4|+|5|$$
+
+$$r_2=|0|+|2|$$
+
+$$r_3=|3|+|1|$$
+
+Proof: 
+
+$$Ax =\lambda x, x \neq \mathbf{0}$$
+
+$$\exist x_i: |x_i| \geq |x_j|, \forall j \in \{1,2,...,n\}$$
+
+$$[Ax]_{i}=\lambda x_i$$
+
+$$\lambda x_i = \sum_{j=1}^{n}a_{ij}x_j$$
+
+where $$\sum_{j=1}^{n}a_{ij}x_j=[Ax]_{i}$$
+
+$$\lambda x_i - a_{ii} x_i = \sum_{j=1, j \neq i}^{n}a_{ij}x_j$$
+
+$$(\lambda-a_{ii})x_i=\sum_{j=1, j \neq i}^{n}a_{ij}x_j$$
+
+$$|\lambda-a_{ii}||x_i|=|\sum_{j=1, j \neq i}^{n}a_{ij}x_j|$$
+
+$$|\lambda-a_{ii}| |x_i| \leq \sum_{j=1, j \neq i} |a_{ij} x_{j}|$$
+
+$$|\lambda-a_{ii}| \frac{|x_i|}{|x_i|} \leq \frac{1}{|x_i|}  \sum_{j=1, j \neq i}^{n} |a_{ij}||x_j|$$
+
+$$|\lambda-a_{ii}| \leq \sum_{j=1,j\neq i}^{n} |a_{ij}| \frac{|x_j|}{|x_i|}$$
+
+where $$\frac{|x_j|}{|x_i|} \leq 1$$
+
+$$|\lambda-a_{ii}| \leq \sum_{j=1,j\neq i}^{n} |a_{ij}|$$
+
+------
+
+### Matrix Calculus
+
+- $$\triangledown_x Ax=A^T$$
+
+- $$\triangledown_xA^Tx=A$$
+
+- $$\triangledown_x x^TAx=Ax+A^Tx$$
+
+  if $$A=A^T$$ then $$\triangledown_x x^TAx=2Ax$$
+
+- $$\triangledown_A Tr(AB)=\triangledown_A Tr(BA)=B^T$$
+
+Maximum Likelihood Estimation
+
+$$\theta$$
+
+$$D=\{x^{<i>}, y^{<i>}\}$$
+
+$$g(x|\theta)$$
+
+where $$x$$ is data, $$\theta$$ is the parameter, $$g(x|\theta)$$ is the likelihood
+
+Find $$\hat{\theta}^{ML}=argmax_{\theta} g(x|\theta)$$
+
+$$=argmax_{\theta} \ln(g(x|\theta))$$
+
+$$g(x|\theta)=\prod_{i=1}^{n} g(x^{<i>}|\theta)$$ - For random samples, $$x^{<1>}, x^{<2>},...x^{<n>}$$
+
+$$\ln(g(x|\theta))=\ln \prod_{i=1}^{n} g(x^{<i>}|\theta)=\sum_{i=1}^{n} \ln g(x^{<i>}|\theta)$$
+
+------
+
+Gaussian Vector $$X$$
+
+$$X=\begin{bmatrix} X_1 \\ X_2  \\ ... \\ X_d\end{bmatrix}$$
+
+$$X_j$$ is random variable
+
+$$X \sim \mathcal{N}(\mu_{X}, K_{X})$$
+
+$$f_{X}(x)=\frac{1}{(2\pi)^{\frac{d}{2}} \sqrt{Det(K_X)}} exp(-\frac{1}{2} (x-\mu_X)^T K_X^{-1} (x-\mu_X) ) $$
+
+$$g(x|\theta)=\prod_{i=1}^{n} g(x^{<i>}|\theta)$$
+
+$$=\prod_{i=1}^{n} \frac{1}{(2\pi)^{\frac{d}{2}} \sqrt{Det(K_X)}} exp(-\frac{1}{2} (x-\mu_X)^T K_X^{-1} (x-\mu_X) )$$
+
+Log-likelihood (L)
+
+$$L=\ln(g(x|\theta))$$
+
+$$=\ln(\prod_{i=1}^{n} \frac{1}{(2\pi)^{\frac{d}{2}} \sqrt{Det(K_X)}} exp(-\frac{1}{2} (x-\mu_X)^T K_X^{-1} (x-\mu_X) ) )$$
+
+$$=\sum_{i=1}^{n} -\ln (2 \pi)^{\frac{d}{2}} + \ln Det(K_X)^{-\frac{1}{2}} -\frac{ (x^{<i>}-\mu_X)^T K_X^{-1}(x^{<i>}-\mu_X) }{2}$$
+
+$$=\sum_{i=1}^{n} (-\ln (2 \pi) ^{\frac{d}{2}} +\frac{1}{2} \ln Det(K_X^{-1}) -\frac{ (x^{<i>}-\mu_X)^T K_X^{-1}(x^{<i>}-\mu_X) }{2})$$
+
+------
+
+What is $$\triangledown_A Det(A)$$
+
+Laplace's Formula: $$Det(A)=\sum_{j} a_{ij} [Adj^T(A)]_{ij}$$
+
+$$A= \begin{bmatrix} 1 & 2 & 1 \\ 0 & 3 & 4 \\ 5 & 3 &2\end{bmatrix}=1 \begin{bmatrix}3 & 4 \\ 3 & 2\end{bmatrix}-2\begin{bmatrix} 0 & 4 \\ 5 & 2 \end{bmatrix}+ 1\begin{bmatrix} 0 & 3 \\ 5 & 3 \end{bmatrix}$$
+
+$$A \equiv [a_{ij}]$$
+
+1. $$A \rightarrow \text{Minor\:} M=[m_{ij}] \rightarrow \text{Cofactor\:} C=c_{ij}=(-1)^{i+j}m_{ij} \rightarrow \text{Adjoint\:} \tilde{A}=C^T=Adj(A)$$
+
+   $$Adj^T(A)=C$$
+
+   ![image-20241128165114517](C:\Users\Levi\AppData\Roaming\Typora\typora-user-images\image-20241128165114517.png)
+
+2. If $$Det(A) \neq 0,$$ then $$A^{-1}=\frac{1}{Det(A)} \tilde{A}$$
+
+   $$\implies \tilde{A}=Adj(A)=Det(A)A^{-1}$$
+
+------
+
+Thm: $$\triangledown_{A}Det(A)=Adj^T{A}=(\tilde{A})^T$$
+
+Proof:
+
+$$\triangledown_A Det(A) \equiv [\frac{\partial Det(A)}{\partial a_{ij}}]$$
+
+$$i \in \{1, ... n\}$$
+
+$$j \in \{1, ..., n\}$$ 
+
+$$\frac{\partial Det(A)}{\partial a_{ij}} = \frac{\partial}{\partial a_{ij}} \sum_{k} (a_{ik} (Adj^T(A))_{ik})$$
+
+$$=\sum_{k} \frac{\partial}{\partial a_{ij}} (a_{ik} (Adj^T(A))_{ik})$$
+
+$$=\sum_{k} \frac{\partial a_{ik}}{\partial a_{ik}}(Adj^T(A)_{ik})+\sum_{k} a_{ik} \frac{\partial}{\partial a_{ij}} (Adj^T(A)_{ik})$$
+
+where $$\sum_{k} a_{ik} \frac{\partial}{\partial a_{ij}} (Adj^T(A)_{ik})=0$$
+
+$$=\sum_{k}\frac{\partial a_{ik}}{\partial a_{ij}} (Adj^T(A)_{ik})$$
+
+$$=\frac{\partial a_{ii}}{\partial a_{ij}} (Adj^T(A)_{ij})+\sum_{k=1, k \neq j} \frac{\partial a_{ik}}{a_{ij}}(Adj^T(A)_{ik})$$
+
+where $$\sum_{k=1, k \neq j} \frac{\partial a_{ik}}{a_{ij}}(Adj^T(A)_{ik})=0$$
+
+$$=Adj^T(A)_{ij}=c_{ij}$$
+
+$$\triangledown_A Det(A)=[c_{ij}]=C=Adj^T(A)$$
+
+------
+
+$$\triangledown_A \ln (Det(A))=\frac{\triangledown_A Det(A)}{Det(A)}$$  - $$Det(A) \neq 0$$
+
+$$=\frac{Adj^T(A)}{Det(A)}$$
+
+$$=\frac{(Det(A)A^{-1})^T}{Det(A)}$$
+
+$$=\frac{Det(A) (A^{-1})^T}{Det(A)}$$
+
+$$=(A^{-1})^T$$
+
+------
+
+Recall: 
+
+$$\triangledown_A x^TAx=\triangledown_A Tr(x^TAx)$$
+
+$$A \in \R^{n \times n}$$
+
+$$x \in \R^{n \times 1}$$
+
+$$=\triangledown_A Tr(A xx^T)$$
+
+$$=\triangledown_{A} Tr(xx^T A)$$
+
+$$=(xx^T)^T$$
+
+$$=xx^T$$
+
+------
+
+$$L=\sum_{i=1}^{n} (-\ln (2 \pi) ^{\frac{d}{2}} +\frac{1}{2} \ln Det(K_X^{-1}) -\frac{ (x^{<i>}-\mu_X)^T K_X^{-1}(x^{<i>}-\mu_X) }{2})$$
+
+$$\triangledown_{\mu_X}L =\sum_{i=1}^{n} - \triangledown_{\mu_X} (\frac{1}{2}   ((x^{<i>})^T K_X^{-1} x^{<i>}  - (x^{<i>})^T K_{X}^{-1}\mu_X - \mu_X^T K_X^{-1} x^{<i>} + \mu_X^T K_X^{-1} \mu_X )  )$$
+
+If $$A$$ is invertible and $$A=A^T$$, then $$(A^{-1})^T=A^{-1}$$
+
+$$AA^{-1}=I=A^TA^{-1}=A^T$$
+
+$$A^{-1}=(A^T)^{-1}=(A^{-1})^T$$
+
+$$\triangledown_{\mu} L=-\frac{1}{2} \sum_{i=1}^{n} \triangledown_{\mu_X} ( (x^{<i>})^T K_X^{-1} x^{<i>} -2 \mu_X^T K_X^{-1}x^{<i>} +x^{<i>} K_X^{-1} x^{<i>} )$$
+
+$$=- \frac{1}{2} \sum_{i=1}^{n} (-2 K_X^{-1}\mu_X +2 K_X^{-1}x^{<i>})$$
+
+$$\triangledown_{\mu}L=\sum_{i=1}^{n} (K_X^{-1} x^{<i>} -K_X^{-1}\mu_X)$$
+
+$$\triangledown_\mu L|_{\mu=\hat{\mu}^{ML}}=\mathcal{0} \implies \sum_{i=1}^{n} (K_X^{-1}x^{<i>}-K_X^{-1}\hat{\mu_X}^{ML})=0$$
+
+$$\implies n K_X^{-1} \hat{\mu_X}^{ML} = K_X^{-1} \sum_{i=1}^{n}x^{<i>}$$
+
+$$\implies \hat{\mu_X}^{ML}=\frac{1}{n} \sum_{i=1}^{n}x^{<i>}$$
+
+------
+
+$$L=\sum_{i=1}^{n} (-\ln (2 \pi) ^{\frac{d}{2}} +\frac{1}{2} \ln Det(K_X^{-1}) -\frac{ (x^{<i>}-\mu_X)^T K_X^{-1}(x^{<i>}-\mu_X) }{2})$$
+
+$$\triangledown_{K_X^{-1}}L=\sum_{i=1}^{n} \frac{1}{2} ((K_X^{-1})^{-1})^T - \frac{(x^{<i>}-\mu_X)(x^{<i>}-\mu_X)^T}{2}$$
+
+$$\triangledown_{K_X^{-1}}L |_{\hat{K_X}^{ML}}=\mathcal{0}$$
+
+$$n \frac{1}{2} \hat{K_X}^{ML} =\frac{1}{2} \sum_{i=1}^{n} (x^{<i>}-\hat{\mu_X}^{ML})(x^{<i>}-\hat{\mu_X}^{ML})^T$$
+
+$$\hat{K_X}^{ML}=\frac{1}{n} \sum_{i=1}^{n} (x^{<i>}-\hat{\mu_X}^{ML})(x^{<i>}-\hat{\mu_X}^{ML})^T$$
+
+
+
+
+
+
+
