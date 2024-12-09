@@ -8240,9 +8240,379 @@ $$n \frac{1}{2} \hat{K_X}^{ML} =\frac{1}{2} \sum_{i=1}^{n} (x^{<i>}-\hat{\mu_X}^
 
 $$\hat{K_X}^{ML}=\frac{1}{n} \sum_{i=1}^{n} (x^{<i>}-\hat{\mu_X}^{ML})(x^{<i>}-\hat{\mu_X}^{ML})^T$$
 
+## Week 15 Session 1
 
+### Outlines
 
+Linear Regression
 
+Ordinary Least Squares
+
+Weighted Least Squares
+
+Generalized Least Squares
+
+Penalized Least Squares
+
+------
+
+### Linear Regression
+
+Data: $$(x^{<1>},y^{<1>}),...,(x^{<n>},y^{<n>})$$
+
+$$y=\beta_0+\beta_1x_1+...+\beta_n x_n+\epsilon$$
+
+$$\epsilon$$ is the modelling error
+
+![image-20241204135125209](C:\Users\Levi\AppData\Roaming\Typora\typora-user-images\image-20241204135125209.png)
+
+$$\hat{y} \equiv$$ prediction
+
+$$Y=X\beta+\epsilon$$
+
+$$Y=\begin{bmatrix} y^{<1>} \\ y^{<2>} \\ ... \\ y^{<n>}\end{bmatrix} \in n \times 1$$
+
+$$X=\begin{bmatrix} 1 & x_1^{<1>} & ... & x_k^{<1>} \\ 1 & x_1^{<2>} & ... & x_k^{<2>} \\ ... &... & ... & ... \\ 1 & x_1^{<n>} & ... & x_k^{<n>} \end{bmatrix} \in n \times (k+1)$$
+
+$$\beta=\begin{bmatrix} \beta_0 \\ \beta_1 \\... \\ \beta_{k}\end{bmatrix} \in (k+1) \times 1$$
+
+$$n \equiv \#$$ of samples
+
+$$k \equiv \#$$ of features
+
+$$\epsilon \sim \mathcal{N}(\mathbf{0},\sigma^2I)$$
+
+where $$\epsilon \in n \times 1, \sigma^2I \in n \times n$$
+
+$$K_{\epsilon \epsilon} $$ is the covariance matrix
+
+Homoscedasticity
+
+Homo - same ; scedasticity - variance
+
+### Ordinary Least Squares
+
+$${\hat{\beta}}^{LS} = argmin_{\beta} \:\epsilon^T \epsilon$$
+
+where $$\epsilon^T \epsilon$$ is $$J_{LS}$$
+
+$$J_{LS}=\epsilon^T \epsilon $$
+
+$$= (Y-X\beta)^T (Y-X\beta)$$
+
+$$=(Y^T-\beta^TX^T)(Y-X\beta)$$
+
+$$=Y^TY-2Y^TX \beta+\beta^TX^TX\beta$$
+
+Let $$X^TX=A$$
+
+$${\hat{\beta}}^{LS} = argmin_{\beta} \: J_{LS}$$
+
+$$\triangledown_\beta J_{LS}(\beta)|_{\beta={\hat{\beta}}^{LS}}=\mathbf{0}$$
+
+$$\triangledown_\beta J_{LS}(\beta)=-2X^TY+2X^TX\beta$$
+
+$$-2X^TY+2X^TX \hat{\beta}^{LS} =0$$
+
+$$X^TX \hat{\beta}^{LS}=X^TY$$
+
+$$\hat{\beta}^{LS}=(X^TX)^{-1} X^TY$$
+
+$$Ax=b \implies x=A^{-1}b$$
+
+$$\hat{\beta}^{LS}=(X^TX)^{-1} X^TY$$
+
+$$X^TX \equiv$$ It is symmetric
+
+Assume that $$ u \neq 0$$
+
+$$u^TX^TXu=(Xu)^T(Xu)$$
+
+$$=||Xu||^2_2 \geq 0$$
+
+$$X^TX$$ is positive-semi definite
+
+For small eigenvalue like $$\lambda_1=2.0 \times 10^{-9}$$, there is a problem when dealing the inverse
+
+Multicollinearity: very small eigenvalues
+
+$$X^TX=EDE^T$$
+
+$$(X^TX)^{-1}=(E^T)^{-1} D^{-1}E^{-1}$$
+
+$$\epsilon \sim \mathcal{N}(0,\sigma^2 I)$$
+
+$$K_{\epsilon \epsilon}=\begin{bmatrix} \sigma^2 & 0 & ... & 0 \\ 0 & \sigma^2 & ... & 0 \\ ... & ... & ... & ... \\ 0 & 0 & ... & \sigma^2\end{bmatrix}$$
+
+$$K_{\epsilon \epsilon}$$ is uncorrelated and heteroscedastic
+
+$$K_{\epsilon \epsilon}=\begin{bmatrix} \sigma_1^2 & 0 & ... & 0 \\ 0 & \sigma_2^2 & ... & 0 \\ ... & ... & ... & ... \\ 0 & 0 & ... & \sigma_n^2\end{bmatrix}$$
+
+### Weighted Least Squares
+
+$$J_{W}(\beta)= \epsilon^T W \epsilon$$
+
+$$W=QQ^T$$
+
+$$W=W^T$$
+
+$$W \implies$$ Positive definite
+
+Typically $$W=K_{\epsilon \epsilon}^{-1}$$
+
+$$K_{\epsilon \epsilon}^{-1}=\begin{bmatrix} \frac{1}{\sigma_1^2} & 0 & ... & 0 \\ 0 & \frac{1}{\sigma_2^2} & ... & 0 \\ ... & ... & ... & ... \\ 0 & 0 & ... & \frac{1}{\sigma_n^2}\end{bmatrix}$$
+
+$$J_{W}(\beta)=(Y-X\beta)^T W (Y-X\beta)$$
+
+$$=(Y^T-\beta^TX^T)W(Y-X\beta)$$
+
+$$=Y^TWY-Y^TWX\beta-\beta^TX^TWY+\beta^TX^TWX\beta$$
+$$(Y^TWX\beta)^T=\beta^TX^TW^TY=\beta^TX^TWY$$
+
+$$=Y^TWY-2Y^TWX\beta+\beta^TX^TWX\beta$$
+
+$${\hat{\beta}}^{WLS}=argmin_{\beta} \:J_{W}(\beta) $$
+
+$$\triangledown_\beta J_{W}(\beta)|_{\beta={\hat{\beta}}^{WLS}}=\mathbf{0}$$
+
+$$\triangledown_\beta J_{W}(\beta)=-2X^TWY+2X^TWX\beta$$
+
+$$-2X^TWY+2X^TX \hat{\beta}^{WLS}=0 $$
+
+$$\hat{\beta}^{WLS}=(X^TWX)^{-1} X^TWY$$
+
+Note that
+
+$$\triangledown_x Ax=A^T$$
+
+$$\triangledown_{x} x^TAx=Ax+A^Tx$$
+
+### WLS and whitening
+
+![image-20241204171913309](C:\Users\Levi\AppData\Roaming\Typora\typora-user-images\image-20241204171913309.png)
+
+$$\epsilon \rightarrow \text{Linear Transformation\:} Q \epsilon=\hat{\epsilon}$$
+
+$$Q \epsilon : K_{\hat{\epsilon}\hat{\epsilon}}=Q K_{\epsilon \epsilon}Q^T$$
+
+we wan to make $$Q K_{\epsilon \epsilon}Q^T=I$$
+
+$$K_{\hat{\epsilon}\hat{\epsilon}}=Q K_{\epsilon \epsilon}Q^T$$
+
+$$=QE\Lambda E^TQ^T$$   - $$EE^T=I$$  
+
+$$=\Lambda^{-\frac{1}{2}}E^TE \Lambda E^T E \Lambda^{-\frac{1}{2}}$$
+
+where $$Q=\Lambda^{-\frac{1}{2}}E^T, Q^T=E \Lambda^{-\frac{1}{2}}$$
+
+$$=\Lambda^{-\frac{1}{2}} \Lambda \Lambda^{-\frac{1}{2}} = I$$
+
+$$J_{W}={\hat{\epsilon}}^T \hat{\epsilon}$$
+
+$$=(Q \epsilon)^T(Q \epsilon)$$
+
+$$=(Q(Y-X \beta))^T(Q(Y-X\beta))$$
+
+$$=(Y-X\beta)^T Q^TQ(Y-X \beta)$$
+
+where $$W=Q^TQ$$
+
+$$K_{\epsilon \epsilon}$$ - correlated or Heterosedastic
+
+### Generalized Least Squares
+
+$$K_{\epsilon \epsilon}=\begin{bmatrix} \sigma_1^2 & \sigma_{12} & ... & \sigma_{1n} \\ \sigma_{21} & \sigma_2^2 & ... & \sigma_{2n} \\ ... & ... & ... & ... \\ \sigma_{n1} & \sigma_{n2} & ... & \sigma_n^2\end{bmatrix}$$
+
+$$W={K_{\epsilon \epsilon}}^{-1}$$
+
+$$J_{G}(\beta)=\epsilon^T {K_{\epsilon \epsilon}}^{-1} \epsilon$$
+
+$$=(Y-X\beta)^T {K_{\epsilon \epsilon}}^{-1} (Y-X \beta)$$
+
+$$=(Y^T-\beta^TX^T) {K_{\epsilon \epsilon}}^{-1} (Y-X \beta)$$
+
+$$=Y^T {K_{\epsilon \epsilon}}^{-1} Y -\beta^TX^T {K_{\epsilon \epsilon}}^{-1} Y - Y^T {K_{\epsilon \epsilon}}^{-1} X \beta + \beta^T X^T {K_{\epsilon \epsilon}}^{-1} X\beta$$
+
+$$(\beta^T X^T {K_{\epsilon \epsilon}}^{-1} Y)^T=Y^T ({K_{\epsilon \epsilon}}^{-1})^T X \beta$$
+
+$$=Y^T ({K_{\epsilon \epsilon}}^{T})^{-1} X \beta$$
+
+$$=Y^T {K_{\epsilon \epsilon}}^{-1} X \beta$$
+
+$${\hat{\beta}}^{GLS} = argmin_{\beta} \:J_{G}(\beta)$$
+
+$$\triangledown_\beta J_{G}(\beta)|_{\beta={\hat{\beta}}^{GLS}}=\mathbf{0}$$
+
+$$\triangledown_\beta J_{G}(\beta)=-2X^T  {K_{\epsilon \epsilon}}^{-1}Y+2X^T {K_{\epsilon \epsilon}}^{-1}X\beta$$
+
+$$-2X^T  {K_{\epsilon \epsilon}}^{-1}Y+2X^T {K_{\epsilon \epsilon}}^{-1}X {\hat{\beta}}^{GLS}=0$$
+
+$${\hat{\beta}}^{GLS} =(X^T{K_{\epsilon \epsilon}}^{-1} X )^{-1} X^T{K_{\epsilon \epsilon}}^{-1} Y$$
+
+For OLS:  
+
+$$K_{\epsilon \epsilon}=\sigma^2 I$$
+
+For WLS: 
+
+$$K_{\epsilon \epsilon}=\begin{bmatrix} \sigma_1^2 & 0 & ... & 0 \\ 0 & \sigma_2^2 & ... & 0 \\ ... & ... & ... & ... \\ 0 & 0 & ... & \sigma_n^2\end{bmatrix}$$
+
+------
+
+Penalized Regression
+
+$$J_{R}(\beta)=\epsilon^T \epsilon +\lambda R(\beta)$$
+
+where $$\lambda R(\beta)$$ is the penalty term
+
+![image-20241204173651649](C:\Users\Levi\AppData\Roaming\Typora\typora-user-images\image-20241204173651649.png)
+
+say $$y=\sin(x)+\epsilon$$
+
+$$\epsilon \sim \mathcal{N}(0,\sigma^2)$$
+
+$$y=\sum_{k=0}^{n}\beta_k x^k+\epsilon$$
+
+Ridge Regression:
+
+$$J_{Ridge}(\beta)= \epsilon^T \epsilon + \lambda \beta^T \beta$$
+
+$$=(Y-X\beta)^T (Y-X \beta)+\lambda \beta^T \beta$$
+$${\hat{\beta}}^{Ridge}= argmin_{\beta} \:J_{Ridge}(\beta)$$
+
+$$\triangledown_\beta J_{Ridge}(\beta)|_{\beta={\hat{\beta}}^{Ridge}}=\mathbf{0}$$
+
+$$\triangledown_\beta J_{Ridge}(\beta)=\triangledown_{\beta}(Y^TY-\beta^TX^TY-Y^TX\beta+\beta^TX^TX\beta+\lambda\beta^T \beta)$$
+
+where $$(\beta^TX^TY)^T=Y^TX\beta, \lambda \beta^T\beta=\lambda \beta^T I\beta$$
+
+$$=-2X^TY+2X^TX\beta+2 \lambda I \beta$$
+
+$$-2X^TY+2(X^TX +\lambda I) \hat{\beta}^{Ridge}=0$$
+
+$$\hat{\beta}^{Ridge}=(X^TX +\lambda I)^{-1}X^TY$$
+
+$$\lambda \geq 0$$
+
+## Week 15 Session 2
+
+### Outlines
+
+Linear Regression and Pseido-inverse
+
+Final Exam: Review
+
+### Least Squares
+
+$$Ax=b$$
+
+$$A \in m \times n$$
+
+$$x \in n \times 1$$
+
+$$b \in m \times 1$$
+
+$$m>n$$
+
+$$A \in n \times n$$ and $$A$$ is invertible
+
+$$x=A^{-1}b$$
+
+Find $$x$$ that minimizes $$||Ax-b||^2$$
+
+$$A^TAx=A^Tb$$
+
+$$x=(A^TA)^{-1} A^Tb$$
+
+If all columns of $$A$$ are linearly independent then $$A^TA$$ is inveritble
+
+Thm: Every linear system $$Ax=b \:(m>n)$$ has a unique least square solution
+
+Proof:  
+
+$$Ax=b$$
+
+$$A \in \R^{m \times n}$$
+
+$$x \in \R^n$$
+
+$$b \in \R^m$$
+
+$$C(A)=\{Ax:x \in \R^n\}$$
+
+$$Ax=b$$
+
+$$A \in \R^{3 \times 2}$$
+
+$$x \in \R^{2 \times 1}$$
+
+$$b \in \R^{3 \times 1}$$
+
+![image-20241207133326410](C:\Users\Levi\AppData\Roaming\Typora\typora-user-images\image-20241207133326410.png)
+
+$$x$$ minimizes $$||Ax-b||^2$$ if and only if $$Ax$$ is the orthogonal projection of $$b$$ onto $$C(A)$$
+
+$$\vec{bp}=b-Ax$$
+
+$$\vec{bp} \perp C(A)$$
+
+$$p$$ is unique and it has a unique solution
+
+$$p=Ax$$
+
+Therefore $$Ax=b$$ has a unique least square solution
+
+$$C(A)^{\perp} = n(A^T)$$
+
+$$C(A) \subset \R^n$$
+
+$$n(A^T) \subset \R^n$$
+
+$$\R^n=C(A) + n (A^T)$$
+
+$$x=u+v$$
+
+------
+
+$$Ax=b$$
+
+$$A=U \Sigma V^H$$
+
+If $$A \in \R^{m \times n}$$, then $$A=U \Sigma V^T$$ - $$U\&V$$ are orthogonal
+
+$$||\Sigma x- b||^2$$
+
+The $$x$$ that minimizes $$||\Sigma x-b||^2$$ is such that $$\Sigma_x$$ is the projection of $$b$$ onto $$C(\Sigma)$$
+
+$$A$$ is real
+
+$$A^{+}=V \Sigma^{+} U^T$$
+
+$$\Sigma^{+}\Sigma=I$$
+
+$$\Sigma^{+}\Sigma x = \Sigma^{+}b$$
+
+$$x=\Sigma^{+}b$$
+
+$$Ax=b$$
+
+$$x$$ that minimizes $$||Ax-b||^2$$
+
+$$||Ax-b||^2 =(\rightarrow \text{SVD}) =||U \Sigma V^Tx-b||^2$$
+
+$$=||U^T (U \Sigma V^T x- b)||^2$$
+
+$$=||\Sigma V^Tx-U^Tb||$$
+
+Let $$y=V^Tx$$
+
+$$=||\Sigma y-U^Tb||^2$$
+
+$$\implies y=\Sigma^{+} U^T b$$
+
+$$VV^Tx=Vy$$
+
+$$x=V^Ty=V \Sigma^{+} U^T b=A^{+}b$$
 
 
 
